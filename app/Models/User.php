@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'account_type',
         'code',
+        'referral_code',
         'name',
         'sex',
         'phone_number',
@@ -27,7 +28,8 @@ class User extends Authenticatable
         'agreement',
         'password',
         'status',
-        'photo'
+        'photo',
+        'referrer_id'
     ];
 
     /**

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('account_type')->nullable();
             $table->string('code')->nullable();
+            $table->string('referral_code')->nullable();
             $table->string('name')->nullable();
             $table->string('sex')->nullable();
             $table->string('phone_number')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('agreement')->nullable();
             $table->string('photo')->nullable();
+            $table->string('referrer_id')->nullable();
             $table->string('password');
             $table->enum('status', ['Active', 'Inactive'])->default('Active')->index();
             $table->timestamps();

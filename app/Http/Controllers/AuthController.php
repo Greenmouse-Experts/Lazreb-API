@@ -228,6 +228,13 @@ class AuthController extends Controller
             ]);
         }
 
+        if($user->account_type == 'Administrator'){
+            return response()->json([
+                'success' => false,
+                'message' => 'You are not an User',
+            ]);
+        }
+
         // authentication attempt
         if (auth()->attempt($input)) {    
             if($user->status !== 'Active'){
@@ -367,58 +374,62 @@ class AuthController extends Controller
 
     public function admin_login(Request $request)
     {
-        return view('auth.admin_login');
-    }
-
-    public function post_admin_login(Request $request)
-    {
-        $this->validate($request, [
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
-        ]);
-        
         $input = $request->only(['email', 'password']);
+
+        $validate_data = [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ];
+
+        $validator = Validator::make($input, $validate_data);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
         
         $user = User::query()->where('email', $request->email)->first();
 
         if ($user && !Hash::check($request->password, $user->password)){
-            return back()->with([
-                'type' => 'danger',
-                'message' => 'Incorrect Password!'
+            return response()->json([
+                'success' => false,
+                'message' => 'Incorrect Password!',
             ]);
         }
 
         if(!$user || !Hash::check($request->password, $user->password)) {
-            return back()->with([
-                'type' => 'danger',
-                'message' => "Email doesn't exist"
+            return response()->json([
+                'success' => false,
+                'message' => 'Email does\'nt exist',
             ]);
         }
 
         // authentication attempt
         if (auth()->attempt($input)) {
             if($user->account_type == 'Administrator'){
-                return redirect()->route('admin.dashboard');
+                $token = auth()->user()->createToken('passport_token')->accessToken;
+            
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Admin login succesfully, Use token to authenticate.',
+                    'token' => $token,
+                    'data' => Auth::user()
+                ]);
             }
-            return back()->with([
-                'type' => 'danger',
-                'message' => "You are not an Administrator!"
+
+            return response()->json([
+                'success' => false,
+                'message' => 'You are not an Administrator!'
             ]);
                     
         } else {
-            return back()->with([
-                'type' => 'danger',
-                'message' => "User authentication failed."
+            return response()->json([
+                'success' => false,
+                'message' => 'Admin authentication failed.'
             ]);
         }
-    }
-
-    public function logout()
-    {
-        Session::flush();
-
-        Auth::logout();
-
-        return redirect('/admin/login');
     }
 }

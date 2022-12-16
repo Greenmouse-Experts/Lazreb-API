@@ -34,16 +34,18 @@ body {
 main {
     padding: 120px 10px 0 10px;
     height: auto;
-    background-image: linear-gradient(to right bottom,rgba(4,43,84,.9),rgba(4,43,84,.9)),
+    background-image: linear-gradient(to right bottom, rgba(4, 43, 84, .9), rgba(4, 43, 84, .9)),
         url("https://res.cloudinary.com/greenmouse-tech/image/upload/v1669646604/lazreb/login_p6smcr.jpg");
     /* background-position: center right; */
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 @media (max-width:992px) {
-    main{
+    main {
         padding: 120px 20px 0 20px;
     }
+
     main .form-sec {
         padding: 30px 20px !important;
         background-color: #ffffff;
@@ -53,6 +55,7 @@ main {
 .login-main {
     height: 100vh;
 }
+
 main .form-sec {
     width: 100%;
     border-radius: 10px;
@@ -195,27 +198,31 @@ main .form-sec .alt-opt a:hover {
 section {
     padding: 10px 10px 0 10px;
     height: auto;
-    background-image: linear-gradient(to right bottom,rgba(4,43,84,.6),rgba(4,43,84,.9)),
+    background-image: linear-gradient(to right bottom, rgba(4, 43, 84, .6), rgba(4, 43, 84, .9)),
         url("https://res.cloudinary.com/greenmouse-tech/image/upload/v1669651462/lazreb/register_fhr2vv.jpg");
     background-position: center right;
     background-size: cover;
 }
+
 @media (max-width:992px) {
-    section{
+    section {
         padding: 50px 20px 20px 20px;
     }
+
     section .form-sec {
         padding: 30px 20px !important;
         background-color: #ffffff;
+        margin-bottom: 10px;
     }
 }
+
 section .form-sec {
     width: 100%;
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.404);
     padding: 30px 25px 10px 25px;
     background-color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 section .form-sec img {
@@ -268,7 +275,7 @@ section .form-sec form select {
     clear: both;
 }
 
-section .form-sec form select{
+section .form-sec form select {
     font-size: 14px;
     font-weight: 300;
 }
@@ -279,7 +286,7 @@ section .form-sec form select option {
     font-weight: 500;
 }
 
-section .form-sec .text{
+section .form-sec .text {
     font-size: 14px;
     text-align: left;
 }
@@ -357,6 +364,7 @@ section .form-sec .alt-opt a {
 section .form-sec .alt-opt a:hover {
     text-decoration: underline;
 }
+
 section .move{
     display: inline-block !important;
     margin: auto !important;
@@ -367,4 +375,198 @@ section .move{
        margin: 0px 7px !important;
     }
 }
+
+.code {
+    border-radius: 5px;
+    font-size: 75px;
+    height: 80px;
+    width: 55px;
+    border: 1px solid #eee;
+    margin: 1%;
+    text-align: center;
+    font-weight: 200;
+    -moz-appearance: textfield;
+}
+
+.code::-webkit-inner-spin-button,
+.code::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.code:valid {
+    border-color: #3498db;
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+}
+
+/**********LOG IN ************/
+
+/**********LOG IN ************/
+.accept {
+    padding: 120px 10px 0 10px;
+    height: auto;
+    background-image: linear-gradient(to right bottom, rgba(4, 43, 84, .9), rgba(4, 43, 84, .9)),
+        url("https://res.cloudinary.com/greenmouse-tech/image/upload/v1669646604/lazreb/login_p6smcr.jpg");
+    /* background-position: center right; */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media (max-width:992px) {
+    .accept {
+        padding: 120px 20px 0 20px;
+    }
+
+    .accept .form-sec {
+        padding: 30px 20px !important;
+        background-color: #ffffff;
+    }
+}
+
+.login-main {
+    height: 100vh;
+}
+
+.accept .form-sec {
+    width: 100%;
+    border-radius: 10px;
+    padding: 30px 25px 20px 25px;
+    background-color: #ffffff;
+}
+
+.accept .form-sec img {
+    width: 80px;
+    padding-bottom: 10px;
+    display: block;
+    margin: auto;
+}
+
+.accept .form-sec h2 {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.accept .form-sec p {
+    text-align: center;
+    font-size: 15px;
+}
+
+.accept .form-sec .line-rule {
+    margin: auto;
+    width: 50px;
+    height: 2px;
+    background-color: #296bac;
+}
+
+.accept .form-sec form {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.accept .form-sec form label {
+    display: block;
+    font-size: 15px;
+    padding-bottom: 5px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+/* .accept .form-sec form input,
+.accept .form-sec form select {
+    width: 100%;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #ffffff;
+    clear: both;
+} */
+
+.accept .form-sec form select option {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.accept .form-sec form input:focus,
+.accept .form-sec form select:focus {
+    outline: none;
+    border: 1.5px solid #296bac;
+}
+
+.accept .form-sec form input::-webkit-input-placeholder {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.accept .form-sec form input:-ms-input-placeholder {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.accept .form-sec form input::placeholder {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+
+.accept .form-sec form .forgot {
+    float: right;
+    margin-top: -25px;
+    font-size: 14px;
+    color: #296bac;
+    text-decoration: none;
+}
+
+.accept .form-sec form .toggle-password {
+    float: right;
+    position: relative;
+    top: -28px;
+    right: 15px;
+    cursor: pointer;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: -40px;
+}
+
+.accept .form-sec form button {
+    width: 100%;
+    text-align: center;
+    background-color: #296bac;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.accept .form-sec form button:hover {
+    background-color: #1d4a77;
+    transition: 0.5s;
+}
+
+.accept .form-sec .alt-opt {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.accept .form-sec .alt-opt a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.accept .form-sec .alt-opt a:hover {
+    text-decoration: underline;
+}
+
+.accept .form-sec .text {
+    margin-top: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
 /**********LOG IN ************/

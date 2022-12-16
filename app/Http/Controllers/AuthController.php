@@ -33,6 +33,13 @@ class AuthController extends Controller
         return view('auth.sign-up');
     }
 
+
+    public function forgot()
+    {
+        return view('auth.forgot');
+    }
+
+
     public function register(Request $request)
     {
         if( $request->is('api/*')){
@@ -166,7 +173,7 @@ class AuthController extends Controller
             // Send verification code to user
             Mail::to($user->email)->send(new VerificationCode($user->code));
     
-            return redirect()->route('verify.account', Crypt::encrypt($user->email))->with([
+            return redirect()->route('auth.verify', Crypt::encrypt($user->email))->with([
                 'type' => 'success',
                 'message' => 'Registration Successful, Please verify your account!'
             ]); 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'log'])->name('log');
 Route::get('/signUp', [App\Http\Controllers\AuthController::class, 'sign'])->name('sign');
+Route::get('/forgot', [App\Http\Controllers\AuthController::class, 'forgot'])->name('forgot');
 
 //User Authentications
 Route::prefix('auth')->group(function () {
@@ -27,3 +28,4 @@ Route::prefix('auth')->group(function () {
     Route::get('/reset/password/email/{email}', [App\Http\Controllers\HomePageController::class, 'password_reset_email'])->name('user.reset.password');
     Route::post('update/password/reset/', [App\Http\Controllers\HomePageController::class, 'reset_password'])->name('user.update.password');
 });
+

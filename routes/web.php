@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'log'])->name('log');
 Route::get('/signUp', [App\Http\Controllers\AuthController::class, 'sign'])->name('sign');
+Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify');
+Route::get('/forgot', [App\Http\Controllers\AuthController::class, 'forgot'])->name('forgot');
+

@@ -32,6 +32,17 @@ class AuthController extends Controller
         return view('auth.sign-up');
     }
 
+    public function verify()
+    {
+        return view('auth.verify');
+    }
+
+    public function forgot()
+    {
+        return view('auth.forgot');
+    }
+
+
     public function register(Request $request)
     {
         $validator = Validator::make(request()->all(), [

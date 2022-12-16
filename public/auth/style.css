@@ -569,4 +569,19 @@ section .move{
     text-align: center;
 }
 
+.form-btn:focus:before{
+    font-size: 15px;
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-weight: 900;
+    margin-right:5px;
+    content: "\f110";
+    animation: spin 1s infinite;
+    display:inline-block;
+   }
+   
+   @keyframes spin { 100% { -webkit-transform: rotate(360deg);transform-origin:5px 5px } }  
+
 /**********LOG IN ************/

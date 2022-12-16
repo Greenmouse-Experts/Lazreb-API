@@ -31,12 +31,15 @@
                         <div class="line-rule"></div>
                         <form>
                             <!--Email-->
+                            <p>
+                                Put in your Email
+                            </p>
                             <div class="mb-4">
                                 <label for="email">Email</label>
                                 <input type="email" placeholder="Enter email address" required>
                             </div>
                             <!--Button-->
-                            <div class="mb-4">
+                            <div class="mb-3">
                                 <button type="submit">Submit</button>
                             </div>
                         </form>

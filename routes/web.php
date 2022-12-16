@@ -12,3 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'log'])->name('log');
+Route::get('/signUp', [App\Http\Controllers\AuthController::class, 'sign'])->name('sign');

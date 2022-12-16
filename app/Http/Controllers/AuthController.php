@@ -21,6 +21,17 @@ class AuthController extends Controller
      *
      * @return json
      */
+
+    public function log()
+    {
+        return view('auth.log-in');
+    }
+
+    public function sign()
+    {
+        return view('auth.sign-up');
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make(request()->all(), [
@@ -40,8 +51,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if($request->referrer_code == null)
-        {
+        if ($request->referrer_code == null) {
             $user = User::create([
                 'account_type' => 'User',
                 'referral_code' => $this->referrer_id_generate(7),
@@ -100,19 +110,19 @@ class AuthController extends Controller
         ]);
     }
 
-    function referrer_id_generate($input, $strength = 7) 
+    function referrer_id_generate($input, $strength = 7)
     {
         $input = '0123456789';
         $input_length = strlen($input);
         $random_string = '';
-        for($i = 0; $i < $strength; $i++) {
+        for ($i = 0; $i < $strength; $i++) {
             $random_character = $input[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
-    
+
         return $random_string;
     }
-    
+
     public function registerConfirm(Request $request)
     {
         $validator = Validator::make(request()->all(), [
@@ -129,16 +139,14 @@ class AuthController extends Controller
 
         $user = User::where('code', $request->code)->first();
 
-        if($user == null)
-        {
+        if ($user == null) {
             return response()->json([
                 'success' => false,
                 'message' => 'This activation code is invalid.'
             ]);
         }
 
-        if($user->code == $request->code)
-        {
+        if ($user->code == $request->code) {
             $user->email_verified_at = now();
             $user->code = null;
             $user->save();
@@ -149,23 +157,20 @@ class AuthController extends Controller
                 'data' => null
             ]);
         }
-        
     }
 
     public function email_verify_resend($email)
     {
         $user = User::where('email', $email)->first();
 
-        if(!$user)
-        {
+        if (!$user) {
             return response()->json([
                 'success' => false,
                 'message' => "Email doesn't exist!",
             ]);
         }
 
-        if (!$user->email_verified_at) 
-        {
+        if (!$user->email_verified_at) {
             $code = mt_rand(1000, 9999);
 
             $user->update([
@@ -179,7 +184,6 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'A fresh verification code has been sent to your email address.',
             ]);
-
         } else {
             return response()->json([
                 'success' => false,
@@ -203,7 +207,7 @@ class AuthController extends Controller
         ];
 
         $validator = Validator::make($input, $validate_data);
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
@@ -214,21 +218,21 @@ class AuthController extends Controller
 
         $user = User::query()->where('email', $request->email)->first();
 
-        if ($user && !Hash::check($request->password, $user->password)){
+        if ($user && !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Incorrect Password!',
             ]);
         }
 
-        if(!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Email does\'nt exist',
             ]);
         }
 
-        if($user->account_type == 'Administrator'){
+        if ($user->account_type == 'Administrator') {
             return response()->json([
                 'success' => false,
                 'message' => 'You are not an User',
@@ -236,16 +240,16 @@ class AuthController extends Controller
         }
 
         // authentication attempt
-        if (auth()->attempt($input)) {    
-            if($user->status !== 'Active'){
+        if (auth()->attempt($input)) {
+            if ($user->status !== 'Active') {
                 return response()->json([
                     'success' => false,
                     'message' => 'Account Deactivated, please contact the site administrator!',
                 ]);
             }
 
-            if(!$user->email_verified_at){
-                
+            if (!$user->email_verified_at) {
+
                 $code = mt_rand(1000, 9999);
 
                 $user->update([
@@ -261,16 +265,15 @@ class AuthController extends Controller
                     'data' => $user
                 ]);
             }
-            
+
             $token = auth()->user()->createToken('passport_token')->accessToken;
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'User login succesfully, Use token to authenticate.',
                 'token' => $token,
                 'data' => Auth::user()
             ]);
-
         } else {
             return response()->json([
                 'success' => false,
@@ -342,7 +345,7 @@ class AuthController extends Controller
             // check if it does not expired: the time is one hour
             if ($passwordReset->created_at > now()->addHour()) {
                 $passwordReset->delete();
-                
+
                 return response()->json([
                     'success' => false,
                     'message' => 'Password reset code expired'
@@ -368,7 +371,7 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Code does\'nt exist in our database'
-            ]); 
+            ]);
         }
     }
 
@@ -382,7 +385,7 @@ class AuthController extends Controller
         ];
 
         $validator = Validator::make($input, $validate_data);
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
@@ -390,17 +393,17 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
-        
+
         $user = User::query()->where('email', $request->email)->first();
 
-        if ($user && !Hash::check($request->password, $user->password)){
+        if ($user && !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Incorrect Password!',
             ]);
         }
 
-        if(!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Email does\'nt exist',
@@ -409,9 +412,9 @@ class AuthController extends Controller
 
         // authentication attempt
         if (auth()->attempt($input)) {
-            if($user->account_type == 'Administrator'){
+            if ($user->account_type == 'Administrator') {
                 $token = auth()->user()->createToken('passport_token')->accessToken;
-            
+
                 return response()->json([
                     'success' => true,
                     'message' => 'Admin login succesfully, Use token to authenticate.',
@@ -424,7 +427,6 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'You are not an Administrator!'
             ]);
-                    
         } else {
             return response()->json([
                 'success' => false,

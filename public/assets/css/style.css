@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: 'Montserrat', sans-serif !important;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-size: cover;
+    background-position: center center;
+    width: 100% !important;
+    background-repeat: no-repeat;
+}
+/* ===== Scrollbar CSS ===== */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 2px;
+}
+*::-moz-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 2px;
+}
+

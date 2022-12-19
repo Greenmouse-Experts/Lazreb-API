@@ -30,7 +30,14 @@ class AuthController extends Controller
 
     public function sign()
     {
-        return view('auth.sign-up');
+        if (request()->has('ref')) {
+            session(['referrer' => request()->query('ref')]);
+        }
+
+        $referrer = User::wherereferral_code(session()->pull('referrer'))->first();
+        $referrer_id = $referrer ? $referrer->referral_code : null;
+
+        return view('auth.sign-up', compact('referrer_id'));
     }
 
 

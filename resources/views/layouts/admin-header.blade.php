@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item" href="{{route('user.settings')}}"><i class="dropdown-icon fe fe-user"></i>Settings</a>
+                        <a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Settings</a>
                         <a class="dropdown-item" href="{{route('logout')}}"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
                     </div>
                 </div>

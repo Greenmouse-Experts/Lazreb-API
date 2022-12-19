@@ -102,11 +102,20 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <label>Referral Code (Optional)</label>
+                                    @if ($referrer_id == true)
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <input type="text" placeholder="{{$referrer_id}}" name="referrer_code" value="{{$referrer_id}}" readonly autofocus>
+                                        </div>
+                                    </div>
+                                    @else
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <input type="text" placeholder="Enter referral code (if any)" name="referrer_code">
                                         </div>
                                     </div>
+                                    @endif
+                                   
                                 </div>
                             </div>
                             <p class="text">

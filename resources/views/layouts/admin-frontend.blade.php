@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="IndoUi – Bootstrap 4 Admin Dashboard HTML Template" name="description">
-    <meta content="Spruko Technologies Private Limited" name="author">
-    <meta name="keywords" content="admin, admin dashboard template, admin panel template, admin template, best bootstrap admin template, bootstrap 4 admin template, bootstrap 4 dashboard template, bootstrap admin template, bootstrap dashboard template, html admin template, html5 dashboard template, html5 admin template, modern admin template, simple admin template, template admin bootstrap 4"> <!-- Favicon -->
-    <link rel="icon" href="{{URL::asset('dash/assets/images/brand/favicon.ico')}}" type="image/x-icon">
-    <link rel="shortcut icon" type="image/x-icon" href="{{URL::asset('dash/assets/images/brand/favicon.ico')}}"> <!-- Title -->
-    <title>IndoUi – Bootstrap 4 Admin Dashboard HTML Template</title>
+    <meta name="keywords" content="Lazreb, Logistics"> <!-- Favicon -->
+    <link rel="icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" type="image/x-icon">
+    <title><title>{{config('app.name')}} - Admin Dashboard</title></title>
     <!--Bootstrap css-->
     <link rel="stylesheet" href="{{URL::asset('dash/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
     <!--Style css -->

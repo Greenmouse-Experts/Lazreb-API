@@ -16,32 +16,44 @@
     <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
-    <title>{{config('app.name')}} - LogIn</title>
+    <title>{{config('app.name')}} - Forgot Reset</title>
+    <script>
+        window.setTimeout(function() {
+            $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
+                $(this).remove(); 
+            });
+        }, 8000);
+    </script>
 </head>
 
 <body>
+    <!-- Alerts  Start-->
+    <div style="z-index: 100000; width: 100%; position: absolute;">
+        @include('layouts.alert')
+    </div>
+    <!-- Alerts End -->
     <main class="login-main">
         <div class="container-fluid g-0">
             <div class="row">
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
-                    <a href="{{ route('index')}}"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                        <a href="/"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
                         <h2>Forgot Password</h2>
                         <div class="line-rule"></div>
-                        <form>
+                        <form method="POST" action="{{ route('user.forget.password')}}">
+                            @csrf
                             <!--Email-->
                             <p>
-                                Put in your Email
+                                Reset your password
                             </p>
                             <div class="mb-4">
                                 <label for="email">Email</label>
-                                <input type="email" placeholder="Enter email address" required>
+                                <input type="email" placeholder="Enter email address" name="email" required>
                             </div>
                             <!--Button-->
                             <div class="mb-3">
-                                <button type="submit">Submit</button>
+                                <button class="form-btn" type="submit">Submit</button>
                             </div>
                         </form>
                         <!--Alt Opt-->

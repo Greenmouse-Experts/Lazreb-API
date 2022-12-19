@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
     <title>{{config('app.name')}} - Signup</title>
 
     <script>
@@ -40,7 +40,7 @@
                 <div class="col-xl-3"></div>
                 <div class="col-xl-6">
                     <div class="form-sec">
-                    <a href="{{ route('index')}}"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                        <a href="/"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
                         <h2>Create Your Account</h2>
                         <div class="line-rule"></div>
                         <form action="{{ route('register')}}" method="post">
@@ -102,11 +102,20 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <label>Referral Code (Optional)</label>
+                                    @if ($referrer_id == true)
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <input type="text" placeholder="{{$referrer_id}}" name="referrer_code" value="{{$referrer_id}}" readonly autofocus>
+                                        </div>
+                                    </div>
+                                    @else
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <input type="text" placeholder="Enter referral code (if any)" name="referrer_code">
                                         </div>
                                     </div>
+                                    @endif
+                                   
                                 </div>
                             </div>
                             <p class="text">

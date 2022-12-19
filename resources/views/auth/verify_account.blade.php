@@ -17,39 +17,59 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{{config('app.name')}} - Verify Email</title>
+    <script>
+        window.setTimeout(function() {
+            $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function() {
+                $(this).remove();
+            });
+        }, 8000);
+    </script>
 </head>
 
 <body>
+    <!-- Alerts  Start-->
+    <div style="z-index: 100000; width: 100%; position: absolute;">
+        @include('layouts.alert')
+    </div>
+    <!-- Alerts End -->
     <div class="login-main accept">
         <div class="container-fluid g-0">
             <div class="row">
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
-                    <a href="{{ route('index')}}"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                        <a href="/"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
                         <h2>Verify Your Account</h2>
                         <div class="line-rule"></div>
-                        <form>
+                        <form method="POST" action="{{ route('email.confirmation', Crypt::encrypt($user->id))}}">
+                            @csrf
                             <p class="text">Before proceeding, please check your email for a verification code.</p>
                             <p class="text">
-                            If you don't hear from us within the next few minutes, please make sure to check your spam folder or use a different email address
+                                If you don't hear from us within the next few minutes, please make sure to check your spam folder or use a different email address
                             </p>
                             <!--Email-->
                             <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                <div class="mb-4">
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                            </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8 text-align: center;">
+                                    <div class="mb-4 mt-4">
+                                        <input type="number" name="first" class="code" min="0" max="9" required />
+                                        <input type="number" name="second" class="code" min="0" max="9" required />
+                                        <input type="number" name="third" class="code" min="0" max="9" required />
+                                        <input type="number" name="fourth" class="code" min="0" max="9" required />
+                                    </div>
                                 </div>
-                                <div class="col-md-2"></div>
+                                <div class="col-sm-2"></div>
                             </div>
                             <!--Button-->
                             <div class="mb-4">
-                                <button type="submit">Verify Account</button>
+                                <button class="form-btn" type="submit">Verify Account</button>
+                            </div>
+                        </form>
+                        <form method="POST" action="{{ route('email.verify.resend', Crypt::encrypt($user->email)) }}">
+                            @csrf
+                            <div class="text-center text-dark">
+                                {{ __('If you did not receive the email') }},
+                                <button class="text-dark" style="margin-top: 0px; border: none; background: transparent;" type="submit">{{ __('Click here to request another') }}</button>
                             </div>
                         </form>
                         <!--Alt Opt-->

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MobileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +35,6 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::prefix('/auth')->group(function () {
         Route::post('/register', [AuthController::class, 'register']);
         Route::post('/login', [AuthController::class, 'login']);
-        Route::post('/admin/login', [AuthController::class, 'admin_login']);
         Route::post('/email/verify/resend/{email}', [AuthController::class, 'email_verify_resend']);
         Route::post('/email/confirm', [AuthController::class, 'registerConfirm'])->name('email_confirmation');
 
@@ -47,21 +46,13 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     // put all api protected routes here
     Route::middleware('auth:api')->group(function () {
-        Route::post('/profile/update', [DashboardController::class, 'update_profile']);
-        Route::post('/profile/update/password', [DashboardController::class, 'update_password']);
-        Route::post('/profile/upload/profile-picture', [DashboardController::class, 'upload_profile_picture']);
+        Route::post('/profile/update', [MobileController::class, 'update_profile']);
+        Route::post('/profile/update/password', [MobileController::class, 'update_password']);
+        Route::post('/profile/upload/profile-picture', [MobileController::class, 'upload_profile_picture']);
 
-        Route::get('/services/all', [DashboardController::class, 'get_all_services']);
+        Route::get('/services/all', [MobileController::class, 'get_all_services']);
 
-        Route::post('logout', [DashboardController::class, 'logout']);
-        
-        // Administrator
-        Route::middleware(['auth', 'isAdmin'])->group(function () {
-            Route::post('/admin/add/service', [AdminController::class, 'add_service']);
-            Route::post('/admin/update/service/{id}', [AdminController::class, 'update_service']);
-            Route::delete('/admin/delete/service/{id}', [AdminController::class, 'delete_service']);
-            Route::get('/admin/get/services', [AdminController::class, 'services']);
-        });
+        Route::post('logout', [MobileController::class, 'logout']);
     });
     
 });

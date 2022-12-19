@@ -30,7 +30,14 @@ class AuthController extends Controller
 
     public function sign()
     {
-        return view('auth.sign-up');
+        if (request()->has('ref')) {
+            session(['referrer' => request()->query('ref')]);
+        }
+
+        $referrer = User::wherereferral_code(session()->pull('referrer'))->first();
+        $referrer_id = $referrer ? $referrer->referral_code : null;
+
+        return view('auth.sign-up', compact('referrer_id'));
     }
 
 
@@ -39,6 +46,10 @@ class AuthController extends Controller
         return view('auth.forgot');
     }
 
+    public function admin()
+    {
+        return view('auth.admin_login');
+    }
 
     public function register(Request $request)
     {
@@ -173,7 +184,7 @@ class AuthController extends Controller
             // Send verification code to user
             Mail::to($user->email)->send(new VerificationCode($user->code));
     
-            return redirect()->route('auth.verify', Crypt::encrypt($user->email))->with([
+            return redirect()->route('verify.account', Crypt::encrypt($user->email))->with([
                 'type' => 'success',
                 'message' => 'Registration Successful, Please verify your account!'
             ]); 
@@ -193,51 +204,118 @@ class AuthController extends Controller
         return $random_string;
     }
 
+    public function verify_account($email)
+    {
+        $userFinder = Crypt::decrypt($email);
+
+        $user = User::where('email', $userFinder)->first();
+
+        return view('auth.verify_account', [
+            'user' => $user
+        ]);
+    }
+
     public function registerConfirm(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
-            'code' => ['required', 'numeric']
-        ]);
+        if( $request->is('api/*')){
+            $validator = Validator::make(request()->all(), [
+                'code' => ['required', 'numeric']
+            ]);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $user = User::where('code', $request->code)->first();
+            
+            if ($user == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This activation code is invalid.'
+                ]);
+            }
+
+            if ($user->code == $request->code) {
+                $user->email_verified_at = now();
+                $user->code = null;
+                $user->save();
+    
+ 
+                return response()->json([
+                    'success' => true,
+                    'message' => 'User verified successfully, you can now login.',
+                    'data' => null
+                ]);
+            }
+    
             return response()->json([
                 'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
+                'message' => 'Incorrect Code'
             ]);
-        }
 
-        $user = User::where('code', $request->code)->first();
-
-        if ($user == null) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This activation code is invalid.'
+        } else {
+            $this->validate($request, [
+                'first' => ['required', 'numeric'],
+                'second' => ['required', 'numeric'],
+                'third' => ['required', 'numeric'],
+                'fourth' => ['required', 'numeric']
             ]);
-        }
 
-        if ($user->code == $request->code) {
-            $user->email_verified_at = now();
-            $user->code = null;
-            $user->save();
+            $code = sprintf('%s%s%s%s',$request->first,$request->second,$request->third,$request->fourth);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'User verified successfully, you can now login.',
-                'data' => null
+            $user = User::where('code', $code)->first();
+
+            if ($user == null) {
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => 'This activation code is invalid.'
+                ]);
+            }
+
+            if ($user->code == $code) {
+                $user->email_verified_at = now();
+                $user->code = null;
+                $user->save();
+    
+                return redirect()->route('log')->with([
+                    'type' => 'success',
+                    'message' => 'User verified successfully, you can now login.'
+                ]);
+            }
+
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Incorrect Code'
             ]);
+
         }
     }
 
-    public function email_verify_resend($email)
+    public function email_verify_resend($email, Request $request)
     {
+        if( $request->is('api/*')){
+        } else {
+            $email = Crypt::decrypt($email);
+        }
+
         $user = User::where('email', $email)->first();
 
         if (!$user) {
-            return response()->json([
-                'success' => false,
-                'message' => "Email doesn't exist!",
-            ]);
+            if( $request->is('api/*')){
+                return response()->json([
+                    'success' => false,
+                    'message' => "Email doesn't exist!",
+                ]);
+            } else {
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => "Email doesn't exist!"
+                ]); 
+            }
         }
 
         if (!$user->email_verified_at) {
@@ -250,15 +328,29 @@ class AuthController extends Controller
             // Send verification code to user
             Mail::to($user->email)->send(new VerificationCode($user->code));
 
-            return response()->json([
-                'success' => true,
-                'message' => 'A fresh verification code has been sent to your email address.',
-            ]);
+            if( $request->is('api/*')){
+                return response()->json([
+                    'success' => true,
+                    'message' => 'A fresh verification code has been sent to your email address.',
+                ]);
+            } else {
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'A fresh verification code has been sent to your email address.'
+                ]); 
+            }
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'User email has been verified, You can now login.',
-            ]);
+            if( $request->is('api/*')){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User email has been verified, You can now login.',
+                ]);
+            } else {
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => 'User email has been verified, You can now login.'
+                ]); 
+            }
         }
     }
 
@@ -352,6 +444,93 @@ class AuthController extends Controller
         }
     }
 
+    public function user_login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            // 'g-recaptcha-response' => 'required|captcha',
+        ]);
+      
+        $input = $request->only(['email', 'password']);
+
+        $user = User::query()->where('email', $request->email)->first();
+        
+        if ($user && !Hash::check($request->password, $user->password)){
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Incorrect Password!'
+            ]);
+        }
+        
+        if(!$user || !Hash::check($request->password, $user->password)) {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Email doesn't exist"
+            ]);
+        }
+
+        if ($user->account_type == 'Administrator') {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "You are not an User"
+            ]);
+        }
+
+        // authentication attempt
+        if(auth()->attempt($input)) {
+            if ($user->status !== 'Active') {
+                return back()->with([
+                    'success' => 'danger',
+                    'message' => 'Account Deactivated, please contact the site administrator!',
+                ]);
+            }
+
+            if(!$user->email_verified_at){
+                // Send email to user
+                $user->notify(new SendVerificationCode($user));
+
+                return redirect()->route('verify.account', Crypt::encrypt($user->email))->with([
+                    'type' => 'success',
+                    'message' => 'Registration Successful, Please verify your account!'
+                ]); 
+            }
+
+            if (!$user->email_verified_at) {
+
+                $code = mt_rand(1000, 9999);
+
+                $user->update([
+                    'code' => $code
+                ]);
+
+                // Send verification code to user
+                Mail::to($user->email)->send(new VerificationCode($user->code));
+
+                return redirect()->route('verify.account', Crypt::encrypt($user->email))->with([
+                    'type' => 'success',
+                    'message' => 'Registration Successful, Please verify your account!'
+                ]); 
+            }
+
+            if($user->account_type == 'User'){
+                return redirect()->route('user.dashboard');
+            }
+            
+            Auth::logout();
+
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'You are not a User.'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'User authentication failed.'
+            ]);
+        }
+    }
+
     public function forget_password(Request $request)
     {
         $data = $request->validate([
@@ -374,6 +553,88 @@ class AuthController extends Controller
             'success' => true,
             'message' => 'We have emailed your password reset code!'
         ]);
+    }
+
+    public function password_forget(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        // Delete all old code that user send before.
+        ResetCodePassword::where('email', $request->email)->delete();
+
+        // Generate random code
+        $code = mt_rand(1000, 9999);
+
+        // Create a new code
+        $codeData = ResetCodePassword::create([
+            'email' => $request->email,
+            'code' => $code
+        ]);
+
+        // Send email to user
+        Mail::to($request->email)->send(new ResetPasswordCode($codeData->code));
+
+        return redirect()->route('user.reset.password', Crypt::encrypt($user->email))->with([
+            'type' => 'success',
+            'message' => 'We have emailed your password reset code!'
+        ]);
+    }
+
+    public function password_reset_email($email) 
+    {
+        $email = Crypt::decrypt($email);
+
+        return view('auth.reset_password', [
+            'email' => $email
+        ]);
+    }
+
+    public function password_reset(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string|exists:reset_code_passwords',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if (ResetCodePassword::where('code', '=', $request->code)->exists()) {
+            // find the code
+            $passwordReset = ResetCodePassword::firstWhere('code', $request->code);
+
+            // check if it does not expired: the time is one hour
+            if ($passwordReset->created_at > now()->addHour()) {
+                $passwordReset->delete();
+
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => 'Password reset code expired'
+                ]);
+            }
+
+            // find user's email 
+            $user = User::firstWhere('email', $passwordReset->email);
+
+            // update user password
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+            // delete current code 
+            $passwordReset->delete();
+
+            return redirect()->route('log')->with([
+                'type' => 'success',
+                'message' => 'Password has been successfully reset, Please login'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Code doesn't exist in our database"
+            ]);
+        }
     }
 
     public function code_check(Request $request)
@@ -447,61 +708,53 @@ class AuthController extends Controller
 
     public function admin_login(Request $request)
     {
+        $this->validate($request, [
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
         $input = $request->only(['email', 'password']);
-
-        $validate_data = [
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ];
-
-        $validator = Validator::make($input, $validate_data);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
-            ]);
-        }
 
         $user = User::query()->where('email', $request->email)->first();
 
         if ($user && !Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Incorrect Password!',
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Incorrect Password!'
             ]);
         }
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Email does\'nt exist',
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Email doesn't exist"
             ]);
         }
 
         // authentication attempt
         if (auth()->attempt($input)) {
             if ($user->account_type == 'Administrator') {
-                $token = auth()->user()->createToken('passport_token')->accessToken;
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Admin login succesfully, Use token to authenticate.',
-                    'token' => $token,
-                    'data' => Auth::user()
-                ]);
+                return redirect()->route('admin.dashboard');
             }
 
-            return response()->json([
-                'success' => false,
+            return back()->with([
+                'type' => 'danger',
                 'message' => 'You are not an Administrator!'
             ]);
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Admin authentication failed.'
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'User authentication failed.'
             ]);
         }
+    }
+
+    public function logout()
+    {
+        Session::flush();
+
+        Auth::logout();
+
+        return redirect('/');
     }
 }

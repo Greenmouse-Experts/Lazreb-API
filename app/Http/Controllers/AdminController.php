@@ -19,6 +19,11 @@ class AdminController extends Controller
         $this->middleware(['auth','verified']);
     }
 
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
     public function add_service(Request $request)
     {
         $input = $request->only(['name', 'thumbnail', 'description']);

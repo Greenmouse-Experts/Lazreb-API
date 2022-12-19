@@ -16,68 +16,65 @@
     <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>{{config('app.name')}} - Verify Email</title>
+    <title>{{config('app.name')}} - Admin Login</title>
+    <script>
+        window.setTimeout(function() {
+            $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
+                $(this).remove(); 
+            });
+        }, 8000);
+    </script>
 </head>
 
 <body>
-    <div class="login-main accept">
+    <!-- Alerts  Start-->
+    <div style="z-index: 100000; width: 100%; position: absolute;">
+        @include('layouts.alert')
+    </div>
+    <!-- Alerts End -->
+    <main class="login-main">
         <div class="container-fluid g-0">
             <div class="row">
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
                         <a> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669194994/lazreb/IMG-20221122-WA0030_1_1_mceisb.png"></a>
-                        <h2>Verify Your Account</h2>
+                        <h2>Admin Login</h2>
                         <div class="line-rule"></div>
-                        <form>
-                            <p class="text">Before proceeding, please check your email for a verification code.</p>
-                            <p class="text">
-                            If you don't hear from us within the next few minutes, please make sure to check your spam folder or use a different email address
-                            </p>
+                        <form method="POST" action="{{ route('admin.login') }}">
+                            @csrf
                             <!--Email-->
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                <div class="mb-4">
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
-                                <input type="number" class="code" placeholder="0" min="0" max="9" required />
+                            <div class="mb-4">
+                                <label for="email">Email</label>
+                                <input type="email" placeholder="Enter email address" name="email" required>
                             </div>
-                                </div>
-                                <div class="col-md-2"></div>
+                            <!--Password-->
+                            <div class="mb-4">
+                                <label for="password">Password</label>
+                                <input type="password" placeholder="Enter password" name="password" required>
+                                <i class="toggle-password fa fa-fw fa-eye-slash" title="Toggle to show/hide password"></i>
                             </div>
                             <!--Button-->
                             <div class="mb-4">
-                                <button type="submit">Verify Account</button>
+                                <button class="form-btn" type="submit">Log In</button>
                             </div>
                         </form>
-                        <!--Alt Opt-->
                     </div>
                 </div>
                 <div class="col-xl-4"></div>
             </div>
         </div>
-    </div>
+    </main>
     <script>
-        // Verify Account
-        const codes = document.querySelectorAll(".code");
-
-        codes[0].focus();
-
-        codes.forEach((code, index) => {
-            code.addEventListener("keydown", (e) => {
-                if (e.key >= 0 && e.key < 9) {
-                    codes[index].value = "";
-                    setTimeout(() => {
-                        codes[index + 1].focus();
-                    }, 10);
-                } else if (e.key === "Backspace") {
-                    setTimeout(() => {
-                        codes[index - 1].focus();
-                    }, 10);
-                }
-            });
+            // Script for Show/Hide Password 
+            $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            input = $(this).parent().find("input");
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
         });
     </script>
 </body>

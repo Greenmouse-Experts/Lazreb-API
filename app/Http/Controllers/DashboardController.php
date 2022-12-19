@@ -32,7 +32,11 @@ class DashboardController extends Controller
     
     public function request_services()
     {
-        return view('dashboard.request-services');
+        $services = Service::latest()->get();
+
+        return view('dashboard.request-services', [
+            'services' => $services
+        ]);
     }
 
     public function become_a_partner()

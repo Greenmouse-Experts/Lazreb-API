@@ -122,7 +122,7 @@
 .app-sidebar__toggle i:focus,
 .app-sidebar__toggle i:hover {
     text-decoration: none;
-    color: #5964ff;
+    color: #296bac;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -390,12 +390,12 @@
 .slide-menu li.active>a {
     font-weight: 400;
     background: transparent;
-    color: #868eff !important;
+    color: #052a56 !important;
 }
 
 .app-sidebar .slide-menu .slide-item:hover,
 .app-sidebar .side-menu__item:hover {
-    color: #868eff;
+    color: #052a56;
 }
 
 .slide-menu li ul li a {
@@ -408,7 +408,7 @@
 }
 
 .app-sidebar .side-menu__item.active .side-menu__icon {
-    color: #868eff !important;
+    color: #052a56 !important;
 }
 
 .app-sidebar .side-menu__item.active:hover .side-menu__icon {
@@ -417,7 +417,7 @@
 
 .slide-menu li.active>a:hover {
     background: rgba(255, 255, 255, 0.02);
-    color: #868eff !important;
+    color: #052a56 !important;
 }
 
 .slide-menu li a {
@@ -541,18 +541,18 @@
 }
 
 .app-sidebar .toggle-menu .side-menu__item.active {
-    color: #5964ff !important;
+    color: #296bac !important;
     background: rgba(234, 235, 243, 0.3);
     border-radius: 3px;
 }
 
 .app-sidebar .toggle-menu .side-menu__item:hover {
     background: rgba(234, 235, 243, 0.3);
-    color: #5964ff !important;
+    color: #296bac !important;
 }
 
 .app-sidebar .toggle-menu .side-menu__item.active:hover .side-menu__icon {
-    color: #5964ff !important;
+    color: #296bac !important;
 }
 
 .toggle-menu.side-menu {
@@ -614,7 +614,7 @@
 }
 
 .slide.is-expanded .side-menu__item {
-    color: #5964ff;
+    color: #296bac;
     background: rgba(234, 235, 243, 0.3);
 }
 

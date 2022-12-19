@@ -548,6 +548,88 @@ class AuthController extends Controller
         ]);
     }
 
+    public function password_forget(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        // Delete all old code that user send before.
+        ResetCodePassword::where('email', $request->email)->delete();
+
+        // Generate random code
+        $code = mt_rand(1000, 9999);
+
+        // Create a new code
+        $codeData = ResetCodePassword::create([
+            'email' => $request->email,
+            'code' => $code
+        ]);
+
+        // Send email to user
+        Mail::to($request->email)->send(new ResetPasswordCode($codeData->code));
+
+        return redirect()->route('user.reset.password', Crypt::encrypt($user->email))->with([
+            'type' => 'success',
+            'message' => 'We have emailed your password reset code!'
+        ]);
+    }
+
+    public function password_reset_email($email) 
+    {
+        $email = Crypt::decrypt($email);
+
+        return view('auth.reset_password', [
+            'email' => $email
+        ]);
+    }
+
+    public function password_reset(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string|exists:reset_code_passwords',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if (ResetCodePassword::where('code', '=', $request->code)->exists()) {
+            // find the code
+            $passwordReset = ResetCodePassword::firstWhere('code', $request->code);
+
+            // check if it does not expired: the time is one hour
+            if ($passwordReset->created_at > now()->addHour()) {
+                $passwordReset->delete();
+
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => 'Password reset code expired'
+                ]);
+            }
+
+            // find user's email 
+            $user = User::firstWhere('email', $passwordReset->email);
+
+            // update user password
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+            // delete current code 
+            $passwordReset->delete();
+
+            return redirect()->route('log')->with([
+                'type' => 'success',
+                'message' => 'Password has been successfully reset, Please login'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Code doesn't exist in our database"
+            ]);
+        }
+    }
+
     public function code_check(Request $request)
     {
         $request->validate([
@@ -625,7 +707,7 @@ class AuthController extends Controller
         ]);
 
         $input = $request->only(['email', 'password']);
-        
+
         $user = User::query()->where('email', $request->email)->first();
 
         if ($user && !Hash::check($request->password, $user->password)) {

@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <!-- Favocon -->
-    <link rel="shortcut icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669194994/lazreb/IMG-20221122-WA0030_1_1_mceisb.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" type="image/x-icon">
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>{{config('app.name')}} - Admin Login</title>
+    <title>{{config('app.name')}} - Reset Password</title>
     <script>
         window.setTimeout(function() {
             $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
@@ -38,25 +38,32 @@
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
-                        <a href="/"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669194994/lazreb/IMG-20221122-WA0030_1_1_mceisb.png"></a>
-                        <h2>Admin Login</h2>
+                        <a href="/"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                        <h2>Reset Password</h2>
                         <div class="line-rule"></div>
-                        <form method="POST" action="{{ route('admin.login') }}">
+                        <form method="POST" action="{{ route('user.update.new.password')}}">
                             @csrf
                             <!--Email-->
+                            <p>
+                                To complete the reset password process, Please enter the code sent to the email address
+                                <code>{{$email}}</code>
+                            </p>
                             <div class="mb-4">
-                                <label for="email">Email</label>
-                                <input type="email" placeholder="Enter email address" name="email" required>
+                                <label for="code">Code</label>
+                                <input type="number" placeholder="Enter code" name="code" required>
+                            <div class="mb-4">
+                                <label>Password</label>
+                                <input type="password" placeholder="Enter Your Password" name="password" required>
+                                <i class="toggle-password fa fa-fw fa-eye-slash" title="Toggle to show/hide password"></i>
                             </div>
-                            <!--Password-->
                             <div class="mb-4">
-                                <label for="password">Password</label>
-                                <input type="password" placeholder="Enter password" name="password" required>
+                                <label>Confirm password</label>
+                                <input type="password" placeholder="Comfirm Password" name="password_confirmation" required>
                                 <i class="toggle-password fa fa-fw fa-eye-slash" title="Toggle to show/hide password"></i>
                             </div>
                             <!--Button-->
-                            <div class="mb-4">
-                                <button class="form-btn" type="submit">Log In</button>
+                            <div class="mb-3">
+                                <button class="form-btn" type="submit">Reset Password</button>
                             </div>
                         </form>
                     </div>
@@ -76,5 +83,5 @@
                 input.attr("type", "password");
             }
         });
-    </script>
+        </script>
 </body>

@@ -1,7 +1,11 @@
 <!--app-header-->
 <div class="app-header header d-flex navbar-collapse">
     <div class="container-fluid">
-        <div class="d-flex"> <a class="header-brand" href=""> <img src="{{URL::asset('dash/assets/images/brand/logo.png')}}" class="header-brand-img main-logo" alt="IndoUi logo"> <img src="{{URL::asset('dash/assets/images/brand/logo-light.png')}}" class="header-brand-img dark-main-logo" alt="IndoUi logo"> <img src="{{URL::asset('dash/assets/images/brand/icon-light.png')}}" class="header-brand-img dark-icon-logo" alt="IndoUi logo"> <img src="{{URL::asset('dash/assets/images/brand/icon.png')}}" class="header-brand-img icon-logo" alt="IndoUi logo"> </a><!-- logo-->
+        <div class="d-flex"> 
+            <a class="header-brand" href=""> 
+                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" class="header-brand-img main-logo" alt="{{config('app.name')}}"> 
+                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" class="header-brand-img icon-logo" alt="{{config('app.name')}}"> 
+            </a><!-- logo-->
             <div class="app-sidebar__toggle" data-toggle="sidebar"> <a class="open-toggle" href="#"><i class="fe fe-align-left"></i></a> <a class="close-toggle" href="#"><i class="fe fe-x"></i></a> </div>
 
             <div class="d-flex order-lg-2 ml-auto header-right">
@@ -24,7 +28,7 @@
                         @if(Auth::user()->photo)
                             <img class="avatar avatar-md brround cover-image" src="{{Auth::user()->photo}}" alt="{{Auth::user()->name}}">
                         @else
-                            <span class="avatar avatar-md brround cover-image" style="background: red;">
+                            <span class="avatar avatar-md brround cover-image" style="background: #052a56;">
                                 {{ ucfirst(substr(Auth::user()->name, 0, 1)) }}
                             </span>
                         @endif

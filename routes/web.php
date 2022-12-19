@@ -37,9 +37,9 @@ Route::prefix('auth')->group(function () {
     Route::post('/email/verify/resend/{email}', [App\Http\Controllers\AuthController::class, 'email_verify_resend'])->name('email.verify.resend');
     Route::post('/email/confirm/{token}', [App\Http\Controllers\AuthController::class, 'registerConfirm'])->name('email.confirmation');
     Route::post('/user/login', [App\Http\Controllers\AuthController::class, 'user_login'])->name('user.login');
-    Route::post('/password/forget',  [App\Http\Controllers\AuthController::class, 'forget_password'])->name('user.forget.password');
+    Route::post('/password/forget',  [App\Http\Controllers\AuthController::class, 'password_forget'])->name('user.forget.password');
     Route::get('/reset/password/email/{email}', [App\Http\Controllers\AuthController::class, 'password_reset_email'])->name('user.reset.password');
-    Route::post('update/password/reset/', [App\Http\Controllers\AuthController::class, 'reset_password'])->name('user.update.password');
+    Route::post('update/password/reset/', [App\Http\Controllers\AuthController::class, 'password_reset'])->name('user.update.new.password');
 });
 
 
@@ -63,8 +63,10 @@ Route::prefix('dashboard')->group(function () {
 // Administrator
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/add/service', [AdminController::class, 'service'])->name('admin.service');
     Route::post('/admin/add/service', [AdminController::class, 'add_service'])->name('admin.add.service');
+    Route::get('/admin/get/services', [AdminController::class, 'services'])->name('admin.get.services');
     Route::post('/admin/update/service/{id}', [AdminController::class, 'update_service'])->name('admin.update.service');
-    Route::delete('/admin/delete/service/{id}', [AdminController::class, 'delete_service'])->name('admin.delete.service');
-    Route::get('/admin/get/services', [AdminController::class, 'services'])->name('admin.get.service');
+    Route::post('/admin/delete/service/{id}', [AdminController::class, 'delete_service'])->name('admin.delete.service');
 });

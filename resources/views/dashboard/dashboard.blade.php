@@ -10,46 +10,34 @@
             <div class="ml-auto">
                 <div class="input-group"> 
                     <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a> 
-                    <a href="{{route('user.become.a.partner')}}" class="btn btn-success btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a> 
-                    <a href="{{route('user.help.support')}}" class="btn btn-danger btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a> 
+                    <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a> 
+                    <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a> 
                 </div>
             </div>
         </div> <!-- End page-header -->
         <!-- Row -->
         <div class="row">
-            <div class="col-sm-6 col-lg-6 col-xl-3">
+            <div class="col-sm-6 col-lg-6 col-xl-6">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="mb-3">Total Revenue</h6>
+                        <h6 class="mb-3">Total Service Requested</h6>
                         <h2 class="mb-2 number-font"><i class="zmdi zmdi-compass text-primary mr-2"></i>$2,891</h2>
-                        <p class="mb-0 text-muted"> <span class="text-danger"><i class="fa fa-chevron-circle-down text-danger ml-1"></i> -1.6%</span> last month </p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-6 col-xl-3">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="mb-3">Total Profit</h6>
-                        <h2 class="mb-2 number-font"><i class="zmdi zmdi-chart text-secondary mr-2"></i>$2,892</h2>
-                        <p class="mb-0 text-muted"> <span class="text-danger"><i class="fa fa-chevron-circle-down text-danger ml-1"></i> -0.6%</span> last month </p>
+                        <h6 class="mb-3">Total People Referred</h6>
+                        <h2 class="mb-2 number-font"><i class="fa fa-user text-secondary mr-2"></i>$2,892</h2>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-6 col-xl-3">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="mb-3">Total Cost</h6>
+                        <h6 class="mb-3">Total Transactions</h6>
                         <h2 class="mb-2 number-font"><i class="mdi mdi-cash-multiple text-success mr-2"></i>$12,789</h2>
-                        <p class="mb-0 text-muted"> <span class="text-success"><i class="fa fa-chevron-circle-up text-success ml-1"></i> +0.16%</span> last month </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-6 col-xl-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="mb-3">Total Shipments</h6>
-                        <h2 class="mb-2 number-font"><i class="mdi mdi-truck  text-warning mr-2"></i>679</h2>
-                        <p class="mb-0 text-muted"> <span class="text-success"><i class="fa fa-chevron-circle-up text-success ml-1"></i> +0.2%</span> last month </p>
                     </div>
                 </div>
             </div>
@@ -167,5 +155,4 @@
     <!--End side app-->
 </div> 
 <!-- End app-content-->
-
 @endsection

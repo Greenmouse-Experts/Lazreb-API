@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,132 +25,110 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    public function users(){
+        return view('admin.users');
+    }
+
+    public function service(){
+        return view('admin.service');
+    }
+
     public function add_service(Request $request)
     {
-        $input = $request->only(['name', 'thumbnail', 'description']);
-
-        $validate_data = [
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'thumbnail' => 'required|mimes:jpeg,png,jpg',
             'description' => ['required', 'string', 'max:255'],
-        ];
-
-        $validator = Validator::make($input, $validate_data);
-        
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
-            ]);
-        }
+        ]);
 
         $filename = request()->thumbnail->getClientOriginalName();
 
         request()->thumbnail->storeAs('services_thumbnails', $filename, 'public');
 
-        $service = Service::create([
+        Service::create([
             'name' => $request->name,
             'thumbnail' => '/storage/services_thumbnails/'.$filename,
             'description' => $request->description
         ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Service Added Successfully!',
-            'data' => $service
+        return redirect()->route('admin.get.services')->with([
+            'type' => 'success',
+            'message' => 'Service Added Successfully!'
+        ]);
+    }
+    
+    public function services()
+    {
+        $services = Service::latest()->get();
+
+        return view('admin.manage-services', [
+            'services' => $services
         ]);
     }
 
     public function update_service($id, Request $request)
     {
-        $input = $request->only(['name', 'thumbnail', 'description']);
-
-        $validate_data = [
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'thumbnail' => 'required|mimes:jpeg,png,jpg',
             'description' => ['required', 'string', 'max:255'],
-        ];
+        ]);
 
-        $validator = Validator::make($input, $validate_data);
-        
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
+        $finder = Crypt::decrypt($id);
+
+        $service = Service::findorfail($finder);
+
+        if (request()->hasFile('thumbnail')) {
+            
+            $this->validate($request, [
+                'thumbnail' => 'required|mimes:jpeg,png,jpg',
+            ]);
+
+            $filename = request()->thumbnail->getClientOriginalName();
+            if($service->thumbnail) {
+                Storage::delete(str_replace("storage", "public", $service->thumbnail));
+            }
+            request()->thumbnail->storeAs('services_thumbnails', $filename, 'public');
+
+            $service->update([
+                'name' => $request->name,
+                'thumbnail' => '/storage/services_thumbnails/'.$filename,
+                'description' => $request->description
+            ]);
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Service Updated Successfully!'
             ]);
         }
 
-        $service = Service::findorfail($id);
-
-        $filename = request()->thumbnail->getClientOriginalName();
-        if($service->thumbnail) {
-            Storage::delete(str_replace("storage", "public", $service->thumbnail));
-        }
-        request()->thumbnail->storeAs('services_thumbnails', $filename, 'public');
-
         $service->update([
             'name' => $request->name,
-            'thumbnail' => '/storage/services_thumbnails/'.$filename,
             'description' => $request->description
         ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Service Updated Successfully!',
-            'data' => $service
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Service Updated Successfully!'
         ]);
+       
     }
 
     public function delete_service($id, Request $request)
     {
-        $input = $request->only(['delete_field']);
+        $finder = Crypt::decrypt($id);
 
-        $validate_data = [
-            'delete_field' => ['required', 'string', 'max:255']
-        ];
-
-        $validator = Validator::make($input, $validate_data);
+        $service = Service::findorfail($finder);
         
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
-            ]);
+        if($service->thumbnail) {
+            Storage::delete(str_replace("storage", "public", $service->thumbnail));
         }
 
-        if($request->delete_field == "DELETE")
-        {
-            $service = Service::findorfail($id);
-            
-            if($service->thumbnail) {
-                Storage::delete(str_replace("storage", "public", $service->thumbnail));
-            }
+        $service->delete();
 
-            $service->delete();
-
-            return response()->json([
-                'success' => true,
-                'message' => "Service Deleted Successfully!",
-            ]);
-        } 
-
-        return response()->json([
-            'success' => false,
-            'message' => "Field doesn't match, Try Again!",
+        return back()->with([
+            'type' => 'success',
+            'message' => "Service Deleted Successfully!",
         ]);
     }
-
-    public function services()
-    {
-        $services = Service::latest()->get();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'All Services Retrieved',
-            'data' => $services
-        ]);
-    }
+    
 }

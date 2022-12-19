@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+    //FrontEnd Pages
+Route::get('/test', [App\Http\Controllers\HomePageController::class, 'test']);
+
+Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('index');
+
+
+
+    //Authications Pages
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'log'])->name('log');
 Route::get('/signUp', [App\Http\Controllers\AuthController::class, 'sign'])->name('sign');
 Route::get('/forgot', [App\Http\Controllers\AuthController::class, 'forgot'])->name('forgot');

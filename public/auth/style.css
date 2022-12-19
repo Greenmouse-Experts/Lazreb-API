@@ -3,10 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
-html,
-body {
-    font-family: 'Montserrat', sans-serif !important;
+html, body{
+    font-family: 'DM Sans', sans-serif !important;
     scroll-behavior: smooth;
     overflow-x: hidden;
     background-size: cover;

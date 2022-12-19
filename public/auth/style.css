@@ -365,6 +365,17 @@ section .form-sec .alt-opt a:hover {
     text-decoration: underline;
 }
 
+section .move{
+    display: inline-block !important;
+    margin: auto !important;
+    width: 5% !important;
+}
+@media (max-width:584px) {
+    section .move{
+       margin: 0px 7px !important;
+    }
+}
+
 .code {
     border-radius: 5px;
     font-size: 75px;
@@ -557,5 +568,20 @@ section .form-sec .alt-opt a:hover {
     font-size: 14px;
     text-align: center;
 }
+
+.form-btn:focus:before{
+    font-size: 15px;
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-weight: 900;
+    margin-right:5px;
+    content: "\f110";
+    animation: spin 1s infinite;
+    display:inline-block;
+   }
+   
+   @keyframes spin { 100% { -webkit-transform: rotate(360deg);transform-origin:5px 5px } }  
 
 /**********LOG IN ************/

@@ -9,6 +9,7 @@ use App\Models\ResetCodePassword;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -32,10 +33,6 @@ class AuthController extends Controller
         return view('auth.sign-up');
     }
 
-    public function verify()
-    {
-        return view('auth.verify');
-    }
 
     public function forgot()
     {
@@ -45,39 +42,16 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'sex' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:255'],
-            'agreement' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
-            ]);
-        }
-
-        if ($request->referrer_code == null) {
-            $user = User::create([
-                'account_type' => 'User',
-                'referral_code' => $this->referrer_id_generate(7),
-                'name' => ucfirst($request->name),
-                'email' => $request->email,
-                'sex' => $request->sex,
-                'phone_number' => $request->phone_number,
-                'agreement' => $request->agreement,
-                'password' => Hash::make($request->password)
-            ]);
-        } else {
+        if( $request->is('api/*')){
             $validator = Validator::make(request()->all(), [
-                'referrer_code' => 'exists:users,referral_code'
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'sex' => ['required', 'string', 'max:255'],
+                'phone_number' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
-
+    
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
@@ -85,40 +59,125 @@ class AuthController extends Controller
                     'errors' => $validator->errors()
                 ]);
             }
+    
+            if ($request->referrer_code == null) {
+                $user = User::create([
+                    'account_type' => 'User',
+                    'referral_code' => $this->referrer_id_generate(7),
+                    'name' => ucfirst($request->name),
+                    'email' => $request->email,
+                    'sex' => $request->sex,
+                    'phone_number' => $request->phone_number,
+                    'agreement' => $request->agreement,
+                    'password' => Hash::make($request->password)
+                ]);
+            } else {
+                $validator = Validator::make(request()->all(), [
+                    'referrer_code' => 'exists:users,referral_code'
+                ]);
+    
+                if ($validator->fails()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Please see errors parameter for all errors.',
+                        'errors' => $validator->errors()
+                    ]);
+                }
+    
+                $referrerId = User::where('referral_code', $request->referrer_code)->first();
+    
+                $user = User::create([
+                    'account_type' => 'User',
+                    'referral_code' => $this->referrer_id_generate(7),
+                    'name' => ucfirst($request->name),
+                    'email' => $request->email,
+                    'sex' => $request->sex,
+                    'phone_number' => $request->phone_number,
+                    'agreement' => $request->agreement,
+                    'password' => Hash::make($request->password),
+                    'referrer_id' => $referrerId->id
+                ]);
+    
+                Referee::create([
+                    'referee_id' => $user->id,
+                    'referrer_id' => $referrerId->id,
+                ]);
+            }
+            $code = mt_rand(1000, 9999);
+    
+            $user->update([
+                'code' => $code
+            ]);
+    
+            // Send verification code to user
+            Mail::to($user->email)->send(new VerificationCode($user->code));
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Registration Successfully, Please check your email for a verification code',
+                'data' => $user
+            ]);
+        } else {
 
-            $referrerId = User::where('referral_code', $request->referrer_code)->first();
-
-            $user = User::create([
-                'account_type' => 'User',
-                'referral_code' => $this->referrer_id_generate(7),
-                'name' => ucfirst($request->name),
-                'email' => $request->email,
-                'sex' => $request->sex,
-                'phone_number' => $request->phone_number,
-                'agreement' => $request->agreement,
-                'password' => Hash::make($request->password),
-                'referrer_id' => $referrerId->id
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'sex' => ['required', 'string', 'max:255'],
+                'phone_number' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
-            Referee::create([
-                'referee_id' => $user->id,
-                'referrer_id' => $referrerId->id,
+            if ($request->referrer_code == null) {
+                $user = User::create([
+                    'account_type' => 'User',
+                    'referral_code' => $this->referrer_id_generate(7),
+                    'name' => ucfirst($request->name),
+                    'email' => $request->email,
+                    'sex' => $request->sex,
+                    'phone_number' => $request->phone_number,
+                    'agreement' => $request->agreement,
+                    'password' => Hash::make($request->password)
+                ]);
+            } else {
+                $this->validate($request, [
+                    'referrer_code' => 'exists:users,referral_code'
+                ]);
+    
+                $referrerId = User::where('referral_code', $request->referrer_code)->first();
+    
+                $user = User::create([
+                    'account_type' => 'User',
+                    'referral_code' => $this->referrer_id_generate(7),
+                    'name' => ucfirst($request->name),
+                    'email' => $request->email,
+                    'sex' => $request->sex,
+                    'phone_number' => $request->phone_number,
+                    'agreement' => $request->agreement,
+                    'password' => Hash::make($request->password),
+                    'referrer_id' => $referrerId->id
+                ]);
+    
+                Referee::create([
+                    'referee_id' => $user->id,
+                    'referrer_id' => $referrerId->id,
+                ]);
+            }
+    
+            $code = mt_rand(1000, 9999);
+    
+            $user->update([
+                'code' => $code
             ]);
+    
+            // Send verification code to user
+            Mail::to($user->email)->send(new VerificationCode($user->code));
+    
+            return redirect()->route('auth.verify', Crypt::encrypt($user->email))->with([
+                'type' => 'success',
+                'message' => 'Registration Successful, Please verify your account!'
+            ]); 
         }
-        $code = mt_rand(1000, 9999);
-
-        $user->update([
-            'code' => $code
-        ]);
-
-        // Send verification code to user
-        Mail::to($user->email)->send(new VerificationCode($user->code));
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Registration Successfully, Please check your email for a verification code',
-            'data' => $user
-        ]);
     }
 
     function referrer_id_generate($input, $strength = 7)

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
         Route::post('logout', [DashboardController::class, 'logout']);
         
-        // 
+        // Administrator
         Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::post('/admin/add/service', [AdminController::class, 'add_service']);
             Route::post('/admin/update/service/{id}', [AdminController::class, 'update_service']);

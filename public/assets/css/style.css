@@ -39,7 +39,7 @@ nav{
     position: fixed !important;
 }
 nav .navbar-brand img{
-    width: 100px;
+    width: 70px;
 }
 nav .navbar-nav{
     margin-left: -50px;
@@ -78,7 +78,6 @@ nav .login-div .btn-login:hover{
 }
 nav .login-div .btn-signup{
     padding: 10px 15px;
-    border: 1px solid #296bac;
     border-radius: 5px;
     font-size: 17px;
     font-weight: 500;
@@ -280,6 +279,54 @@ nav .desktop-signup{
         color: #fff;
     }
 }
+.How{
+    background-color: #296bac;
+    padding: 10px 0px;
+    color: #fff;
+}
+.light{
+    display: block;
+    margin: auto;
+    width: 90%;
+    border-radius: 8px !important;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+@media (max-width:1328px) {
+    .light{
+        display: block;
+        margin: auto;
+        width: 95%;
+        border-radius: 8px !important;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    } 
+}
+.save{
+    background-color: #fff;
+    padding: 10px 0px;
+    color: #000;
+}
+.save p{
+    font-size: 12px;
+    margin-bottom:0px;
+    margin-top: 0px;
+    text-align: left;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 0px 10px 5px 10px;
+}
+.save .pre{
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: left;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 5px 10px 5px 10px;
+}
+.How h1{
+   font-size: 15px;
+   margin-bottom: 0;
+   margin-top: 0;
+   text-align: center;
+}
 /*********welcome Ends*********/
 
 
@@ -414,8 +461,7 @@ nav .desktop-signup{
     padding: 80px 0px;
 }
 .what .alert h1{
-    font-size: 30px;
-    font-weight: 700;
+    font-weight: 600;
     color: #000;
     text-align: center;
 }
@@ -453,4 +499,325 @@ nav .desktop-signup{
         height: 250px;
     }
 }
+.what  a{
+    text-decoration: none;
+}
+.what button{
+    margin-top: 30px !important;
+    border: none;
+    display: block;
+    margin: auto;
+    width: 10%;
+    padding: 10px 0px;
+    background-color: #FF7800;
+    color:#fff;
+    border-radius: 5px;
+}
+.what button:hover{
+    padding: 10px 0px;
+    background-color: #296bac;
+    color:#fff;
+    border-radius: 5px;
+}
 /*********What pages Ends*********/
+
+/*********Testimonail pages*********/
+.Testimonail{
+    padding: 100px 0px;
+    background-color: #05294F;
+    color: #fff;
+}
+.Testimonail .debug h3{
+    font-size: 14px;
+    font-weight: 500;
+    padding: 50px 0 8px 0;
+}
+.Testimonail .debug h1{
+    font-weight: 700;
+}
+.Testimonail .debug p{
+    font-size: 15;
+}
+.bg-secondary {
+    background: #ff7800 !important;
+}
+.all{
+    width: 6%;
+    display: inline-block;
+    margin: auto;
+    background: #ff7800 !important;
+    border-radius: 10px !important;
+}
+.alll{
+    width: 6%;
+    display: inline-block;
+    margin: auto;
+    background: #ff7800 !important;
+    border-radius: 10px !important;
+}
+.Testimonail .calling .http{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    width: 100px;
+}
+.Testimonail .calling .lazreb{
+    background-color: #fff;
+    padding: 50px 40px 20px 40px;
+    border-radius: 5px;
+    position: relative;
+    left: 30px;
+    top: -40px;
+}
+.Testimonail .calling .lazreb p{
+   color: #000;
+}
+.Testimonail .calling .lazreb h2{
+    color: #000;
+    font-size: 17px;
+    font-weight: 600;
+ }
+ .Testimonail .alt{
+    float: right;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+ }
+/*********Testimonail pages Ends*********/
+
+.faqPage{
+    width: 100%;
+    padding: 70px 10px 10px 10px;
+    color:#000;
+}
+.faqPage h2{
+    font-weight: 600;
+    color: #000;
+}
+.faqPage .line-rule{
+    width: 50px;
+    height: 2px;
+    background-color: #296bac;
+    margin: auto;
+    margin-bottom: 40px;
+}
+.faqPage summary {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px -10px #c8c8c873;
+    color: #000000;
+    padding: 15px;
+    margin-bottom: 20px;
+    outline: none;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #d9d9d9;
+}
+.faqPage .faq-content{
+    background-color: #ffffff;
+    padding: 25px 15px 15px 15px;
+    margin-top: -16px;
+    margin-bottom: 10px;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0px 0px 20px -10px #d9d9d9;
+    font-size: 15px;
+    font-weight: 400;
+    border: 1px solid #d9d9d9;
+}
+.faqPage details > summary::after {
+    position: absolute;
+    content: "+";
+    right: 20px;
+}
+.faqPage details[open] > summary{
+    border-radius: 5px 5px 0px 0px;
+    border: 1px solid #d9d9d9;
+}
+.faqPage details[open] > summary::after {
+    position: absolute;
+    content: "-";
+    right: 20px;
+}
+.faqPage details > .faq-section summary::-webkit-details-marker {
+    display: none;
+}
+.faqPage .faq-bottom{
+    margin-top: 50px;
+}
+.faqPage .faq-bottom  p{
+    font-size: 17px;
+}
+.faqPage .faq-bottom .btn-message-us{
+    padding: 10px 25px;
+    background-color: #E20001;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.faqPage .faq-bottom .btn-message-us:hover{
+    background-color: #a00000;
+    transition: 0.6s;
+}
+@media(max-width: 550px){
+    .faqPage summary {
+        font-size: 17px;
+        font-weight: 500;
+    }
+}
+
+/*********Footer*********/
+footer {
+    background-color: #062A51;
+    padding: 90px 10px 30px 10px !important;
+    color: #cecece;
+    margin-top: 50px !important;
+}
+
+footer .main-ft {
+    margin-top: -20px;
+}
+
+footer .main-ft img {
+    width: 150px;
+    padding-bottom: 15px;
+}
+
+footer .link-ft h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    padding-bottom: 10px;
+    letter-spacing: 0.3px;
+}
+
+footer .link-ft p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+footer .link-ft p span {
+    color: #fff !important;
+    font-size: 15px;
+    margin: 0 7px;
+}
+
+footer .link-ft p a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer .link-ft p a:hover {
+    text-decoration: underline;
+}
+
+footer .main-ft .social {
+    margin-top: 40px;
+}
+
+footer .main-ft .social a {
+    padding-right: 20px;
+    font-size: 22px;
+    color: #fff !important;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+footer .main-ft .social a:hover {
+    color: red;
+}
+
+footer .link-ft {
+    margin-top: 10px;
+}
+
+footer .link-ft h4 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: 0.4px;
+}
+
+footer .link-ft .line-rule {
+    width: 30px;
+    height: 2px;
+    background: #296bac;
+    margin-bottom: 5px;
+}
+
+footer .link-ft p {
+    line-height: 2;
+}
+
+footer .link-ft p a {
+    color: #000;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+footer .link-ft p a:hover {
+    color: #27287B;
+}
+
+footer .copyright {
+    border-top: 1px solid #D4D4D4;
+    padding-top: 20px;
+    margin-top: 70px;
+}
+
+footer .copyright p {
+    font-size: 15px;
+    color: #fff;
+}
+
+@media (max-width: 991px) {
+    footer {
+        padding: 80px 20px 30px 20px;
+    }
+
+    footer .main-ft .social {
+        margin-bottom: 10px;
+    }
+
+    footer .link-ft {
+        margin-top: 20px;
+    }
+}
+footer .input-box input{
+    padding: 15px 20px;
+    outline: none;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #000;
+    width: 100%;
+    display: block;
+    margin: auto;
+    border: none;
+    margin-top: 10px !important;
+}
+footer .input-box input::placeholder{
+    color: #000 !important;
+    font-size: 16px;
+}
+footer .input-box input[type="button"]{
+    background: #FF7800;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 4px 0;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+.input-box input[type="button"]:hover{
+    opacity: 1;
+}
+

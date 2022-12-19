@@ -27,7 +27,7 @@
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
-                        <a> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                    <a href="{{ route('index')}}"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
                         <h2>Forgot Password</h2>
                         <div class="line-rule"></div>
                         <form>

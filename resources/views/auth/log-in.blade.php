@@ -27,7 +27,7 @@
                 <div class="col-xl-4"></div>
                 <div class="col-xl-4">
                     <div class="form-sec">
-                        <a> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
+                        <a href="{{ route('index')}}"> <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg"></a>
                         <h2>Login To Your Account</h2>
                         <div class="line-rule"></div>
                         <form>
@@ -39,7 +39,7 @@
                             <!--Password-->
                             <div class="mb-4">
                                 <label for="password">Password</label>
-                                <a href="#" class="forgot">Forgotten Password?</a>
+                                <a href="{{ route('forgot')}}" class="forgot">Forgotten Password?</a>
                                 <input type="password" placeholder="Enter password" required>
                                 <i class="toggle-password fa fa-fw fa-eye-slash" title="Toggle to show/hide password"></i>
                             </div>

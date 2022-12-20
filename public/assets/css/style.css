@@ -1,11 +1,14 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-html, body{
-    font-family: 'DM Sans', sans-serif !important;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html,
+body {
+    font-family: 'Montserrat', sans-serif !important;
     scroll-behavior: smooth;
     overflow-x: hidden;
     background-size: cover;
@@ -13,22 +16,25 @@ html, body{
     width: 100% !important;
     background-repeat: no-repeat;
 }
+
 /* ===== Scrollbar CSS ===== */
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 10px;
 }
+
 *::-webkit-scrollbar-thumb {
     background-color: #000;
     border-radius: 2px;
 }
+
 *::-moz-scrollbar-thumb {
     background-color: #000;
     border-radius: 2px;
 }
 
 /*********Header Nav*********/
-nav{
+nav {
     background-color: #fff;
     padding: 10px 10px !important;
     position: fixed;
@@ -38,29 +44,36 @@ nav{
     transition: all 0.3s ease-out 0s;
     position: fixed !important;
 }
-nav .navbar-brand img{
+
+nav .navbar-brand img {
     width: 70px;
 }
-nav .navbar-nav{
+
+nav .navbar-nav {
     margin-left: -50px;
 }
-nav .navbar-nav .nav-item{
+
+nav .navbar-nav .nav-item {
     padding-right: 15px;
     font-size: 17px;
 }
-nav .navbar-nav .nav-item .nav-link{
+
+nav .navbar-nav .nav-item .nav-link {
     color: #000000;
     font-weight: 500;
 }
-nav .navbar-nav .nav-item .nav-link:hover{
+
+nav .navbar-nav .nav-item .nav-link:hover {
     color: #296bac;
     padding-bottom: 2px;
     border-bottom: 2px solid #296bac;
 }
-nav .login-div{
+
+nav .login-div {
     margin-top: 7px;
 }
-nav .login-div .btn-login{
+
+nav .login-div .btn-login {
     padding: 10px 15px;
     background-color: #296bac;
     border-radius: 5px;
@@ -69,14 +82,17 @@ nav .login-div .btn-login{
     text-decoration: none;
     color: #fff;
 }
-nav .login-div .btn-login i{
+
+nav .login-div .btn-login i {
     padding-right: 5px;
-} 
-nav .login-div .btn-login:hover{
+}
+
+nav .login-div .btn-login:hover {
     background-color: #042B54;
     color: #ffffff;
 }
-nav .login-div .btn-signup{
+
+nav .login-div .btn-signup {
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 17px;
@@ -84,106 +100,133 @@ nav .login-div .btn-signup{
     text-decoration: none;
     color: #042B54;
 }
-nav .login-div .btn-signup:hover{
+
+nav .login-div .btn-signup:hover {
     background-color: #296bac;
     color: #ffffff;
 }
-nav .login-div .btn-signup i{
+
+nav .login-div .btn-signup i {
     padding-left: 5px;
-} 
-nav .navbar-toggler{
-    border: 1px solid #000!important; 
 }
-nav .navbar-toggler i{
+
+nav .navbar-toggler {
+    border: 1px solid #000 !important;
+}
+
+nav .navbar-toggler i {
     color: #000;
 }
-nav .navbar-toggler:focus, nav .navbar-toggler:active{
+
+nav .navbar-toggler:focus,
+nav .navbar-toggler:active {
     outline: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
-nav .offcanvas{
+
+nav .offcanvas {
     width: 280px;
 }
-nav .offcanvas-header{
+
+nav .offcanvas-header {
     text-align: right;
     padding: 10px 1px 1px 1px !important;
     margin-bottom: -20px;
 }
-nav .offcanvas-header button{
+
+nav .offcanvas-header button {
     cursor: pointer;
     border: none;
     background-color: transparent;
     position: relative;
     right: -230px;
 }
-nav .offcanvas-header button i{
+
+nav .offcanvas-header button i {
     font-size: 25px;
     color: #000
 }
-nav .mobile-login{
+
+nav .mobile-login {
     display: none;
 }
-nav .desktop-signup{
+
+nav .desktop-signup {
     display: none;
 }
-@media(max-width: 1199px){
-    nav .navbar-nav{
+
+@media(max-width: 1199px) {
+    nav .navbar-nav {
         margin-left: -10px;
     }
-    nav .login-div .btn-login{
+
+    nav .login-div .btn-login {
         padding: 10px 5px;
     }
-    nav .login-div .btn-signup{
+
+    nav .login-div .btn-signup {
         padding: 3px 5px;
     }
-    nav .navbar-nav .nav-item{
+
+    nav .navbar-nav .nav-item {
         padding-right: 5px;
         font-size: 15px;
     }
-    nav .login-div{
+
+    nav .login-div {
         margin-right: -20px;
     }
-    nav .login-div .btn-signup i{
+
+    nav .login-div .btn-signup i {
         padding-left: 1px;
-    } 
-    nav .login-div .btn-login i{
+    }
+
+    nav .login-div .btn-login i {
         padding-right: 1px;
-    } 
+    }
 }
-@media(max-width: 991px){
-    nav{
+
+@media(max-width: 991px) {
+    nav {
         padding: 10px 10px !important;
     }
-    nav .navbar-nav{
+
+    nav .navbar-nav {
         margin-left: 0px;
     }
-    nav .login-div{
+
+    nav .login-div {
         margin-top: 20px;
         margin-left: 10px;
         margin-right: 0px;
     }
-    nav .navbar-nav .nav-item{
+
+    nav .navbar-nav .nav-item {
         text-align: center;
         margin-bottom: 5px;
     }
-    nav .mobile-login{
+
+    nav .mobile-login {
         display: block;
         margin-top: -2px;
     }
-    nav .desktop-login{
+
+    nav .desktop-login {
         display: none;
     }
-    nav .desktop-signup{
+
+    nav .desktop-signup {
         display: block;
     }
-    nav .navbar-nav .nav-item .nav-link:hover{
-        padding-bottom:0px;
+
+    nav .navbar-nav .nav-item .nav-link:hover {
+        padding-bottom: 0px;
         border-bottom: none !important;
-        transition:none !important;
+        transition: none !important;
     }
-    
-    nav .login-div .btn-signup{
+
+    nav .login-div .btn-signup {
         padding: 10px 0;
         width: 100%;
         text-align: center;
@@ -193,45 +236,56 @@ nav .desktop-signup{
         color: #000;
     }
 }
-@media(max-width: 442px){
-    nav .navbar-brand img{
+
+@media(max-width: 442px) {
+    nav .navbar-brand img {
         margin-left: 10px;
         width: 60px;
     }
-    nav .mobile-login .btn-login{
+
+    nav .mobile-login .btn-login {
         padding: 7px 10px;
         font-size: 15px;
     }
+
     nav .navbar-toggler {
         padding: 3px 10px !important;
     }
-    nav .navbar-toggler i{
+
+    nav .navbar-toggler i {
         color: #000;
         font-size: 16px;
     }
 }
-@media(max-width: 370px){
-    nav .navbar-brand img{
+
+@media(max-width: 370px) {
+    nav .navbar-brand img {
         margin-left: 5px;
     }
 }
+
 /*********Header Nav Ends*********/
 
 /*********welcome*********/
-.welcome{
+.welcome {
     margin-top: 80px;
-    padding: 150px 0px;
-    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669209031/lazreb/hero_nw9ja9.png);
+    padding: 120px 0px;
+    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669635851/lazreb/Group_46596_1_1_smrwnz.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.welcome .text{
-    padding: 70px 0 0 0;
+
+.welcome .text {
+    padding: 50px 0 0 0;
     color: #fff;
 }
-.welcome .text h1{
+
+.welcome .text h1 {
     font-size: 45px;
     font-weight: 800;
 }
-.welcome .text button{
+
+.welcome .text button {
     border: none;
     background-color: #FF7800;
     margin-top: 50px;
@@ -239,37 +293,43 @@ nav .desktop-signup{
     border-radius: 5px;
     color: #fff;
 }
+
 @media (max-width:1328px) {
-    .welcome .text h1{
+    .welcome .text h1 {
         line-height: 1.5;
         font-size: 39px;
         font-weight: 800;
     }
 }
+
 @media (max-width:768px) {
-    .welcome .text{
+    .welcome .text {
         padding: 40px 0 0 0;
         color: #fff;
     }
 }
+
 @media (max-width:584px) {
-    .welcome{
+    .welcome {
         padding: 50px 10px;
     }
-    .welcome .text h1{
+
+    .welcome .text h1 {
         line-height: 1.5;
         font-size: 35px;
         font-weight: 800;
     }
 }
+
 @media (max-width:526px) {
-    .welcome .text h1{
+    .welcome .text h1 {
         line-height: 1.3;
-        font-size: 36px;
+        font-size: 28px;
         font-weight: 700;
         text-align: center;
     }
-    .welcome .text button{
+
+    .welcome .text button {
         border: none;
         background-color: #FF7800;
         margin-top: 50px;
@@ -279,41 +339,56 @@ nav .desktop-signup{
         color: #fff;
     }
 }
-.How{
+
+.How {
     background-color: #296bac;
     padding: 10px 0px;
     color: #fff;
 }
-.light{
+
+.light {
+    margin-top: 100px !important;
     display: block;
     margin: auto;
     width: 90%;
     border-radius: 8px !important;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 }
+
 @media (max-width:1328px) {
-    .light{
+    .light {
         display: block;
         margin: auto;
-        width: 95%;
+        width: 100% !important;
         border-radius: 8px !important;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
-    } 
+    }
 }
-.save{
+
+@media (max-width:991px) {
+    .How {
+        background-color: #296bac;
+        margin-top: 50px !important;
+        color: #fff;
+    }
+}
+
+.save {
     background-color: #fff;
     padding: 10px 0px;
     color: #000;
 }
-.save p{
+
+.save p {
     font-size: 12px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
     margin-top: 0px;
     text-align: left;
     border-bottom: 1px solid #d9d9d9;
     padding: 0px 10px 5px 10px;
 }
-.save .pre{
+
+.save .pre {
     font-size: 12px;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -321,50 +396,58 @@ nav .desktop-signup{
     border-bottom: 1px solid #d9d9d9;
     padding: 5px 10px 5px 10px;
 }
-.How h1{
-   font-size: 15px;
-   margin-bottom: 0;
-   margin-top: 0;
-   text-align: center;
+
+.How h1 {
+    font-size: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
 }
+
 /*********welcome Ends*********/
 
 
 /*********Counter*********/
-.line{
+.line {
     padding: 0px 0px 20px 0px;
 }
-.line .counter{
+
+.line .counter {
     background-color: #fff;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: 30px;
     margin-top: -20px;
     border-radius: 7px;
 }
-.line .counter img{
+
+.line .counter img {
     display: block;
     margin: auto;
 }
-.line .counter h3{
+
+.line .counter h3 {
     font-weight: 700;
     color: #000;
     padding: 10px 0 0 0;
     font-size: 25px;
 }
-.line .counter h4{
+
+.line .counter h4 {
     margin-top: 0;
     font-weight: 300;
     color: #000;
     padding: 00px 0 0 0;
     font-size: 17px;
 }
+
 @media (max-width:1200px) {
-    .line .counter .text-center{
+    .line .counter .text-center {
         padding: 0px 0px 20px 0px;
     }
 }
+
 @media (max-width:584px) {
-    .line{
+    .line {
         padding: 0px 10px 0px 10px;
     }
 }
@@ -372,47 +455,55 @@ nav .desktop-signup{
 /*********Counter Ends*********/
 
 /*********About*********/
-.About{
+.About {
     margin-top: 80px;
     margin-bottom: 50px;
 }
-.move{
+
+.move {
     background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669195306/lazreb/abouthome_ma6irv.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-.move .life{
+
+.move .life {
     background-color: #f17d1eb1;
     padding: 200px 0;
 }
-.About .more{
+
+.About .more {
     margin-top: 65px;
     background-color: #042B54;
     position: relative;
     left: -24px;
     right: 50px !important;
 }
-.About .more .less{
+
+.About .more .less {
     padding: 50px;
     color: #fff;
     background-color: #042B54;
 }
-.About .more h1{
+
+.About .more h1 {
     font-size: 25px;
     font-weight: 600;
 }
-.About .more p{
+
+.About .more p {
     margin-top: 0;
     font-size: 15px;
     font-weight: 300;
     padding: 10px 0;
 }
-.About .less .read{
+
+.About .less .read {
     margin-top: 0;
     font-size: 15px;
 }
+
 @media (max-width:1400px) {
-    .About .more{
+    .About .more {
         margin-top: 60px;
         background-color: #042B54;
         position: relative;
@@ -420,89 +511,115 @@ nav .desktop-signup{
         right: 50px !important;
     }
 }
+
 @media (max-width:1000px) {
-    .About .more{
+    .About .more {
         margin-top: 0px;
         position: relative;
         left: -0px;
     }
-    .About{
+
+    .About {
         margin-top: 80px;
         background-color: #042B54;
         margin-bottom: 50px;
     }
-    .About .more .less{
+
+    .About .more .less {
         padding: 100px 0px 0px 0px;
         color: #fff;
         background-color: #042B54;
     }
 }
+
 @media (max-width:990px) {
-    .About .more .less{
+    .About .more .less {
         padding: 50px 0px 50px 0px;
         color: #fff;
         background-color: none !important;
     }
+
+    .what button {
+        width: 60% !important;
+    }
 }
+
 @media (max-width:584px) {
-    .About .more .less{
+    .About .more .less {
         padding: 70px 20px 50px 20px;
         color: #fff;
         background-color: #042B54;
     }
-    .what{
+
+    .what {
         padding: 80px 10px !important;
     }
+
+    .what button {
+        width: 50% !important;
+    }
 }
+
 /*********About Ends*********/
 
 /*********What pages*********/
-.what{
+.what {
     padding: 80px 0px;
 }
-.what .alert h1{
-    font-weight: 600;
+
+.what .alert h1 {
+    font-weight: 700;
     color: #000;
+    font-size: 25px;
     text-align: center;
 }
-.what .imgHouse{
+
+.what .imgHouse {
     width: 100%;
     height: 100%;
 }
-.what .imgHouse img{
+
+.what .imgHouse img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.what .card-title{
+
+.what .card-title {
     padding: 30px 0 0 0;
     color: #000;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
     padding-bottom: 10px
 }
-.what .card-body{
+
+.what .card-body {
     background-color: #F6F6F6;
     border-right: 5px solid #FF7800;
 }
-.what .card{
+
+.what .card {
     border: none !important;
     margin-bottom: 30px !important;
 }
-.what .card-text{
+
+.what .card-text {
     color: #000;
     padding-bottom: 10px;
 }
-@media(max-width: 767px){
-    .what .imgHouse{
+
+@media(max-width: 767px) {
+    .what .imgHouse {
         width: 100%;
         height: 250px;
     }
 }
-.what  a{
+
+.what a {
     text-decoration: none;
 }
-.what button{
+
+.what button {
     margin-top: 30px !important;
     border: none;
     display: block;
@@ -510,59 +627,70 @@ nav .desktop-signup{
     width: 10%;
     padding: 10px 0px;
     background-color: #FF7800;
-    color:#fff;
+    color: #fff;
     border-radius: 5px;
 }
-.what button:hover{
+
+.what button:hover {
     padding: 10px 0px;
     background-color: #296bac;
-    color:#fff;
+    color: #fff;
     border-radius: 5px;
 }
+
 /*********What pages Ends*********/
 
 /*********Testimonail pages*********/
-.Testimonail{
+.Testimonail {
     padding: 100px 0px;
     background-color: #05294F;
     color: #fff;
 }
-.Testimonail .debug h3{
-    font-size: 14px;
-    font-weight: 500;
+
+.Testimonail .debug h3 {
+    font-size: 15px;
     padding: 50px 0 8px 0;
 }
-.Testimonail .debug h1{
+
+.Testimonail .debug h1 {
+    font-size: 25px;
     font-weight: 700;
 }
-.Testimonail .debug p{
-    font-size: 15;
+
+.Testimonail .debug p {
+    font-size: 18px;
+    line-height: 1.8;
 }
+
 .bg-secondary {
     background: #ff7800 !important;
 }
-.all{
+
+.all {
     width: 6%;
     display: inline-block;
     margin: auto;
     background: #ff7800 !important;
     border-radius: 10px !important;
 }
-.alll{
+
+.alll {
     width: 6%;
     display: inline-block;
     margin: auto;
     background: #ff7800 !important;
     border-radius: 10px !important;
 }
-.Testimonail .calling .http{
+
+.Testimonail .calling .http {
     position: relative;
     left: 0px;
     top: 0px;
     z-index: 1;
     width: 100px;
 }
-.Testimonail .calling .lazreb{
+
+.Testimonail .calling .lazreb {
     background-color: #fff;
     padding: 50px 40px 20px 40px;
     border-radius: 5px;
@@ -570,41 +698,99 @@ nav .desktop-signup{
     left: 30px;
     top: -40px;
 }
-.Testimonail .calling .lazreb p{
-   color: #000;
+
+.Testimonail .calling .lazreb p {
+    color: #000;
 }
-.Testimonail .calling .lazreb h2{
+
+.Testimonail .calling .lazreb h2 {
     color: #000;
     font-size: 17px;
     font-weight: 600;
- }
- .Testimonail .alt{
+}
+
+.Testimonail .alt {
     float: right;
     position: relative;
     left: 0px;
     top: 0px;
     z-index: 1;
- }
+}
+
+@media (max-width:992px) {
+    .Testimonail .calling .http {
+        margin-top: 60px !important;
+        z-index: 1;
+        width: 100px;
+    }
+
+    .Testimonail .alt {
+        margin-top: 50px !important;
+        z-index: 1;
+    }
+
+    .Testimonail {
+        padding: 60px 0px;
+        background-color: #05294F;
+        color: #fff;
+    }
+}
+
+@media (max-width:678px) {
+    .Testimonail .calling .lazreb {
+        background-color: #fff;
+        padding: 50px 20px 20px 20px;
+        border-radius: 5px;
+        position: relative;
+        left: 0px;
+        top: -40px;
+    }
+}
+
+@media (max-width:584px) {
+    .Testimonail {
+        padding: 60px 10px !important;
+        background-color: #05294F;
+        color: #fff;
+    }
+
+    .Testimonail .debug p {
+        font-size: 15px !important;
+        line-height: 1.8;
+    }
+
+    .all {
+        width: 8%;
+    }
+
+    .alll {
+        width: 8%;
+    }
+}
+
 /*********Testimonail pages Ends*********/
 
-.faqPage{
+.faqPage {
     width: 100%;
     padding: 70px 10px 10px 10px;
-    color:#000;
+    color: #000;
 }
-.faqPage h2{
+
+.faqPage h2 {
     font-weight: 600;
     color: #000;
 }
-.faqPage .line-rule{
+
+.faqPage .line-rule {
     width: 50px;
     height: 2px;
     background-color: #296bac;
     margin: auto;
     margin-bottom: 40px;
 }
+
 .faqPage summary {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     background-color: #fff;
     box-shadow: 0px 0px 20px -10px #c8c8c873;
@@ -618,7 +804,8 @@ nav .desktop-signup{
     position: relative;
     border: 1px solid #d9d9d9;
 }
-.faqPage .faq-content{
+
+.faqPage .faq-content {
     background-color: #ffffff;
     padding: 25px 15px 15px 15px;
     margin-top: -16px;
@@ -629,41 +816,50 @@ nav .desktop-signup{
     font-weight: 400;
     border: 1px solid #d9d9d9;
 }
-.faqPage details > summary::after {
+
+.faqPage details>summary::after {
     position: absolute;
     content: "+";
     right: 20px;
 }
-.faqPage details[open] > summary{
+
+.faqPage details[open]>summary {
     border-radius: 5px 5px 0px 0px;
     border: 1px solid #d9d9d9;
 }
-.faqPage details[open] > summary::after {
+
+.faqPage details[open]>summary::after {
     position: absolute;
     content: "-";
     right: 20px;
 }
-.faqPage details > .faq-section summary::-webkit-details-marker {
+
+.faqPage details>.faq-section summary::-webkit-details-marker {
     display: none;
 }
-.faqPage .faq-bottom{
+
+.faqPage .faq-bottom {
     margin-top: 50px;
 }
-.faqPage .faq-bottom  p{
+
+.faqPage .faq-bottom p {
     font-size: 17px;
 }
-.faqPage .faq-bottom .btn-message-us{
+
+.faqPage .faq-bottom .btn-message-us {
     padding: 10px 25px;
     background-color: #E20001;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
-.faqPage .faq-bottom .btn-message-us:hover{
+
+.faqPage .faq-bottom .btn-message-us:hover {
     background-color: #a00000;
     transition: 0.6s;
 }
-@media(max-width: 550px){
+
+@media(max-width: 550px) {
     .faqPage summary {
         font-size: 17px;
         font-weight: 500;
@@ -756,13 +952,13 @@ footer .link-ft p {
 }
 
 footer .link-ft p a {
-    color: #000;
+    color: #fff;
     text-decoration: none;
     font-size: 17px;
 }
 
 footer .link-ft p a:hover {
-    color: #27287B;
+    color: #fff;
 }
 
 footer .copyright {
@@ -789,7 +985,8 @@ footer .copyright p {
         margin-top: 20px;
     }
 }
-footer .input-box input{
+
+footer .input-box input {
     padding: 15px 20px;
     outline: none;
     background: #fff;
@@ -802,11 +999,13 @@ footer .input-box input{
     border: none;
     margin-top: 10px !important;
 }
-footer .input-box input::placeholder{
+
+footer .input-box input::placeholder {
     color: #000 !important;
     font-size: 16px;
 }
-footer .input-box input[type="button"]{
+
+footer .input-box input[type="button"] {
     background: #FF7800;
     color: #fff;
     border: none;
@@ -817,7 +1016,534 @@ footer .input-box input[type="button"]{
     cursor: pointer;
     transition: all 0.4s ease;
 }
-.input-box input[type="button"]:hover{
+
+.input-box input[type="button"]:hover {
     opacity: 1;
 }
 
+/* Next */
+.Insight {
+    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528297/lazreb/Rectangle-18769-3_bo04pv.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.Insight .alright {
+    background-color: #00448CFA;
+    opacity: 0.98;
+    padding: 20px 0px;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.Insight .alright .sight h2 {
+    padding: 80px 0 0 0;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.Insight .alright .sight h1 {
+    font-size: 25px;
+    color: #fff;
+    padding: 0 0 5px 0;
+    font-weight: 800;
+}
+
+.Insight .alright .sight p {
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.Insight .alright .sight button {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 10px 30px;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+}
+
+.Insight .alright .text-center {
+    padding: 70px 0 0 0;
+}
+
+.Insight .alright .text-center img {
+    width: 50px;
+    display: block;
+    margin: auto;
+}
+
+.Insight .alright .text-center h5 {
+    padding: 15px 0 0 0;
+    color: #fff;
+    font-weight: 500;
+}
+
+.Insight .alright .text-hunter {
+    padding: 50px 0 0 0;
+}
+
+.Insight .alright .text-hunter img {
+    width: 50px;
+    display: block;
+    margin: auto;
+}
+
+.Insight .alright .text-hunter h5 {
+    padding: 15px 0 0 0;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+}
+
+@media (max-width:992px) {
+    .Insight .alright .alt {
+        display: none;
+    }
+}
+
+@media (max-width:584px) {
+    .Insight .alright {
+        padding: 0px 10px 40px 10px;
+    }
+    .support {
+        padding: 100px 10px 50px 10px;
+    }
+    .support .text-center h1 {
+        font-size: 22px;
+        font-weight: 600 !important;
+        color: #000;
+    }
+    .support .text-center p {
+        padding: 6px 0 0 0;
+        font-size: 15px !important;
+        font-weight: 400;
+        color: #000;
+    }
+}
+
+/* Next */
+
+/* Support */
+.support {
+    padding: 100px 0px 50px 0;
+}
+
+.support .text-center h1 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #000;
+}
+
+.support .text-center p {
+    padding: 6px 0 0 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+}
+
+.support .pushing {
+    padding: 50px 0px 0px 0px;
+    text-align: center;
+
+}
+.support .pushing  img{
+    display: block;
+    width: 70px;
+    margin: auto;
+}
+.support .pushing  h3{
+    font-size: 17px;
+    padding: 20px 0 0 0;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Support ENDS */
+
+/**Breadcrumb**/
+.Breadcrumb{
+    background-image: linear-gradient(90deg, #1d1d1d9a, #1a223ba2), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669609285/lazreb/Rectangle_61_ij8ozh.png);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding: 100px 10px;
+    margin-top: 80px;
+    color: #fff;
+}
+.Breadcrumb h1{
+    font-weight: 700;
+    font-size: 45px;
+}
+.Breadcrumb p a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+.Breadcrumb p a:hover{
+    text-decoration: underline;
+}
+.Breadcrumb p i{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/**Breadcrumb Ends**/
+
+/**Lazreb**/
+.Lazreb{
+    background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669610612/lazreb/Group_46596_oitdag.png);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding: 90px 0px;
+    color: #000;
+}
+.Lazreb .btn-array h1{
+    font-size: 25px;
+    font-weight: 700;
+}
+.Lazreb .btn-array p{
+    padding: 7px 0 0 0;
+}
+.Lazreb img{
+   display: block;
+   margin: auto;
+   width: 65%;
+}
+@media (max-width:992px) {
+    .Lazreb{
+        padding: 90px 0px;
+        color: #fff;
+    }
+    .Lazreb img{
+        margin-top: 30px !important;
+        display: block;
+        margin: auto;
+        width: 65%;
+     }
+}
+@media (max-width:584px) {
+    .Lazreb{
+        padding: 90px 10px;
+        color: #fff;
+    }
+    .Lazreb .btn-array p{
+        font-size: 15px !important;
+    }
+    .Lazreb img{
+        margin-top: 30px !important;
+        display: block;
+        margin: auto;
+        width: 100%;
+     }
+     .Breadcrumb{
+        padding: 70px 10px;
+        margin-top: 80px;
+        color: #fff;
+    }
+    .Breadcrumb h1{
+        font-weight: 700;
+        font-size: 30px;
+    }
+}
+/**Lazreb Ends**/
+/**Lazreb**/
+.Lazrebb{
+    background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669610612/lazreb/Group_46597_ffqr6c.png);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding: 90px 0px;
+    color: #000;
+}
+.Lazrebb .btn-array h1{
+    font-size: 25px;
+    font-weight: 700;
+}
+.Lazrebb .btn-array p{
+    padding: 7px 0 0 0;
+}
+.Lazrebb img{
+   display: block;
+   margin: auto;
+   width: 65%;
+   border-radius: 10px;
+}
+@media (max-width:992px) {
+    .Lazrebb{
+        padding: 90px 0px;
+        color: #000;
+    }
+    .Lazrebb img{
+        margin-bottom: 30px !important;
+        display: block;
+        margin: auto;
+        width: 65%;
+     }
+     .Mission .white{
+        height:auto !important;
+        margin-bottom: 20px !important;
+    }
+}
+@media (max-width:584px) {
+    .Lazrebb{
+        padding: 90px 10px;
+        color: #000;
+    }
+    .Lazrebb .btn-array p{
+        font-size: 15px !important;
+    }
+    .Lazrebb img{
+        margin-bottom: 30px !important;
+        display: block;
+        margin: auto;
+        width: 100%;
+     }
+     .Mission{
+        padding: 80px 10px !important;
+    }
+}
+/**Lazreb Ends**/
+
+/**Mission**/
+.Mission{
+    padding: 80px 0;
+}
+.Mission .white{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    height: 200px;
+}
+.Mission .white h3{
+   font-size: 20px;
+   font-weight: 600;
+}
+.Mission .white img{
+    width: 20px;
+    margin: 0 7px;
+}
+.Mission .white p{
+    padding: 10px 0 0 0;
+}
+/**Mission Ends**/
+
+/**Core**/
+.Core{
+    padding: 80px 0;
+}
+.Core h2 {
+    font-weight: 600;
+    color: #000;
+}
+.Core .line-rule {
+    width: 100px;
+    height: 2px;
+    background-color: #296bac;
+    margin: auto;
+    margin-bottom: 50px;
+}
+.Core .curve h3{
+    font-size: 18px;
+    font-weight: 600;
+ }
+
+ .Core .curve {
+    margin-bottom: 30px;
+ }
+ 
+ .Core .curve img{
+     width: 20px;
+     margin: 0 7px;
+ }
+ .Core .curve p{
+    padding: 0px 0 0 40px;
+}
+.Core .res{
+    width:85%;
+   display: block;
+   margin: auto;
+}
+/**Core Ends**/
+
+
+/**Carter**/
+.Carter{
+    padding: 100px 0px 50px 0px;
+}
+.Carter .icon img{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: auto;
+    width: 95%;
+    border-radius: 10px 10px 0px 0px;
+}
+.Carter .last{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 30px 20px 15px 20px;
+    margin: auto;
+    width: 95%;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 50px;
+}
+.Carter .last h4{
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+/**Carter Ends**/
+
+/**Some**/
+.Some{
+    padding: 100px 0px 50px 0px;
+    background-color: #F2F2F2;
+    color: #000;
+}
+.Some .coller{
+   padding: 20px;
+   border-radius: 5px;
+   background-image: url();
+ }
+.Some .coller img{
+   width: 50px;
+}
+.Some .coller h3{
+    font-size: 18px;
+    font-weight: 600;
+ }
+/**Some Ends**/
+
+.contactPage .boxes{
+    margin-top: -60px;
+}
+.contactPage .boxes .box{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 20px;
+    margin: 10px;
+    width: 100%;
+    box-shadow: 0px 0px 20px #0000002a;
+    color: #000;
+    height: 200px;
+}
+.contactPage .boxes .box img{
+    width: 40px;
+    padding-bottom: 15px;
+}
+.contactPage .boxes .box h5{
+    padding-bottom: 10px;
+    font-weight: 700;
+}
+.contactPage .boxes .box p{
+    font-size: 16px;
+}
+.contactPage .boxes .box p a{
+    color: #000;
+    text-decoration: none;
+}
+@media(max-width: 991px){
+    .contactPage .boxes .box{
+        height: 220px;
+    }
+}
+@media(max-width: 767px){
+    .contactPage .boxes .box{
+        height: auto;
+        margin: 0px;
+        margin-top: 10px;
+    }
+}
+/*************************/ 
+.contactPage .form-sec{
+    padding: 80px 10px 50px 10px;
+    color: #000;
+}
+.contactPage .form-sec .form-area{
+    background-color: #fff;
+    padding: 40px 30px !important;
+    box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.055);
+    border-radius: 5px;
+}
+.contactPage .form-sec .form-area h3{
+    font-weight: 700;
+}
+.contactPage .form-sec .form-area p{
+    font-size: 17px;
+}
+.contactPage .form-sec form label{
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    margin-top: 35px;
+}
+.contactPage .form-sec form input, .contactPage .form-sec form textarea{
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 15px 1px;
+    font-size: 17px;
+    width: 100%;
+    font-weight: 600;
+}
+.contactPage .form-sec form input:focus, .contactPage .form-sec form textarea:focus{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #296bac;
+}
+.contactPage .form-sec form input::-webkit-input-placeholder, .contactPage .form-sec form textarea::-webkit-input-placeholder{
+    font-size: 16px;
+    font-weight: 400;
+}
+.contactPage .form-sec form input:-ms-input-placeholder, .contactPage .form-sec form textarea:-ms-input-placeholder{
+    font-size: 16px;
+    font-weight: 400;
+}
+.contactPage .form-sec form input::placeholder, .contactPage .form-sec form textarea::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+}
+.contactPage .form-sec form button{
+    border: none;
+    border-radius: 5px;
+    background-color: #296bac;
+    color: #fff;
+    width: 200px;
+    padding: 15px 5px;
+    margin-top: 10px;
+}
+.contactPage .form-sec form button:hover{
+    background-color: #296bac;
+    transition: 0.5s;
+}
+.contactPage .form-sec .img-form-area{
+    height: 660px;
+    background-image: linear-gradient(90deg,  #0000005b, #0000005b), url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1671549922/lazreb/contact-form-img_hk6vrn.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+@media(max-width: 991px){
+    .contactPage .form-sec .img-form-area{
+        display: none;
+    }
+    .contactPage .form-sec .form-area{
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.055);
+    }
+    .contactPage .form-sec{
+        padding: 80px 5px 50px 5px;
+    }
+}
+/*************************/
+.contactPage .map-area iframe{
+    width: 100%;
+    height: 550px;
+    border: none;
+    border-radius: 10px;
+}
+/*********Contact Page Ends*********/

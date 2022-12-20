@@ -19,16 +19,19 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{{ route('index')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="{{ route('about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Our Services</a>
+                            <a class="nav-link" href="{{ route('services')}}">Our Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="{{ route('faqs')}}">FAQs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact')}}">Contact Us</a>
                         </li>
                     </ul>
                     <div class="login-div">

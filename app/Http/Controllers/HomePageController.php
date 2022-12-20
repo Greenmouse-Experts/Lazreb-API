@@ -22,5 +22,21 @@ class HomePageController extends Controller
     {
         return view('frontend.index');
     }
+    public function about()
+    {
+        return view('frontend.about');
+    }
+    public function services()
+    {
+        return view('frontend.services');
+    }
+    public function faqs()
+    {
+        return view('frontend.faqs');
+    }
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
 
 }

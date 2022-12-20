@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', [App\Http\Controllers\HomePageController::class, 'test']);
 
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('index');
+Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about'])->name('about');
+Route::get('/services', [App\Http\Controllers\HomePageController::class, 'services'])->name('services');
+Route::get('/faqs', [App\Http\Controllers\HomePageController::class, 'faqs'])->name('faqs');
+Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact'])->name('contact');
 
 
 

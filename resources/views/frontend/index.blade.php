@@ -27,16 +27,16 @@
                     </div>
                     <div class="save">
                         <p>
-                        <i class="bi bi-caret-right"></i> PRE-DEPARTURE SESSIONS
+                            <i class="bi bi-caret-right"></i> PRE-DEPARTURE SESSIONS
                         </p>
                         <div class="pre">
-                        <i class="bi bi-caret-right"></i> CAREER COUNSELING
+                            <i class="bi bi-caret-right"></i> CAREER COUNSELING
                         </div>
                         <div class="pre">
-                        <i class="bi bi-caret-right"></i> APPLICATION PROCESSING
+                            <i class="bi bi-caret-right"></i> APPLICATION PROCESSING
                         </div>
                         <div class="pre">
-                        <i class="bi bi-caret-right"></i> DOCUMENTATION GUIDANCE
+                            <i class="bi bi-caret-right"></i> DOCUMENTATION GUIDANCE
                         </div>
                     </div>
                 </div>
@@ -47,25 +47,14 @@
 <!-- Welcome Page Ends -->
 
 <!-- Counter Page -->
-<section class="line">
+<!-- <section class="line">
     <div class="container">
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
                 <div class="counter">
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46580_fs7pye.png" draggable="false" alt="">
-                                <h3>
-                                    <span id="Partners">7818</span>+
-                                </h3>
-                                <h4>
-                                    PACKAGES
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="text-center">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46576_zihq4s.png" draggable="false" alt="">
                                 <h3>
@@ -76,7 +65,7 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="text-center">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46574_km5z6e.png" draggable="false" alt="">
                                 <h3>
@@ -87,7 +76,7 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="text-center">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46579_pbkqnj.png" draggable="false" alt="">
                                 <h3>
@@ -104,11 +93,59 @@
             <div class="col-lg-1"></div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Counter Page Ends -->
 
+<!-- Some -->
+<section class="Some">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="coller">
+                    <h3>
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46576_zihq4s.png" draggable="false" alt=""> CARS LEASED
+                    </h3>
+                    <p>
+                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
+                    </p>
+                    <p>
+                        Read more <i class="bi bi-arrow-right-short"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coller">
+                    <h3>
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46574_km5z6e.png" draggable="false" alt=""> DELIVERIES
+                    </h3>
+                    <p>
+                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
+                    </p>
+                    <p>
+                        Read more <i class="bi bi-arrow-right-short"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="coller">
+                    <h3>
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46579_pbkqnj.png" draggable="false" alt="">  SATISFIED CLIENTS
+                    </h3>
+                    <p>
+                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
+                    </p>
+                    <p>
+                        Read more <i class="bi bi-arrow-right-short"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Some Ends-->
+
 <!-- About Page -->
-<section class="About">
+<!-- <section class="About">
     <div class="container-fluid g-0">
         <div class="row">
             <div class="col-lg-6">
@@ -138,8 +175,64 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- About Page Ends -->
+
+<!-- Next Page -->
+<section class="Insight">
+    <div class="alright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="sight">
+                        <h2>
+                            insight
+                        </h2>
+                        <h1>
+                            About Us
+                        </h1>
+                        <p>
+                            Our goal is to exceed the expectations of students and our partner institutions thereby building a sustainable business relationship.
+                        </p>
+                        <a href="">
+                            <button>
+                                Learn More
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528296/lazreb/Group-46504_qfxfau.png" class="alt" alt="">
+                </div>
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528343/lazreb/Fill-1-1_lhpuwz.png" draggable="false" alt="">
+                                <h5>Integrity</h5>
+                            </div>
+                            <div class="text-hunter">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528295/lazreb/Fill-12-1_div8wh.png" draggable="false" alt="">
+                                <h5>Knowledge</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528296/lazreb/Fill-13-2_xouogu.png" draggable="false" alt="">
+                                <h5>Professionalism</h5>
+                            </div>
+                            <div class="text-hunter">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528295/lazreb/Rectangle-18793-1_txhfgn.png" draggable="false" alt="">
+                                <h5>Trust</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Next Page Ends -->
 
 <!-- What pages -->
 <section class="what">
@@ -283,6 +376,59 @@
 </section>
 <!-- Testimonail pages Ends-->
 
+<!-- Support pages-->
+<section class="support">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h1>
+                        Why Lazreb? Because we support small business.
+                    </h1>
+                    <p>
+                        No more compromising or missed opportunities with Lazreb by your side. With hassle-free application, this time tomorrow you could have access to funds for growth and cash flow support. It’s just what we do.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pushing">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551063/lazreb/Rectangle_19523_b0ufqo.png" draggable="false" alt="">
+                    <h3>
+                        Flexibility
+                    </h3>
+                    <p>
+                        Fast application and decision, and funding possible in 24 hours on flexible options up to $500,000.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pushing">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551065/lazreb/Rectangle_19524_p61myf.png" draggable="false" alt="">
+                    <h3>
+                        Support
+                    </h3>
+                    <p>
+                        A dedicated Business Lending Specialist will get to know you and your business and provide a personalised solution.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pushing">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551068/lazreb/Rectangle_19525_apg0jk.png" draggable="false" alt="">
+                    <h3>
+                        Confidence
+                    </h3>
+                    <p>
+                        Join thousands of Aussie small businesses who thrive with the support of Lasreb to small business.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- Support pages Ends-->
+
 <!--FAQ Page-->
 <main class="faqPage">
     <div class="container">
@@ -325,76 +471,5 @@
 </main>
 
 <!--Footer Section-->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="link-ft">
-                    <h4>Join our mailing list</h4>
-                    <div class="line-rule"></div>
-                    <P>
-                    <a>Subscribe to our newsletter and be the first to recieve emails on our latest updates and offers</a>
-                    </P>
-                    <div class="box input-box">
-                        <form></form>
-                        <div><input type="text" required placeholder="Enter your email"></div>
-                        <div><input type="button" value="Subscribe"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-2">
-                <div class="link-ft">
-                    <h4>Quick Link</h4>
-                    <div class="line-rule"></div>
-                    <p>
-                        <router-link to="/about" class="routers"><a>About us</a></router-link>
-                    </p>
-                    <p>
-                        <router-link to="/properties" class="routers"><a>Properties</a></router-link>
-                    </p>
-                    <p>
-                        <router-link to="/faqs" class="routers"><a>FAQs</a></router-link>
-                    </p>
-                    <!-- <p><router-link to="/blog" class="routers"><a>Blogs</a></router-link></p> -->
-                    <p>
-                        <router-link to="/project" class="routers"><a>Projects</a></router-link>
-                    </p>
-                    <p><a>Contact us</a></p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="link-ft">
-                    <h4>Contact Us</h4>
-                    <div class="line-rule"></div>
-                    <p><a>106, Isawo Road, Agric Bus Stop, Owutu, Ikorodu, Lagos State.</a></p>
-                    <p><a>Branch office at 12, Alhaja Senabu Street, Akute, Ogun State.</a></p>
-                    <p>
-                        info@companyemail.com
-                    </p>
-                    <div class="main-ft">
-                        <div class="social">
-                            <a href="#" target="_blank" title="Like us on Facebook"><i class="bi bi-facebook"></i></a>
-                            <a href="#" target="_blank" title="Follow us on telegram"><i class="bi bi-telegram"></i></a>
-                            <a href="#" target="_blank" title="Follow us on Twitter"><i class="bi bi-twitter"></i></a>
-                            <a href="#" target="_blank" title="Follow us on Instagram"><i class="bi bi-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container copyright">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p>
-                    &copy; 2022 Lazreb Leasing & Logistics ltd - All Rights Reserved.
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Footer Ends -->
 <!--Footer Section Ends-->
 @endsection

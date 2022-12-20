@@ -72,7 +72,7 @@
                                                     <td class="sorting_1">{{$loop->iteration}}</td>
                                                     <td>{{\App\Models\User::findorfail($referral->referee_id)->name}}</td>
                                                     <td>{{\App\Models\User::findorfail($referral->referee_id)->email}}</td>
-                                                    <td>{{\App\Models\User::findorfail($referral->referee_id)->created_at}}</td>
+                                                    <td>{{\App\Models\User::findorfail($referral->referee_id)->phone_number}}</td>
                                                     <td>{{$referral->created_at->toDayDateTimeString()}}</td>
                                                 </tr>
                                             </tbody>

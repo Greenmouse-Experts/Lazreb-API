@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BecomePartner;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -39,9 +41,160 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function get_service($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $service = Service::findorfail($finder);
+
+        return view('dashboard.get-service', [
+            'service' => $service
+        ]);
+    }
+
     public function become_a_partner()
     {
         return view('dashboard.become-a-partner');
+    }
+
+    public function post_become_partner(Request $request)
+    {
+        $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->get();
+
+        if($allBecomePartner->isEmpty())
+        {
+            if($request->partnership_type == 'Individual')
+            {
+                if($request->vehicle_types == '')
+                {
+                    $this->validate($request, [
+                        'vehicle_type' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'nin' => ['required', 'string', 'max:255'],
+                        'agreement' => ['required', 'string']
+                    ]);
+                    BecomePartner::create([
+                        'user_id' => Auth::user()->id,
+                        'partnership_type' => $request->partnership_type,
+                        'vehicle_type' => $request->vehicle_type,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'nin' => $request->nin,
+                        'agreement' => $request->agreement
+                    ]);
+
+                    return back()->with([
+                        'type' => 'success',
+                        'message' => 'Individual Partnership Request Sent Successfully.'
+                    ]); 
+                }  else {
+                    $this->validate($request, [
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'nin' => ['required', 'string', 'max:255'],
+                        'agreement' => ['required', 'string']
+                    ]);
+                    BecomePartner::create([
+                        'user_id' => Auth::user()->id,
+                        'partnership_type' => $request->partnership_type,
+                        'vehicle_type' => $request->vehicle_types,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'nin' => $request->nin,
+                        'agreement' => $request->agreement
+                    ]);
+
+                    return back()->with([
+                        'type' => 'success',
+                        'message' => 'Individual Partnership Request Sent Successfully.'
+                    ]);
+                };
+            }
+
+            if($request->partnership_type == 'Corporate')
+            {
+                if($request->vehicle_types == '')
+                {
+                    $this->validate($request, [
+                        'vehicle_type' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'company_name' => ['required', 'string', 'max:255'],
+                        'company_address' => ['required', 'string', 'max:255'],
+                        'cac_number' => ['required', 'string', 'max:255'],
+                        'agreement' => ['required', 'string']
+                    ]);
+
+                    BecomePartner::create([
+                        'user_id' => Auth::user()->id,
+                        'partnership_type' => $request->partnership_type,
+                        'vehicle_type' => $request->vehicle_type,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'company_name' => $request->company_name,
+                        'company_address' => $request->company_address,
+                        'cac_number' => $request->cac_number,
+                        'agreement' => $request->agreement
+                    ]);
+
+                    return back()->with([
+                        'type' => 'success',
+                        'message' => 'Corporate Partnership Request Sent Successfully.'
+                    ]); 
+                } else {
+                    $this->validate($request, [
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'company_name' => ['required', 'string', 'max:255'],
+                        'company_address' => ['required', 'string', 'max:255'],
+                        'cac_number' => ['required', 'string', 'max:255'],
+                        'agreement' => ['required', 'string']
+                    ]);
+
+                    BecomePartner::create([
+                        'user_id' => Auth::user()->id,
+                        'partnership_type' => $request->partnership_type,
+                        'vehicle_type' => $request->vehicle_types,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'company_name' => $request->company_name,
+                        'company_address' => $request->company_address,
+                        'cac_number' => $request->cac_number,
+                        'agreement' => $request->agreement
+                    ]);
+
+                    return back()->with([
+                        'type' => 'success',
+                        'message' => 'Corporate Partnership Request Sent Successfully.'
+                    ]); 
+                }
+            }
+
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Partnership Type entere doesn't exist. Please from our list of Partnership Type."
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "Request Sent Before"
+            ]);
+        }
+
+    }
+
+    public function manage_become_a_partner()
+    {
+        $becomePartners = BecomePartner::latest()->where('user_id', Auth::user()->id)->get();
+
+        return view('dashboard.manage-become-a-partner', [
+            'becomePartners' => $becomePartners
+        ]);
+    }
+
+    public function delete_become_partner($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        BecomePartner::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
     }
 
     public function notifications()
@@ -149,5 +302,4 @@ class DashboardController extends Controller
             'message' => 'Profile Picture Uploaded Successfully!'
         ]);
     }
-
 }

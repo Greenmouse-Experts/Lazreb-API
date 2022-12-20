@@ -7,7 +7,17 @@
         </li>
         <li class="slide"> <a class="side-menu__item active" href="{{route('user.dashboard')}}"><i class="side-menu__icon fe fe-airplay"></i><span class="side-menu__label">Dashboard</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.request.services')}}"><i class="side-menu__icon fa fa-flickr"></i><span class="side-menu__label">Request Services</span></a></li>
-        <li class="slide"> <a class="side-menu__item" href="{{route('user.become.a.partner')}}"><i class="side-menu__icon fa fa-square"></i><span class="side-menu__label">Become A Partner</span></a></li>
+        <li class="slide"> 
+            <a class="side-menu__item" data-toggle="slide" href="#">
+            <i class="side-menu__icon fa fa-flickr"></i>
+            <span class="side-menu__label">Become A Partner</span>
+            <i class="angle fa fa-angle-right"></i>
+            </a>
+            <ul class="slide-menu"> 
+                <li><a href="{{route('user.become.a.partner')}}" class="slide-item">Add</a></li>
+                <li><a href="{{route('user.manage.become.a.partner')}}" class="slide-item">Manage</a></li> 
+            </ul> 
+        </li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.notifications')}}"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">Notifications</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.transactions')}}"><i class="side-menu__icon fa fa-money"></i><span class="side-menu__label">Transactions</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.help.support')}}"><i class="side-menu__icon fa fa-question-circle"></i><span class="side-menu__label">Help/Support</span></a></li>

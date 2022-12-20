@@ -73,7 +73,6 @@
     <script src="{{URL::asset('dash/assets/plugins/chart/chart.bundle.js')}}"></script>
     <script src="{{URL::asset('dash/assets/plugins/chart/utils.js')}}"></script>
     <script src="{{URL::asset('dash/assets/js/index5.js')}}"></script>
-    <script src="{{URL::asset('dash/assets/switcher/js/switcher.js')}}"></script>
     <script src="{{URL::asset('dash/assets/js/custom.js')}}"></script>
     <script>
         function myCopy() {

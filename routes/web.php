@@ -49,7 +49,11 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/request-services', [DashboardController::class, 'request_services'])->name('user.request.services');
+    Route::get('/get/service/{id}', [DashboardController::class, 'get_service'])->name('user.get.service');
     Route::get('/become-a-partner', [DashboardController::class, 'become_a_partner'])->name('user.become.a.partner');
+    Route::post('/post/become/partner', [DashboardController::class, 'post_become_partner'])->name('user.post.become.partner');
+    Route::get('/manage/become-a-partner', [DashboardController::class, 'manage_become_a_partner'])->name('user.manage.become.a.partner');
+    Route::post('/delete/become/partner/{id}', [DashboardController::class, 'delete_become_partner'])->name('user.delete.become.partner');
     Route::get('/notifications', [DashboardController::class, 'notifications'])->name('user.notifications');
     Route::get('/transactions', [DashboardController::class, 'transactions'])->name('user.transactions');
     Route::get('/help/support', [DashboardController::class, 'help_support'])->name('user.help.support');

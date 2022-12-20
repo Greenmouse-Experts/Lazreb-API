@@ -19,23 +19,25 @@
         <div class="row">
             @foreach($services as $service)
             <div class="col-lg-6 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-2 col-lg-3 feature">
-                                <div class="fa-stack fa-lg fa-1x border btn-primary mb-3"> 
-                                    <img src="{{$service->thumbnail}}" width="500"/>
+                <a href="{{ route('user.get.service', Crypt::encrypt($service->id))}}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-3 feature">
+                                    <div class="fa-stack fa-lg fa-1x border btn-primary mb-3"> 
+                                        <img src="{{$service->thumbnail}}" width="500"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-10 col-lg-9">
-                                <div class="mt-1">
-                                    <h4 class="font-weight-semibold">{{$service->name}}</h4>
-                                    <p class="text-default"></p>
+                                <div class="col-xl-10 col-lg-9">
+                                    <div class="mt-1">
+                                        <h4 class="font-weight-semibold">{{$service->name}}</h4>
+                                        <p class="text-default">{{$service->description}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             @endforeach
         </div> <!-- End Row -->

@@ -21,7 +21,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h6 class="mb-3">Total Service Requested</h6>
-                        <h2 class="mb-2 number-font"><i class="zmdi zmdi-compass text-primary mr-2"></i>$2,891</h2>
+                        <h2 class="mb-2 number-font"><i class="zmdi zmdi-compass text-primary mr-2"></i>2,891</h2>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h6 class="mb-3">Total People Referred</h6>
-                        <h2 class="mb-2 number-font"><i class="fa fa-user text-secondary mr-2"></i>$2,892</h2>
+                        <h2 class="mb-2 number-font"><i class="fa fa-user text-secondary mr-2"></i>2,892</h2>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h6 class="mb-3">Total Transactions</h6>
-                        <h2 class="mb-2 number-font"><i class="mdi mdi-cash-multiple text-success mr-2"></i>$12,789</h2>
+                        <h2 class="mb-2 number-font"><i class="mdi mdi-cash-multiple text-success mr-2"></i>12,789</h2>
                     </div>
                 </div>
             </div>

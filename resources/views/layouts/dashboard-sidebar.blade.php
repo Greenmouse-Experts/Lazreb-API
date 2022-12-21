@@ -7,6 +7,7 @@
         </li>
         <li class="slide"> <a class="side-menu__item active" href="{{route('user.dashboard')}}"><i class="side-menu__icon fe fe-airplay"></i><span class="side-menu__label">Dashboard</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.request.services')}}"><i class="side-menu__icon fa fa-flickr"></i><span class="side-menu__label">Request Services</span></a></li>
+        <li class="slide"> <a class="side-menu__item" href="{{route('user.my.requests')}}"><i class="side-menu__icon fa fa-share-square"></i><span class="side-menu__label">My Requests</span></a></li>
         <li class="slide"> 
             <a class="side-menu__item" data-toggle="slide" href="#">
             <i class="side-menu__icon fa fa-flickr"></i>

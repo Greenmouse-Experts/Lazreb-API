@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BecomePartner;
+use App\Models\CharterVehicle;
+use App\Models\HireVehicle;
+use App\Models\LeaseVehicle;
+use App\Models\PartnerFleetManagement;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\User;
@@ -29,6 +33,11 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
+        // $hireService = 
+        // $leaseService = 
+        // $charterService = CharterVehicle::
+        // $partnerFleetManagement = 
+        // $userRequestServices
         return view('dashboard.dashboard');
     }
     
@@ -49,6 +58,504 @@ class DashboardController extends Controller
 
         return view('dashboard.get-service', [
             'service' => $service
+        ]);
+    }
+
+    public function post_request_service($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $service = Service::findorfail($finder);
+
+        if($service->name == 'Hire A Vehicle')
+        {
+            $this->validate($request, [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'price' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+            
+            HireVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'price' => $request->price,
+                'purpose_of_use' => $request->purpose_of_use,
+                'agreement' => $request->agreement,
+            ]);
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Your request to hire a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+            ]); 
+
+        }
+
+        if($service->name == 'Charter A Vehicle')
+        {
+            $this->validate($request, [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'charter_type' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+            
+            CharterVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'charter_type' => $request->charter_type,
+                'purpose_of_use' => $request->purpose_of_use,
+                'agreement' => $request->agreement,
+            ]);
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Your request to charter a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+            ]); 
+        }
+
+        if($service->name == 'Lease A Vehicle')
+        {
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'lease_duration' => ['required', 'date'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'location_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+            
+            LeaseVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'name' => $request->name,
+                'vehicle_type' => $request->vehicle_type,
+                'lease_duration' => $request->lease_duration,
+                'purpose_of_use' => $request->purpose_of_use,
+                'location_of_use' => $request->location_of_use,
+                'agreement' => $request->agreement,
+            ]);
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Your request to lease a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+            ]); 
+        }
+
+        if($service->name == 'Partner Fleet Management')
+        {
+            $userPartnerFleetManagement = PartnerFleetManagement::where('user_id', Auth::user()->id)->get();
+
+            if($userPartnerFleetManagement->isEmpty())
+            {
+                if($request->partnership_type == 'Individual')
+                {
+                    if($request->vehicle_types == '')
+                    {
+                        $this->validate($request, [
+                            'vehicle_type' => ['required', 'string', 'max:255'],
+                            'no_of_vehicles' => ['required', 'string', 'max:255'],
+                            'nin' => ['required', 'string', 'max:255'],
+                            'agreement' => ['required', 'string']
+                        ]);
+
+                        PartnerFleetManagement::create([
+                            'user_id' => Auth::user()->id,
+                            'service_id' => $service->id,
+                            'partnership_type' => $request->partnership_type,
+                            'vehicle_type' => $request->vehicle_type,
+                            'no_of_vehicles' => $request->no_of_vehicles,
+                            'nin' => $request->nin,
+                            'agreement' => $request->agreement
+                        ]);
+
+                        return back()->with([
+                            'type' => 'success',
+                            'message' => 'Your request for Partner Fleet Management as an Individual has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+                        ]); 
+                    }  else {
+                        $this->validate($request, [
+                            'no_of_vehicles' => ['required', 'string', 'max:255'],
+                            'nin' => ['required', 'string', 'max:255'],
+                            'agreement' => ['required', 'string']
+                        ]);
+
+                        PartnerFleetManagement::create([
+                            'user_id' => Auth::user()->id,
+                            'service_id' => $service->id,
+                            'partnership_type' => $request->partnership_type,
+                            'vehicle_type' => $request->vehicle_types,
+                            'no_of_vehicles' => $request->no_of_vehicles,
+                            'nin' => $request->nin,
+                            'agreement' => $request->agreement
+                        ]);
+
+                        return back()->with([
+                            'type' => 'success',
+                            'message' => 'Your request for Partner Fleet Management as an Individual has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+                        ]);
+                    };
+                }
+
+                if($request->partnership_type == 'Corporate')
+                {
+                    if($request->vehicle_types == '')
+                    {
+                        $this->validate($request, [
+                            'vehicle_type' => ['required', 'string', 'max:255'],
+                            'no_of_vehicles' => ['required', 'string', 'max:255'],
+                            'company_name' => ['required', 'string', 'max:255'],
+                            'company_address' => ['required', 'string', 'max:255'],
+                            'cac_number' => ['required', 'string', 'max:255'],
+                            'agreement' => ['required', 'string']
+                        ]);
+
+                        PartnerFleetManagement::create([
+                            'user_id' => Auth::user()->id,
+                            'service_id' => $service->id,
+                            'partnership_type' => $request->partnership_type,
+                            'vehicle_type' => $request->vehicle_type,
+                            'no_of_vehicles' => $request->no_of_vehicles,
+                            'company_name' => $request->company_name,
+                            'company_address' => $request->company_address,
+                            'cac_number' => $request->cac_number,
+                            'agreement' => $request->agreement
+                        ]);
+
+                        return back()->with([
+                            'type' => 'success',
+                            'message' => 'Your request for Partner Fleet Management as an Corporate has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+                        ]); 
+                    } else {
+                        $this->validate($request, [
+                            'no_of_vehicles' => ['required', 'string', 'max:255'],
+                            'company_name' => ['required', 'string', 'max:255'],
+                            'company_address' => ['required', 'string', 'max:255'],
+                            'cac_number' => ['required', 'string', 'max:255'],
+                            'agreement' => ['required', 'string']
+                        ]);
+
+                        PartnerFleetManagement::create([
+                            'user_id' => Auth::user()->id,
+                            'service_id' => $service->id,
+                            'partnership_type' => $request->partnership_type,
+                            'vehicle_type' => $request->vehicle_types,
+                            'no_of_vehicles' => $request->no_of_vehicles,
+                            'company_name' => $request->company_name,
+                            'company_address' => $request->company_address,
+                            'cac_number' => $request->cac_number,
+                            'agreement' => $request->agreement
+                        ]);
+
+                        return back()->with([
+                            'type' => 'success',
+                            'message' => 'Your request for Partner Fleet Management as an Corporate has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
+                        ]); 
+                    }
+                }
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => "Partnership Type entered doesn't exist. Please select from our list of Partnership Type."
+                ]);
+            } else {
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => "Request Sent Before, please wait while the admin reviews your request!"
+                ]);
+            }
+        }
+
+        return back()->with([
+            'type' => 'danger',
+            'message' => 'Service Unavailable.'
+        ]); 
+
+    }
+
+    public function my_requests()
+    {
+        $services = Service::latest()->get();
+
+        return view('dashboard.my-requests', [
+            'services' => $services
+        ]);
+    }
+
+    public function view_my_requests($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $service = Service::findorfail($finder);
+
+        return view('dashboard.view-my-requests', [
+            'service' => $service
+        ]);
+    }
+
+    public function update_hire_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $hirevehicle = HireVehicle::findorfail($finder);
+
+        $this->validate($request, [
+            'pick_up_address' => ['required', 'string', 'max:255'],
+            'drop_off_address' => ['required', 'string', 'max:255'],
+            'start_date' => ['required', 'date'],
+            'return_date' => ['required', 'date'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'return_time' => ['required', 'date_format:H:i'],
+            'vehicle_type' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'string', 'max:255'],
+            'purpose_of_use' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $hirevehicle->update([
+            'pick_up_address' => $request->pick_up_address,
+            'drop_off_address' => $request->drop_off_address,
+            'start_date' => $request->start_date,
+            'return_date' => $request->return_date,
+            'start_time' => $request->start_time,
+            'return_time' => $request->return_time,
+            'vehicle_type' => $request->vehicle_type,
+            'price' => $request->price,
+            'purpose_of_use' => $request->purpose_of_use,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_hire_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        HireVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
+    public function update_charter_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $chartervehicle = CharterVehicle::findorfail($finder);
+
+        $this->validate($request, [
+            'pick_up_address' => ['required', 'string', 'max:255'],
+            'drop_off_address' => ['required', 'string', 'max:255'],
+            'start_date' => ['required', 'date'],
+            'return_date' => ['required', 'date'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'return_time' => ['required', 'date_format:H:i'],
+            'vehicle_type' => ['required', 'string', 'max:255'],
+            'charter_type' => ['required', 'string', 'max:255'],
+            'purpose_of_use' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $chartervehicle->update([
+            'pick_up_address' => $request->pick_up_address,
+            'drop_off_address' => $request->drop_off_address,
+            'start_date' => $request->start_date,
+            'return_date' => $request->return_date,
+            'start_time' => $request->start_time,
+            'return_time' => $request->return_time,
+            'vehicle_type' => $request->vehicle_type,
+            'charter_type' => $request->charter_type,
+            'purpose_of_use' => $request->purpose_of_use,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_charter_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        CharterVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
+    public function update_lease_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $leaseVehicle = LeaseVehicle::findorfail($finder);
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'vehicle_type' => ['required', 'string', 'max:255'],
+            'lease_duration' => ['required', 'date'],
+            'purpose_of_use' => ['required', 'string', 'max:255'],
+            'location_of_use' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $leaseVehicle->update([
+            'name' => $request->name,
+            'vehicle_type' => $request->vehicle_type,
+            'lease_duration' => $request->lease_duration,
+            'purpose_of_use' => $request->purpose_of_use,
+            'location_of_use' => $request->location_of_use,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_lease_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        LeaseVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
+    public function update_partner_fleet_management($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $partnerFleetManagement = PartnerFleetManagement::findorfail($finder);
+
+        if($partnerFleetManagement->partnership_type == 'Individual')
+        {
+            if($request->vehicle_types == '')
+            {
+                $this->validate($request, [
+                    'vehicle_type' => ['required', 'string', 'max:255'],
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'nin' => ['required', 'string', 'max:255'],
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_type,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'nin' => $request->nin,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            }  else {
+                $this->validate($request, [
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'nin' => ['required', 'string', 'max:255'],
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_types,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'nin' => $request->nin,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            };
+        }
+
+        if($partnerFleetManagement->partnership_type == 'Corporate')
+        {
+            if($request->vehicle_types == '')
+            {
+                $this->validate($request, [
+                    'vehicle_type' => ['required', 'string', 'max:255'],
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'company_name' => ['required', 'string', 'max:255'],
+                    'company_address' => ['required', 'string', 'max:255'],
+                    'cac_number' => ['required', 'string', 'max:255']
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_type,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'company_name' => $request->company_name,
+                    'company_address' => $request->company_address,
+                    'cac_number' => $request->cac_number,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            } else {
+                $this->validate($request, [
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'company_name' => ['required', 'string', 'max:255'],
+                    'company_address' => ['required', 'string', 'max:255'],
+                    'cac_number' => ['required', 'string', 'max:255']
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_types,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'company_name' => $request->company_name,
+                    'company_address' => $request->company_address,
+                    'cac_number' => $request->cac_number,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            }
+        }
+    }
+
+    public function delete_partner_fleet_management($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        PartnerFleetManagement::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
         ]);
     }
 
@@ -165,12 +672,12 @@ class DashboardController extends Controller
 
             return back()->with([
                 'type' => 'danger',
-                'message' => "Partnership Type entere doesn't exist. Please from our list of Partnership Type."
+                'message' => "Partnership Type entered doesn't exist. Please select from our list of Partnership Type."
             ]);
         } else {
             return back()->with([
                 'type' => 'danger',
-                'message' => "Request Sent Before"
+                'message' => "Request Sent Before, please wait while the admin reviews your request!"
             ]);
         }
 

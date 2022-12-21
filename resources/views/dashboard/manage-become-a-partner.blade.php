@@ -9,6 +9,7 @@
             <div class="ml-auto">
                 <div class="input-group">
                     <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
+                    <a href="{{route('user.my.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
                     <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
                     <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
                 </div>
@@ -75,6 +76,10 @@
                                                                 <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
                                                                     <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
                                                                 </a>
+                                                                @elseif($becomePartner->status == 'Declined')
+                                                                <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
+                                                                    <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
+                                                                </a>
                                                                 @else
                                                                 <a href="#BecomePartnerDelete-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                     <i class="fa fa-trash"></i> Delete
@@ -102,9 +107,8 @@
 
                                                                                     <div class="hstack gap-2 justify-content-center mb-0">
                                                                                         <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                     </div>
-                                                                                    
                                                                                 </div>
                                                                             </div>
                                                                         </form>
@@ -154,6 +158,10 @@
                                                                 <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
                                                                     <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
                                                                 </a>
+                                                                @elseif($becomePartner->status == 'Declined')
+                                                                <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
+                                                                    <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
+                                                                </a>
                                                                 @else
                                                                 <a href="#BecomePartnerDelete-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                     <i class="fa fa-trash"></i> Delete
@@ -181,7 +189,7 @@
 
                                                                                     <div class="hstack gap-2 justify-content-center mb-0">
                                                                                         <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                     </div>
                                                                                     
                                                                                 </div>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HireVehicle extends Model
+class CharterVehicle extends Model
 {
     use HasFactory;
 
@@ -24,7 +24,7 @@ class HireVehicle extends Model
         'start_time',
         'return_time',
         'vehicle_type',
-        'price',
+        'charter_type',
         'purpose_of_use',
         'agreement',
         'comment',

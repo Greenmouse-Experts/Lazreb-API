@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HireVehicle extends Model
+class PartnerFleetManagement extends Model
 {
     use HasFactory;
 
@@ -17,15 +17,13 @@ class HireVehicle extends Model
     protected $fillable = [
         'user_id',
         'service_id',
-        'pick_up_address',
-        'drop_off_address',
-        'start_date',
-        'return_date',
-        'start_time',
-        'return_time',
+        'partnership_type',
         'vehicle_type',
-        'price',
-        'purpose_of_use',
+        'no_of_vehicles',
+        'nin',
+        'company_name',
+        'company_address',
+        'cac_number',
         'agreement',
         'comment',
         'status'

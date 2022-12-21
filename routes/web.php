@@ -53,7 +53,18 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/request-services', [DashboardController::class, 'request_services'])->name('user.request.services');
+    Route::get('/my-request', [DashboardController::class, 'my_requests'])->name('user.my.requests');
+    Route::get('/view-my-request/{id}', [DashboardController::class, 'view_my_requests'])->name('user.view.my.requests');
+    Route::post('/hire-vehicle/update/{id}', [DashboardController::class, 'update_hire_vehicle'])->name('user.update.hire.vehicle');
+    Route::post('/hire-vehicle/delete/{id}', [DashboardController::class, 'delete_hire_vehicle'])->name('user.delete.hire.vehicle');
+    Route::post('/charter-vehicle/update/{id}', [DashboardController::class, 'update_charter_vehicle'])->name('user.update.charter.vehicle');
+    Route::post('/charter-vehicle/delete/{id}', [DashboardController::class, 'delete_charter_vehicle'])->name('user.delete.charter.vehicle');
+    Route::post('/lease-vehicle/update/{id}', [DashboardController::class, 'update_lease_vehicle'])->name('user.update.lease.vehicle');
+    Route::post('/lease-vehicle/delete/{id}', [DashboardController::class, 'delete_lease_vehicle'])->name('user.delete.lease.vehicle');
+    Route::post('/partner-fleet-management/update/{id}', [DashboardController::class, 'update_partner_fleet_management'])->name('user.update.partner.fleet.management');
+    Route::post('/partner-fleet-management/delete/{id}', [DashboardController::class, 'delete_partner_fleet_management'])->name('user.delete.partner.fleet.management');
     Route::get('/get/service/{id}', [DashboardController::class, 'get_service'])->name('user.get.service');
+    Route::post('/post/request/service/{id}', [DashboardController::class, 'post_request_service'])->name('user.post.request.service');
     Route::get('/become-a-partner', [DashboardController::class, 'become_a_partner'])->name('user.become.a.partner');
     Route::post('/post/become/partner', [DashboardController::class, 'post_become_partner'])->name('user.post.become.partner');
     Route::get('/manage/become-a-partner', [DashboardController::class, 'manage_become_a_partner'])->name('user.manage.become.a.partner');

@@ -28,7 +28,7 @@
                             Charter & Transportation
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        We provide safe travel and charter services to users and organisations
                         </p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             Vehicles Leasing
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        Cars and automobiles in best condition are available for leasing at affordable rates.
                         </p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             Fleet Management
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        We are specialized in convoy and motorcade management with the best vehicle collection
                         </p>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         Vehicles Rentals
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        Hire your choice vehicle in the best working condition for your special occasions and use.
                         </p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         Finance Leases
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        Our great financial deals provides you the capital you need for your business to flourish
                         </p>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         Special Order
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        Connect to your customers easily through our reliable and trusted delivery system.
                         </p>
                     </div>
                 </div>

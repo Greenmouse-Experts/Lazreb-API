@@ -44,7 +44,7 @@
                     <p><a>106, Isawo Road, Agric Bus Stop, Owutu, Ikorodu, Lagos State.</a></p>
                     <p><a>Branch office at 12, Alhaja Senabu Street, Akute, Ogun State.</a></p>
                     <p>
-                        info@companyemail.com
+                        support@lazrebleasinglogistics.com
                     </p>
                     <div class="main-ft">
                         <div class="social">

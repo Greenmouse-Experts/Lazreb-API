@@ -113,7 +113,7 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Leadership Driven
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    One of our qualities known to our clients and partners are our great leadership skills.
                     </p>
                 </div>
                 <div class="curve">
@@ -121,7 +121,8 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Zealousness
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    Our passion for what we do drives us to be better, putting our clients in our best interest
+
                     </p>
                 </div>
                 <div class="curve">
@@ -129,7 +130,8 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Efficiency
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    Coherence and competence in what we do keeps us outstanding in delivering to you and the general audience.
+
                     </p>
                 </div>
             </div>
@@ -139,7 +141,7 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Accountability
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    We are known for our accountability and efficiency in delivering our services.
                     </p>
                 </div>
                 <div class="curve">
@@ -147,7 +149,7 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Respect
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    We respect the interests and decisions of our clients making us the number #1 choice in our business.
                     </p>
                 </div>
                 <div class="curve">

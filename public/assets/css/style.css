@@ -269,12 +269,25 @@ nav .desktop-signup {
 /*********welcome*********/
 .welcome {
     margin-top: 80px;
-    padding: 120px 0px;
-    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669635851/lazreb/Group_46596_1_1_smrwnz.png);
+}
+.welcome .banner-one{
+    padding: 200px 0px;
+    background-image:linear-gradient(90deg,  #0000005b, #0000005b),url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671641670/lazreb/Rectangle_19529_m1a3nc.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.welcome .banner-two{
+    padding: 200px 0px;
+    background-image:linear-gradient(90deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671641676/lazreb/Rectangle_2_s5kfhh.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.welcome .banner-three{
+    padding: 200px 0px;
+    background-image:linear-gradient(90deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669609285/lazreb/Rectangle_61_ij8ozh.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .welcome .text {
     padding: 50px 0 0 0;
     color: #fff;
@@ -311,7 +324,7 @@ nav .desktop-signup {
 
 @media (max-width:584px) {
     .welcome {
-        padding: 50px 10px;
+        padding: 20px 0px;
     }
 
     .welcome .text h1 {
@@ -319,21 +332,46 @@ nav .desktop-signup {
         font-size: 35px;
         font-weight: 800;
     }
+    .welcome .banner-one{
+        padding: 100px 0px;
+        background-image: linear-gradient(90deg,  #0000005b, #0000005b),  url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671641670/lazreb/Rectangle_19529_m1a3nc.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .welcome .banner-two{
+        padding: 100px 0px;
+        background-image:linear-gradient(90deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671641676/lazreb/Rectangle_2_s5kfhh.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .welcome .banner-three{
+        padding: 100px 0px;
+        background-image:linear-gradient(90deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669609285/lazreb/Rectangle_61_ij8ozh.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
-
+.welcome .text a{
+    text-decoration: none;
+}
 @media (max-width:526px) {
     .welcome .text h1 {
         line-height: 1.3;
-        font-size: 28px;
-        font-weight: 700;
+        font-size: 25px;
+        font-weight: 600;
         text-align: center;
+    }
+    .welcome {
+        padding: 0px 0px !important;
     }
 
     .welcome .text button {
         border: none;
         background-color: #FF7800;
-        margin-top: 50px;
-        width: 100%;
+        margin-top: 50px !important;
+        width: 50%;
+        display: block;
+        margin: auto;
         padding: 15px 40px;
         border-radius: 5px;
         color: #fff;
@@ -409,14 +447,12 @@ nav .desktop-signup {
 
 /*********Counter*********/
 .line {
-    padding: 0px 0px 20px 0px;
+    padding: 50px 0px 50px 0px;
+    background-color: #F6FAFD;
 }
 
 .line .counter {
-    background-color: #fff;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: 30px;
-    margin-top: -20px;
     border-radius: 7px;
 }
 
@@ -595,6 +631,7 @@ nav .desktop-signup {
 
 .what .card-body {
     background-color: #F6F6F6;
+    height: 230px;
     border-right: 5px solid #FF7800;
 }
 
@@ -1023,15 +1060,15 @@ footer .input-box input[type="button"] {
 
 /* Next */
 .Insight {
-    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528297/lazreb/Rectangle-18769-3_bo04pv.png);
+    background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1669634012/lazreb/bg-service_nnklm5.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .Insight .alright {
-    background-color: #00448CFA;
+    background-color: #00448ca8;
     opacity: 0.98;
-    padding: 50px 0px 80px 0px;
+    padding: 40px 0px 40px 0px;
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
 }
 
@@ -1066,7 +1103,7 @@ footer .input-box input[type="button"] {
 }
 
 .Insight .alright .text-center {
-    padding: 70px 0 0 0;
+    padding: 50px 0 0 0;
 }
 
 .Insight .alright .text-center img {
@@ -1075,10 +1112,17 @@ footer .input-box input[type="button"] {
     margin: auto;
 }
 
-.Insight .alright .text-center h5 {
-    padding: 15px 0 0 0;
+.Insight .alright .text-center p{
     color: #fff;
-    font-weight: 500;
+    padding: 5px 0 0 0;
+    font-size: 17px;
+}
+
+.Insight .alright .text-center h5 {
+    margin-top: -10px;
+    margin-bottom: 0;
+    color: #fff;
+    font-weight: 600;
 }
 
 .Insight .alright .text-hunter {
@@ -1398,11 +1442,15 @@ footer .input-box input[type="button"] {
     width: 95%;
     border-radius: 0px 0px 10px 10px;
     margin-bottom: 50px;
+    height: 145px;
 }
 .Carter .last h4{
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 10px;
+}
+.Carter .last p{
+    font-size: 15px;
 }
 /**Carter Ends**/
 
@@ -1557,3 +1605,90 @@ footer .input-box input[type="button"] {
     border-radius: 10px;
 }
 /*********Contact Page Ends*********/
+
+/*********Download Page*********/
+.Download{
+    padding: 50px 50px 50px 50px;
+    background-color: #042B54;
+    border-radius: 10px;
+}
+.Download .adding{
+    padding: 0px 0px 0px 0px;
+    color: #fff;
+}
+.Download .adding h1{
+    font-size: 30px;
+    font-weight: 700;
+}
+.Download .adding p{
+    padding: 5px 0 0 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+.Download .adding img{
+    width: 35%;
+}
+.Download .coolect img{
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+@media (max-width:1399px) {
+    .Download .adding h1{
+        font-size: 25px;
+        font-weight: 700;
+    }
+}
+@media (max-width:1200px) {
+    .Download{
+        background-color: #042B54;
+        border-radius: 10px;
+    }
+    .Download .adding img{
+        width: 35%;
+        margin-bottom: 20px !important;
+    }
+}
+@media (max-width:992px) {
+    .Download{
+        background-color: #042B54;
+        border-radius: 10px;
+    }
+    .Download .adding h1{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .Download .coolect img{
+        width: 100% !important;
+        display: block;
+        margin: auto;
+    }
+}
+@media (max-width:768px) {
+    .Download .adding img{
+        width: 35%;
+        margin-bottom: 50px !important;
+    }
+    .Download .coolect img{
+        width: 100% !important;
+        display: block;
+        margin: auto;
+    }
+}
+@media (max-width:423px) {
+    .Download{
+       text-align: center;
+       padding: 40px 5px 0px 5px;
+    }
+    .Download .adding h1{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .Download .adding p{
+        padding: 5px 0 0 0;
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+/*********Download Page Ends*********/

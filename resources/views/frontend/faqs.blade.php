@@ -28,31 +28,31 @@
                     <details>
                         <summary>How can I rent a car</summary>
                         <div class="faq-content">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi doloribus amet recusandae odit quam magni, assumenda deleniti quisquam nihil explicabo adipisci, sed officia mollitia fuga! Magni eum placeat exercitationem totam.</p>
+                            <p>Kindly sign up on our website or or visit the contact us page to rent a car</p>
                         </div>
                     </details>
                     <details>
-                        <summary>What is the maximum amount for a motorcade / fleet?</summary>
+                        <summary>What type of a car can I hire on lazreb?</summary>
                         <div class="faq-content">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia animi fuga maiores ea commodi nihil adipisci quod quasi tempore vitae. Architecto alias doloremque, corporis modi sed omnis itaque animi voluptate!</p>
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Can I take my personal driver when I charter a vehicle?</summary>
-                        <div class="faq-content">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae assumenda ipsam, asperiores commodi nemo vel perspiciatis iste accusamus reprehenderit totam sapiente laboriosam doloribus recusandae saepe nobis amet minima animi consequatur?</p>
+                            <p>You can hire a wide variety of car,such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
                         </div>
                     </details>
                     <details>
                         <summary>Are expenses paid for if there is a breakdown on the vehicle before return date?</summary>
                         <div class="faq-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
+                            <p>We take care of expenses paterning car repairs</p>
                         </div>
                     </details>
                     <details>
-                        <summary>What is the maximum amount for finance leasing?</summary>
+                        <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
+                            <p>A driver is allocated to you on chatering a vehicle</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>How long can I hire / lease a vehicle </summary>
+                        <div class="faq-content">
+                            <p>The time duration for a vehicle Lease or Hire is flexible to the clients choice, Althrough we have a short term lease and long term lease category</p>
                         </div>
                     </details>
                 </div>

@@ -26,30 +26,35 @@
             <div class="col-lg-10">
                 <div class="faq-box">
                     <details>
-                        <summary>How can i rent a car</summary>
+                        <summary>How can I rent a car</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi doloribus amet recusandae odit quam magni, assumenda deleniti quisquam nihil explicabo adipisci, sed officia mollitia fuga! Magni eum placeat exercitationem totam.</p>
                         </div>
                     </details>
                     <details>
-                        <summary>Is there refund for failed delivery?</summary>
+                        <summary>What is the maximum amount for a motorcade / fleet?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia animi fuga maiores ea commodi nihil adipisci quod quasi tempore vitae. Architecto alias doloremque, corporis modi sed omnis itaque animi voluptate!</p>
                         </div>
                     </details>
                     <details>
-                        <summary>Can I lease my personal vehicle?</summary>
+                        <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae assumenda ipsam, asperiores commodi nemo vel perspiciatis iste accusamus reprehenderit totam sapiente laboriosam doloribus recusandae saepe nobis amet minima animi consequatur?</p>
                         </div>
                     </details>
                     <details>
-                        <summary>How long does delivery take?</summary>
+                        <summary>Are expenses paid for if there is a breakdown on the vehicle before return date?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
                         </div>
                     </details>
-
+                    <details>
+                        <summary>What is the maximum amount for finance leasing?</summary>
+                        <div class="faq-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>

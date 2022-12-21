@@ -1031,12 +1031,12 @@ footer .input-box input[type="button"] {
 .Insight .alright {
     background-color: #00448CFA;
     opacity: 0.98;
-    padding: 20px 0px;
+    padding: 50px 0px 80px 0px;
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
 }
 
 .Insight .alright .sight h2 {
-    padding: 80px 0 0 0;
+    padding: 40px 0 0 0;
     font-size: 17px;
     color: #fff;
     font-weight: 500;
@@ -1050,7 +1050,7 @@ footer .input-box input[type="button"] {
 }
 
 .Insight .alright .sight p {
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     line-height: 1.8;
     font-weight: 500;
@@ -1304,6 +1304,15 @@ footer .input-box input[type="button"] {
      .Mission{
         padding: 80px 10px !important;
     }
+    .contactPage{
+        padding: 0px 10px 0px 10px;
+    }
+    .contactPage .form-sec .form-area{
+        background-color: #fff;
+        padding: 40px 10px !important;
+        box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.055);
+        border-radius: 5px;
+    }
 }
 /**Lazreb Ends**/
 
@@ -1418,8 +1427,9 @@ footer .input-box input[type="button"] {
 /**Some Ends**/
 
 .contactPage .boxes{
-    margin-top: -60px;
+    margin-top: -40px;
 }
+
 .contactPage .boxes .box{
     background-color: #fff;
     border-radius: 10px;
@@ -1431,12 +1441,12 @@ footer .input-box input[type="button"] {
     height: 200px;
 }
 .contactPage .boxes .box img{
-    width: 40px;
+    width: 25px;
     padding-bottom: 15px;
 }
 .contactPage .boxes .box h5{
     padding-bottom: 10px;
-    font-weight: 700;
+    font-weight: 600;
 }
 .contactPage .boxes .box p{
     font-size: 16px;
@@ -1469,7 +1479,7 @@ footer .input-box input[type="button"] {
     border-radius: 5px;
 }
 .contactPage .form-sec .form-area h3{
-    font-weight: 700;
+    font-weight: 600;
 }
 .contactPage .form-sec .form-area p{
     font-size: 17px;

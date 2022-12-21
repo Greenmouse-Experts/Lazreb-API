@@ -32,14 +32,14 @@
                     <div class="box">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671550823/lazreb/telephone_svojm8.png">
                         <h5>Phone Number</h5>
-                        <p><a href="#">+234 811 1111 4321</a> or <a href="#">+234 809 2265 4321</a></p>
+                        <p><a href="#">+2340-708-747-5680</a></p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671550857/lazreb/email_xjeaa0.png">
                         <h5>Email Us</h5>
-                        <p><a href="#">info@companyemail.com</a></p>
+                        <p><a href="#"> support@lazrebleasinglogistics.com</a></p>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-lg-2"></div>
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <div class="light">
                     <div class="How">
                         <h1>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -105,12 +105,6 @@
                     <h3>
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46576_zihq4s.png" draggable="false" alt=""> CARS LEASED
                     </h3>
-                    <p>
-                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
-                    </p>
-                    <p>
-                        Read more <i class="bi bi-arrow-right-short"></i>
-                    </p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -118,12 +112,6 @@
                     <h3>
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46574_km5z6e.png" draggable="false" alt=""> DELIVERIES
                     </h3>
-                    <p>
-                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
-                    </p>
-                    <p>
-                        Read more <i class="bi bi-arrow-right-short"></i>
-                    </p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -131,12 +119,6 @@
                     <h3>
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46579_pbkqnj.png" draggable="false" alt="">  SATISFIED CLIENTS
                     </h3>
-                    <p>
-                        Consectetur adipiscing elit, sed do eiusm od tempor nsectetur adipiscing elit.
-                    </p>
-                    <p>
-                        Read more <i class="bi bi-arrow-right-short"></i>
-                    </p>
                 </div>
             </div>
         </div>
@@ -186,24 +168,24 @@
                 <div class="col-lg-6">
                     <div class="sight">
                         <h2>
-                            insight
+                            Insight
                         </h2>
                         <h1>
                             About Us
                         </h1>
                         <p>
-                            Our goal is to exceed the expectations of students and our partner institutions thereby building a sustainable business relationship.
+                            Lazreb Leasing & Logistics Ltd was incorporated on the 16th of March 2021 with CAC, Nigeria. We provide total solutions to Clients in Leasing and Logistics businesses, especially with our e-solutions which always put our services on demand.
                         </p>
-                        <a href="">
+                        <a href="{{ route('about')}}">
                             <button>
                                 Learn More
                             </button>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-1">
+                <!-- <div class="col-lg-1">
                     <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528296/lazreb/Group-46504_qfxfau.png" class="alt" alt="">
-                </div>
+                </div> -->
                 <div class="col-lg-5">
                     <div class="row">
                         <div class="col-md-6">
@@ -213,13 +195,13 @@
                             </div>
                             <div class="text-hunter">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528295/lazreb/Fill-12-1_div8wh.png" draggable="false" alt="">
-                                <h5>Knowledge</h5>
+                                <h5>Efficiency</h5>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="text-center">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528296/lazreb/Fill-13-2_xouogu.png" draggable="false" alt="">
-                                <h5>Professionalism</h5>
+                                <h5>Accountability </h5>
                             </div>
                             <div class="text-hunter">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671528295/lazreb/Rectangle-18793-1_txhfgn.png" draggable="false" alt="">
@@ -250,13 +232,13 @@
                     <div class="row g-0">
                         <div class="col-md-5">
                             <div class="imgHouse">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669612951/lazreb/Group_46483_btbhbn.png" class="img-fluid rounded-start" draggable="false">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669713252/lazreb/money_az9ipp.png" class="img-fluid rounded-start" draggable="false">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <h5 class="card-title">Logistics and Delivery</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos odit quasi fugit sequi. Temporibus veniam libero omnis deserunt perferendis saepe odio unde maiores totam.</p>
+                                <h5 class="card-title">Finance Leasing</h5>
+                                <p class="card-text">Our great financial deals provides you the capital you need for the growth your business needs.</p>
                                 </p>
                             </div>
                         </div>
@@ -274,7 +256,7 @@
                         <div class="col-md-7">
                             <div class="card-body">
                                 <h5 class="card-title">Fleet Management</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos odit quasi fugit sequi. Temporibus veniam libero omnis deserunt perferendis saepe odio unde maiores totam.</p>
+                                <p class="card-text">We are specialized in convoy and motorcade management with the best vehicle collection</p>
                                 </p>
                             </div>
                         </div>
@@ -286,13 +268,13 @@
                     <div class="row g-0">
                         <div class="col-md-5">
                             <div class="imgHouse">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669195786/lazreb/Vector_3_1_1_fyoe8y.png" class="img-fluid rounded-start" draggable="false">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671617672/lazreb/Vector_3_1_1_fyoe8y_q2ve9p.jpg" class="img-fluid rounded-start" draggable="false">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <h5 class="card-title">Vehicle Rentals</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos odit quasi fugit sequi. Temporibus veniam libero omnis deserunt perferendis saepe odio unde maiores totam.</p>
+                                <p class="card-text">Hire your choice vehicle in the best working condition for your special occasions and use.</p>
                                 </p>
                             </div>
                         </div>
@@ -304,13 +286,13 @@
                     <div class="row g-0">
                         <div class="col-md-5">
                             <div class="imgHouse">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669195789/lazreb/Vector_4_1_torvcw.png" class="img-fluid rounded-start" draggable="false">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671617673/lazreb/Vector_4_1_torvcw_zmpu9c.jpg" class="img-fluid rounded-start" draggable="false">
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <h5 class="card-title">Charter & Transportation</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quos odit quasi fugit sequi. Temporibus veniam libero omnis deserunt perferendis saepe odio unde maiores totam.</p>
+                                <p class="card-text">Our Charter and transportation services are top notch, guaranteeing you the comfort you need for a successful journey</p>
                                 </p>
                             </div>
                         </div>
@@ -385,41 +367,41 @@
                     <h1>
                         Why Lazreb? Because we support small business.
                     </h1>
-                    <p>
+                    <!-- <p>
                         No more compromising or missed opportunities with Lazreb by your side. With hassle-free application, this time tomorrow you could have access to funds for growth and cash flow support. It’s just what we do.
-                    </p>
+                    </p> -->
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="pushing">
-                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551063/lazreb/Rectangle_19523_b0ufqo.png" draggable="false" alt="">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671620929/lazreb/mi-hand-choosing_1_ucg0sz.svg" draggable="false" alt="">
                     <h3>
                         Flexibility
                     </h3>
                     <p>
-                        Fast application and decision, and funding possible in 24 hours on flexible options up to $500,000.
+                    Lazreb leasing and logistics is known for their ability to adapt to new circumstances 
                     </p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="pushing">
-                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551065/lazreb/Rectangle_19524_p61myf.png" draggable="false" alt="">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671620928/lazreb/mi-convo-heart_1_h0a86o.svg" draggable="false" alt="">
                     <h3>
                         Support
                     </h3>
                     <p>
-                        A dedicated Business Lending Specialist will get to know you and your business and provide a personalised solution.
+                    Our support services keeps you in check with all the information and answers you need
                     </p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="pushing">
-                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671551068/lazreb/Rectangle_19525_apg0jk.png" draggable="false" alt="">
+                    <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671620929/lazreb/mi-fistbump_1_d0nzzg.svg" draggable="false" alt="">
                     <h3>
-                        Confidence
+                        Trust
                     </h3>
                     <p>
-                        Join thousands of Aussie small businesses who thrive with the support of Lasreb to small business.
+                    We are a company you can rely on for all your transport and logistics services.
                     </p>
                 </div>
             </div>
@@ -440,30 +422,35 @@
             <div class="col-lg-10">
                 <div class="faq-box">
                     <details>
-                        <summary>How can i rent a car</summary>
+                        <summary>How can I rent a car</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi doloribus amet recusandae odit quam magni, assumenda deleniti quisquam nihil explicabo adipisci, sed officia mollitia fuga! Magni eum placeat exercitationem totam.</p>
                         </div>
                     </details>
                     <details>
-                        <summary>Is there refund for failed delivery?</summary>
+                        <summary>What is the maximum amount for a motorcade / fleet?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia animi fuga maiores ea commodi nihil adipisci quod quasi tempore vitae. Architecto alias doloremque, corporis modi sed omnis itaque animi voluptate!</p>
                         </div>
                     </details>
                     <details>
-                        <summary>Can I lease my personal vehicle?</summary>
+                        <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae assumenda ipsam, asperiores commodi nemo vel perspiciatis iste accusamus reprehenderit totam sapiente laboriosam doloribus recusandae saepe nobis amet minima animi consequatur?</p>
                         </div>
                     </details>
                     <details>
-                        <summary>How long does delivery take?</summary>
+                        <summary>Are expenses paid for if there is a breakdown on the vehicle before return date?</summary>
                         <div class="faq-content">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
                         </div>
                     </details>
-
+                    <details>
+                        <summary>What is the maximum amount for finance leasing?</summary>
+                        <div class="faq-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aperiam explicabo magni, sunt sapiente sint provident alias autem expedita molestiae facere, voluptatum voluptate minima dolor magnam doloribus quae. Nesciunt, ducimus.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>

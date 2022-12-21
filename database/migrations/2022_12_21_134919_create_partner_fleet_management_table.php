@@ -13,19 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hire_vehicles', function (Blueprint $table) {
+        Schema::create('partner_fleet_management', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
             $table->string('service_id')->nullable();
-            $table->string('pick_up_address')->nullable();
-            $table->string('drop_off_address')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('return_date')->nullable();
-            $table->string('start_time')->nullable();
-            $table->string('return_time')->nullable();
+            $table->string('partnership_type')->nullable();
             $table->string('vehicle_type')->nullable();
-            $table->string('price')->nullable();
-            $table->string('purpose_of_use')->nullable();
+            $table->string('no_of_vehicles')->nullable();
+            $table->string('nin')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('cac_number')->nullable();
             $table->string('agreement')->nullable();
             $table->string('comment')->nullable();
             $table->string('status')->default('Pending');
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hire_vehicles');
+        Schema::dropIfExists('partner_fleet_management');
     }
 };

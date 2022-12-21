@@ -19,58 +19,62 @@
     <section class="Carter">
         <div class="container">
             <div class="row">
+                <div class="col-lg-2"></div>
                 <div class="col-lg-4">
                     <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633672/lazreb/Rectangle_92_giytak.png" draggable="false" alt="">
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643224/lazreb/Vector_3_zibjrf.png" draggable="false" alt="">
                     </div>
                     <div class="last">
                         <h4>
-                            Charter & Transportation
-                        </h4>
-                        <p>
-                            Our Charter and transportation services are top notch, guaranteeing you the comfort you need for a successful journey
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633672/lazreb/Rectangle_94_z6ufl9.png" draggable="false" alt="">
-                    </div>
-                    <div class="last">
-                        <h4>
-                            Vehicles Leasing
-                        </h4>
-                        <p>
-                        Cars and automobiles in best condition are available for leasing at affordable rates.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633672/lazreb/Rectangle_96_kaf3ks.png" draggable="false" alt="">
-                    </div>
-                    <div class="last">
-                        <h4>
-                            Fleet Management
-                        </h4>
-                        <p>
-                            We are specialized in convoy and motorcade management with the best vehicle collection
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633671/lazreb/Rectangle_92_1_zz0jea.png" draggable="false" alt="">
-                    </div>
-                    <div class="last">
-                        <h4>
-                        Vehicles Rentals
+                        Hire a Vehicle
                         </h4>
                         <p>
                         Hire your choice vehicle in the best working condition for your special occasions and use.
                         </p>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="icon">
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643223/lazreb/Group_47464_vdc9pb.png" draggable="false" alt="">
+                    </div>
+                    <div class="last">
+                        <h4>
+                        Fleet Management
+                        </h4>
+                        <p>
+                        We are specialized in convoy and motorcade management with the best vehicle collection
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <div class="icon">
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643222/lazreb/Group_47465_o8nce6.png" draggable="false" alt="">
+                    </div>
+                    <div class="last">
+                        <h4>
+                        Lease Vehicle
+                        </h4>
+                        <p>
+                        Get the best deals and offer when leasing a vehicle of your choice for your duration of time.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="icon">
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643224/lazreb/Vector_2_1_u8dhuz.png" draggable="false" alt="">
+                    </div>
+                    <div class="last">
+                        <h4>
+                        Charter Vehicle
+                        </h4>
+                        <p>
+                        Our Charter and transportation services are top notch, guaranteeing you the comfort you need for a successful journey
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
             </div>
         </div>
     </section>

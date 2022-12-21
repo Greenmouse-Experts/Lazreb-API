@@ -365,7 +365,7 @@
                     <div class="row g-0">
                         <div class="col-md-5">
                             <div class="imgHouse">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643224/lazreb/Vector_2_1_u8dhuz.png" class="img-fluid rounded-start" draggable="false">
+                                <img src="pe">
                             </div>
                         </div>
                         <div class="col-md-7">

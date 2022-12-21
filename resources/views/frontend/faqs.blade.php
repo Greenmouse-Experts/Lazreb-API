@@ -23,18 +23,17 @@
                 <h2>FAQ</h2>
                 <div class="line-rule"></div>
             </div>
-            <div class="col-lg-10">
-                <div class="faq-box">
+            <div class="faq-box">
                     <details>
                         <summary>How can I rent a car</summary>
                         <div class="faq-content">
-                            <p>Kindly sign up on our website or or visit the contact us page to rent a car</p>
+                            <p>Kindly sign up on our website or visit the contact us page to rent a car</p>
                         </div>
                     </details>
                     <details>
                         <summary>What type of a car can I hire on lazreb?</summary>
                         <div class="faq-content">
-                            <p>You can hire a wide variety of car,such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
+                            <p>You can hire a wide variety of car, such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
                         </div>
                     </details>
                     <details>
@@ -46,7 +45,7 @@
                     <details>
                         <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
-                            <p>A driver is allocated to you on chatering a vehicle</p>
+                            <p>NB: A driver is allocated to you on chatering a vehicle</p>
                         </div>
                     </details>
                     <details>
@@ -56,7 +55,6 @@
                         </div>
                     </details>
                 </div>
-            </div>
         </div>
     </div>
 </main>

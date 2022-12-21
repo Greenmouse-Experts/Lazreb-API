@@ -157,7 +157,7 @@
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Bold in integrity
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    Our outstanding probity and uprightness towards rendering our services makes us highly preferred by the masses.
                     </p>
                 </div>
             </div>

@@ -28,7 +28,7 @@
                             Charter & Transportation
                         </h4>
                         <p>
-                        We provide safe travel and charter services to users and organisations
+                            Our Charter and transportation services are top notch, guaranteeing you the comfort you need for a successful journey
                         </p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             Fleet Management
                         </h4>
                         <p>
-                        We are specialized in convoy and motorcade management with the best vehicle collection
+                            We are specialized in convoy and motorcade management with the best vehicle collection
                         </p>
                     </div>
                 </div>
@@ -68,32 +68,6 @@
                         </h4>
                         <p>
                         Hire your choice vehicle in the best working condition for your special occasions and use.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633672/lazreb/Rectangle_94_1_n1k03y.png" draggable="false" alt="">
-                    </div>
-                    <div class="last">
-                        <h4>
-                        Finance Leases
-                        </h4>
-                        <p>
-                        Our great financial deals provides you the capital you need for your business to flourish
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="icon">
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669633670/lazreb/Rectangle_96_3_x4lj8p.png" draggable="false" alt="">
-                    </div>
-                    <div class="last">
-                        <h4>
-                        Special Order
-                        </h4>
-                        <p>
-                        Connect to your customers easily through our reliable and trusted delivery system.
                         </p>
                     </div>
                 </div>

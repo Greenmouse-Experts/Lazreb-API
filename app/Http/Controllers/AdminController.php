@@ -131,4 +131,23 @@ class AdminController extends Controller
         ]);
     }
     
+    public function users_services_requests(){
+        return view('admin.services-requests');
+    }
+
+    public function users_partnership_requests(){
+        return view('admin.partnership-requests');
+    }
+
+    public function users_notifications(){
+        return view('admin.notifications');
+    }
+
+    public function users_transactions(){
+        return view('admin.transactions');
+    }
+
+    public function settings(){
+        return view('admin.settings');
+    }
 }

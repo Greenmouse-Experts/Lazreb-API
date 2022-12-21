@@ -6,7 +6,7 @@
     <div class="side-app">
         <!-- page-header -->
         <div class="page-header">
-            <h1 class="page-title"><span class="subpage-title">Welcome To</span> User Dashboard</h1>
+            <h1 class="page-title"><span class="subpage-title">Welcome, </span>{{Auth::user()->name}}</h1>
             <div class="ml-auto">
                 <div class="input-group">
                     <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
@@ -107,10 +107,10 @@
                             <table class="table table-bordered  mb-0 text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Customer</th>
-                                        <th>Order ID</th>
-                                        <th>Order Date</th>
-                                        <th>Order Status</th>
+                                        <th>Purpose</th>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>

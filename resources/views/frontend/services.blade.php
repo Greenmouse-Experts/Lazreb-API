@@ -19,8 +19,8 @@
     <section class="Carter">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-4">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
                     <div class="icon">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643224/lazreb/Vector_3_zibjrf.png" draggable="false" alt="">
                     </div>
@@ -33,7 +33,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="icon">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643223/lazreb/Group_47464_vdc9pb.png" draggable="false" alt="">
                     </div>
@@ -46,9 +46,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-4">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
                     <div class="icon">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643222/lazreb/Group_47465_o8nce6.png" draggable="false" alt="">
                     </div>
@@ -61,7 +61,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="icon">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671643224/lazreb/Vector_2_1_u8dhuz.png" draggable="false" alt="">
                     </div>
@@ -74,7 +74,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-2"></div>
+                <div class="col-lg-1"></div>
             </div>
         </div>
     </section>

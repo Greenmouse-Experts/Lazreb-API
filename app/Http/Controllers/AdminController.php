@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BecomePartner;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -131,23 +135,117 @@ class AdminController extends Controller
         ]);
     }
     
-    public function users_services_requests(){
-        return view('admin.services-requests');
+    public function users_services_requests()
+    {
+        $services = Service::get();
+
+        return view('admin.services-requests', [
+            'services' => $services
+        ]);
     }
 
-    public function users_partnership_requests(){
-        return view('admin.partnership-requests');
+    public function users_view_requested_services($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $service = Service::findorfail($finder);
+
+        return view('admin.view-requested-services', [
+            'service' => $service
+        ]);
     }
 
-    public function users_notifications(){
+    public function users_partnership_requests()
+    {
+        $partnershipRequests = BecomePartner::latest()->get();
+
+        return view('admin.partnership-requests', [
+            'partnershipRequests' => $partnershipRequests
+        ]);
+    }
+
+    public function users_notifications()
+    {
         return view('admin.notifications');
     }
 
-    public function users_transactions(){
+    public function users_transactions()
+    {
         return view('admin.transactions');
     }
 
     public function settings(){
         return view('admin.settings');
+    }
+
+    public function admin_update_password( Request $request)
+    {
+        //Validate Request
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $user = User::findorfail(Auth::user()->id);
+        
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Password Updated Successfully.'
+        ]); 
+    }
+
+    public function admin_update_profile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = User::findorfail(Auth::user()->id);
+
+        if($user->email == $request->email)
+        {
+            $user->update([
+                'name' => $request->name
+            ]); 
+        } else {
+            //Validate Request
+            $this->validate($request, [
+                'email' => ['string', 'email', 'max:255', 'unique:users'],
+            ]);
+
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]); 
+        }
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
+    }
+
+    public function admin_upload_profile_picture(Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        $user = User::findorfail(Auth::user()->id);
+
+        $filename = request()->avatar->getClientOriginalName();
+        if($user->photo) {
+            Storage::delete(str_replace("storage", "public", $user->photo));
+        }
+        request()->avatar->storeAs('users_avatar', $filename, 'public');
+        $user->photo = '/storage/users_avatar/'.$filename;
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Profile Picture Uploaded Successfully!'
+        ]);
     }
 }

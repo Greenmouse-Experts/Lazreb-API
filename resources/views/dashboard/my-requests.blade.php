@@ -19,7 +19,7 @@
         <!-- Row -->
         <div class="row">
             @foreach($services as $service)
-            <div class="col-lg-6 col-md-6">
+            <div class="col-12">
                 <a href="{{ route('user.view.my.requests', Crypt::encrypt($service->id))}}">
                     <div class="offer offer-primary">
                         <div class="shape">
@@ -37,12 +37,25 @@
                         </div>
                         <div class="offer-content">
                             <h3 class="lead"> {{$service->name}} </h3>
-                            <p class="mb-0">{{$service->description}}</p>
                         </div>
                     </div>
                 </a>
             </div>
             @endforeach
+            <div class="col-12">
+                <a href="{{ route('user.manage.become.a.partner')}}">
+                    <div class="offer offer-primary">
+                        <div class="shape">
+                            <div class="shape-text"> 
+                            {{$partnerFleetManagement}}
+                            </div>
+                        </div>
+                        <div class="offer-content">
+                            <h3 class="lead"> Partner Fleet Management</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div> <!-- End Row -->
     </div>
 </div>

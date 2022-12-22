@@ -6,7 +6,6 @@ use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
-use App\Models\PartnerFleetManagement;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\User;
@@ -32,12 +31,11 @@ class DashboardController extends Controller
     }
 
     public function dashboard()
-    {
-        
+    { 
         $hireService = HireVehicle::where('user_id', Auth::user()->id)->get()->count();
         $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->get()->count();
         $charterService = CharterVehicle::where('user_id', Auth::user()->id)->get()->count();
-        $partnerFleetManagement = PartnerFleetManagement::where('user_id', Auth::user()->id)->get()->count();
+        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get()->count();
         $userRequestServices = $hireService + $leaseService + $charterService + $partnerFleetManagement;
 
         $services = Service::get();
@@ -47,7 +45,8 @@ class DashboardController extends Controller
         return view('dashboard.dashboard', [
             'services' => $services,
             'userRequestServices' => $userRequestServices,
-            'referrals' => $referrals
+            'referrals' => $referrals,
+            'partnerFleetManagement' => $partnerFleetManagement
         ]);
     }
     
@@ -311,9 +310,11 @@ class DashboardController extends Controller
     public function my_requests()
     {
         $services = Service::latest()->get();
+        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get()->count();
 
         return view('dashboard.my-requests', [
-            'services' => $services
+            'services' => $services,
+            'partnerFleetManagement' => $partnerFleetManagement
         ]);
     }
 
@@ -464,111 +465,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function update_partner_fleet_management($id, Request $request)
-    {
-        $finder = Crypt::decrypt($id);
-
-        $partnerFleetManagement = PartnerFleetManagement::findorfail($finder);
-
-        if($partnerFleetManagement->partnership_type == 'Individual')
-        {
-            if($request->vehicle_types == '')
-            {
-                $this->validate($request, [
-                    'vehicle_type' => ['required', 'string', 'max:255'],
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'nin' => ['required', 'string', 'max:255'],
-                ]);
-
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_type,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'nin' => $request->nin,
-                ]);
-
-                return back()->with([
-                    'type' => 'success',
-                    'message' => 'Updated Successfully!'
-                ]); 
-            }  else {
-                $this->validate($request, [
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'nin' => ['required', 'string', 'max:255'],
-                ]);
-
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_types,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'nin' => $request->nin,
-                ]);
-
-                return back()->with([
-                    'type' => 'success',
-                    'message' => 'Updated Successfully!'
-                ]); 
-            };
-        }
-
-        if($partnerFleetManagement->partnership_type == 'Corporate')
-        {
-            if($request->vehicle_types == '')
-            {
-                $this->validate($request, [
-                    'vehicle_type' => ['required', 'string', 'max:255'],
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'company_name' => ['required', 'string', 'max:255'],
-                    'company_address' => ['required', 'string', 'max:255'],
-                    'cac_number' => ['required', 'string', 'max:255']
-                ]);
-
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_type,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'company_name' => $request->company_name,
-                    'company_address' => $request->company_address,
-                    'cac_number' => $request->cac_number,
-                ]);
-
-                return back()->with([
-                    'type' => 'success',
-                    'message' => 'Updated Successfully!'
-                ]); 
-            } else {
-                $this->validate($request, [
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'company_name' => ['required', 'string', 'max:255'],
-                    'company_address' => ['required', 'string', 'max:255'],
-                    'cac_number' => ['required', 'string', 'max:255']
-                ]);
-
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_types,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'company_name' => $request->company_name,
-                    'company_address' => $request->company_address,
-                    'cac_number' => $request->cac_number,
-                ]);
-
-                return back()->with([
-                    'type' => 'success',
-                    'message' => 'Updated Successfully!'
-                ]); 
-            }
-        }
-    }
-
-    public function delete_partner_fleet_management($id)
-    {
-        $finder = Crypt::decrypt($id);
-
-        PartnerFleetManagement::findorfail($finder)->delete();
-
-        return back()->with([
-            'type' => 'success',
-            'message' => "Request Deleted Successfully!",
-        ]);
-    }
-
     public function become_a_partner()
     {
         return view('dashboard.become-a-partner');
@@ -702,6 +598,99 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function update_partner_fleet_management($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $partnerFleetManagement = BecomePartner::findorfail($finder);
+
+        if($partnerFleetManagement->partnership_type == 'Individual')
+        {
+            if($request->vehicle_types == '')
+            {
+                $this->validate($request, [
+                    'vehicle_type' => ['required', 'string', 'max:255'],
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'nin' => ['required', 'string', 'max:255'],
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_type,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'nin' => $request->nin,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            }  else {
+                $this->validate($request, [
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'nin' => ['required', 'string', 'max:255'],
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_types,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'nin' => $request->nin,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            };
+        }
+
+        if($partnerFleetManagement->partnership_type == 'Corporate')
+        {
+            if($request->vehicle_types == '')
+            {
+                $this->validate($request, [
+                    'vehicle_type' => ['required', 'string', 'max:255'],
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'company_name' => ['required', 'string', 'max:255'],
+                    'company_address' => ['required', 'string', 'max:255'],
+                    'cac_number' => ['required', 'string', 'max:255']
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_type,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'company_name' => $request->company_name,
+                    'company_address' => $request->company_address,
+                    'cac_number' => $request->cac_number,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            } else {
+                $this->validate($request, [
+                    'no_of_vehicles' => ['required', 'string', 'max:255'],
+                    'company_name' => ['required', 'string', 'max:255'],
+                    'company_address' => ['required', 'string', 'max:255'],
+                    'cac_number' => ['required', 'string', 'max:255']
+                ]);
+
+                $partnerFleetManagement->update([
+                    'vehicle_type' => $request->vehicle_types,
+                    'no_of_vehicles' => $request->no_of_vehicles,
+                    'company_name' => $request->company_name,
+                    'company_address' => $request->company_address,
+                    'cac_number' => $request->cac_number,
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Updated Successfully!'
+                ]); 
+            }
+        }
+    }
+    
     public function delete_become_partner($id)
     {
         $finder = Crypt::decrypt($id);

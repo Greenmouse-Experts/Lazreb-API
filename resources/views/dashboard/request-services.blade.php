@@ -19,7 +19,7 @@
         <!-- Row -->
         <div class="row">
             @foreach($services as $service)
-            <div class="col-lg-6 col-md-6">
+            <div class="col-12">
                 <a href="{{ route('user.get.service', Crypt::encrypt($service->id))}}">
                     <div class="card">
                         <div class="card-body">

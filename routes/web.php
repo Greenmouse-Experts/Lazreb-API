@@ -89,11 +89,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/update/service/{id}', [AdminController::class, 'update_service'])->name('admin.update.service');
     Route::post('/admin/delete/service/{id}', [AdminController::class, 'delete_service'])->name('admin.delete.service');
     Route::get('/admin/users/services/requests', [AdminController::class, 'users_services_requests'])->name('admin.users.services.requests');
+    Route::get('/admin/users/view/requested/service/{id}', [AdminController::class, 'users_view_requested_services'])->name('user.view.requested.services');
     Route::get('/admin/users/partnership/requests', [AdminController::class, 'users_partnership_requests'])->name('admin.users.partnership.requests');
     Route::get('/admin/users/notifications', [AdminController::class, 'users_notifications'])->name('admin.users.notifications');
     Route::get('/admin/users/transactions', [AdminController::class, 'users_transactions'])->name('admin.users.transactions');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/profile/update', [AdminController::class, 'admin_update_profile'])->name('admin.update.profile');
     Route::post('/admin/profile/update/password', [AdminController::class, 'admin_update_password'])->name('admin.update.password');
-    Route::post('/admin/profile/upload/profile-picture', [AdminController::class, 'admin_upload_profile_picture'])->name('admin.profile.picture');
+    Route::post('/admin/profile/upload/profile-picture', [AdminController::class, 'admin_upload_profile_picture'])->name('admin.upload.profile.picture');
 });

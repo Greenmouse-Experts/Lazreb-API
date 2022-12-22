@@ -46,6 +46,12 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     // put all api protected routes here
     Route::middleware('auth:api')->group(function () {
+        
+        Route::post('/post/partner/fleet/management', [MobileController::class, 'post_partner_fleet_management']);
+        Route::get('/get/partner/fleet/management', [MobileController::class, 'get_partner_fleet_management']);
+        Route::post('/update/partner/fleet/management/{id}', [MobileController::class, 'update_partner_fleet_management']);
+        Route::post('/delete/partner/fleet/management/{id}', [MobileController::class, 'delete_partner_fleet_management']);
+        Route::get('/referrals', [MobileController::class, 'referrals']);
         Route::post('/profile/update', [MobileController::class, 'update_profile']);
         Route::post('/profile/update/password', [MobileController::class, 'update_password']);
         Route::post('/profile/upload/profile-picture', [MobileController::class, 'upload_profile_picture']);

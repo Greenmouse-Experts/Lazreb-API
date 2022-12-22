@@ -7,7 +7,7 @@
     <meta name="keywords" content="Lazreb, Logistics"> <!-- Favicon -->
     <link rel="icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" type="image/x-icon">
-    <title><title>{{config('app.name')}} - Admin Dashboard</title></title>
+    <title>{{config('app.name')}} - Admin Dashboard</></title>
     <!--Bootstrap css-->
     <link rel="stylesheet" href="{{URL::asset('dash/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
     <!--Style css -->

@@ -6,7 +6,7 @@
     <div class="side-app">
         <!-- page-header -->
         <div class="page-header">
-            <h1 class="page-title">Become A Partner</h1>
+            <h1 class="page-title">Partner Fleet Management</h1>
             <div class="ml-auto">
                 <div class="input-group">
                     <a href="" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>

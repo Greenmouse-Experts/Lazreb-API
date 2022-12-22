@@ -77,21 +77,20 @@
                         </div>
                     </div>
                 </div>
-            @elseif($service->name == 'Partner Fleet Management')
-                <div class="col-lg-6 col-md-6">
+            @endif
+            @endforeach
+            <div class="col-lg-6 col-md-6">
                     <div class="offer offer-success">
                         <div class="shape">
                             <div class="shape-text">
-                                {{\App\Models\PartnerFleetManagement::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                                {{$partnerFleetManagement}}
                             </div>
                         </div>
                         <div class="offer-content">
-                            <h3 class="lead"> {{$service->name}} </h3>
+                            <h3 class="lead"> Partner Fleet Management </h3>
                         </div>
                     </div>
                 </div>
-            @endif
-            @endforeach
         </div>
         <!-- Row -->
         <div class="row">

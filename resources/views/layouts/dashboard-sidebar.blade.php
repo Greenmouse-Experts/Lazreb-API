@@ -9,15 +9,10 @@
         <li class="slide"> <a class="side-menu__item" href="{{route('user.request.services')}}"><i class="side-menu__icon fa fa-flickr"></i><span class="side-menu__label">Request Services</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.my.requests')}}"><i class="side-menu__icon fa fa-share-square"></i><span class="side-menu__label">My Requests</span></a></li>
         <li class="slide"> 
-            <a class="side-menu__item" data-toggle="slide" href="#">
+            <a class="side-menu__item" href="{{route('user.become.a.partner')}}">
             <i class="side-menu__icon fa fa-flickr"></i>
             <span class="side-menu__label">Become A Partner</span>
-            <i class="angle fa fa-angle-right"></i>
             </a>
-            <ul class="slide-menu"> 
-                <li><a href="{{route('user.become.a.partner')}}" class="slide-item">Add</a></li>
-                <li><a href="{{route('user.manage.become.a.partner')}}" class="slide-item">Manage</a></li> 
-            </ul> 
         </li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.notifications')}}"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">Notifications</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('user.transactions')}}"><i class="side-menu__icon fa fa-money"></i><span class="side-menu__label">Transactions</span></a></li>

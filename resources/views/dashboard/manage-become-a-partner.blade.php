@@ -78,12 +78,74 @@
                                                                 </a>
                                                                 @elseif($becomePartner->status == 'Declined')
                                                                 <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
-                                                                    <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
+                                                                    <i class="fa fa-time-circle-o"></i> {{$becomePartner->status}}
                                                                 </a>
                                                                 @else
+                                                                <a href="#BecomePartnerEdit-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </a>
                                                                 <a href="#BecomePartnerDelete-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                     <i class="fa fa-trash"></i> Delete
                                                                 </a>
+                                                                <!-- Edit Modal -->
+                                                                <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                        <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
+                                                                            @csrf
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header"> 
+                                                                                    <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                                                                                        <span aria-hidden="true">×</span> 
+                                                                                    </button> 
+                                                                                </div>
+                                                                                <div class="modal-body px-4 py-5 text-left">
+                                                                                    <div class="form-group">
+                                                                                        <label for="vehicle_type">Vehicle Type</label>
+                                                                                        <select name="vehicle_type" class="form-control" id="vehicle_types" required>
+                                                                                            <option value="{{$becomePartner->vehicle_type}}">{{$becomePartner->vehicle_type}}</option>
+                                                                                            <option value="">-- Choose a Vehicle --</option>
+                                                                                            <option value="Coaster">Coaster</option>
+                                                                                            <option value="New Coaster">New Coaster</option>
+                                                                                            <option value="Toyota Hiace">Toyota Hiace</option>
+                                                                                            <option value="Sienna/Routan">Sienna/Routan</option>
+                                                                                            <option value="Toyota Hilux">Toyota Hilux</option>
+                                                                                            <option value="Toyota Venza">Toyota Venza</option>
+                                                                                            <option value="Honda Accord">Honda Accord</option>
+                                                                                            <option value="Camry Musle">Camry Musle</option>
+                                                                                            <option value="Toyota Corrola">Toyota Corrola</option>
+                                                                                            <option value="SUV Prado">SUV Prado</option>
+                                                                                            <option value="Toyota Landcruiser">Toyota Landcruiser</option>
+                                                                                            <option value="Lexus Landcruiser LX">Lexus Landcruiser LX</option>
+                                                                                            <option value="">Other</option>
+                                                                                        </select>
+                                                                                        <input type="text" id="otherVehicleValue" name="vehicle_types" placeholder="Enter Vehicle Type" class="form-control mt-2" style="visibility: hidden">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>No of Vehicles</label>
+                                                                                        <input type="number" class="form-control" name="no_of_vehicles" value="{{$becomePartner->no_of_vehicles}}" required>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Company Name</label>
+                                                                                        <input type="text" class="form-control" name="company_name" value="{{$becomePartner->company_name}}" required>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Company Address</label>
+                                                                                        <input type="text" class="form-control" name="company_address" value="{{$becomePartner->company_address}}" required>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>CAC Number</label>
+                                                                                        <input type="text" class="form-control" name="cac_number" value="{{$becomePartner->cac_number}}" required>
+                                                                                    </div>
+                                                                                    <div class="hstack gap-2 justify-content-center mb-0">
+                                                                                        <button type="submit" class="form-btn btn btn-primary">Update</button>
+                                                                                        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                                 <!-- Delete Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -160,12 +222,65 @@
                                                                 </a>
                                                                 @elseif($becomePartner->status == 'Declined')
                                                                 <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
-                                                                    <i class="fa fa-check-square-o"></i> {{$becomePartner->status}}
+                                                                    <i class="fa fa-time-circle-o"></i> {{$becomePartner->status}}
                                                                 </a>
                                                                 @else
+                                                                <a href="#BecomePartnerEdit-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                    <i class="fa fa-edit"></i> Edit
+                                                                </a>
                                                                 <a href="#BecomePartnerDelete-{{$becomePartner->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                     <i class="fa fa-trash"></i> Delete
                                                                 </a>
+                                                                <div class="modal fade" id="BecomePartnerEdit-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                        <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
+                                                                            @csrf
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header"> 
+                                                                                    <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                                                                                        <span aria-hidden="true">×</span> 
+                                                                                    </button> 
+                                                                                </div>
+                                                                                <div class="modal-body px-4 py-5 text-left">
+                                                                                    <div class="form-group">
+                                                                                        <label for="vehicle_type">Vehicle Type</label>
+                                                                                        <select name="vehicle_type" class="form-control" id="vehicle_type" required>
+                                                                                            <option value="{{$becomePartner->vehicle_type}}">{{$becomePartner->vehicle_type}}</option>
+                                                                                            <option value="">-- Choose a Vehicle --</option>
+                                                                                            <option value="Coaster">Coaster</option>
+                                                                                            <option value="New Coaster">New Coaster</option>
+                                                                                            <option value="Toyota Hiace">Toyota Hiace</option>
+                                                                                            <option value="Sienna/Routan">Sienna/Routan</option>
+                                                                                            <option value="Toyota Hilux">Toyota Hilux</option>
+                                                                                            <option value="Toyota Venza">Toyota Venza</option>
+                                                                                            <option value="Honda Accord">Honda Accord</option>
+                                                                                            <option value="Camry Musle">Camry Musle</option>
+                                                                                            <option value="Toyota Corrola">Toyota Corrola</option>
+                                                                                            <option value="SUV Prado">SUV Prado</option>
+                                                                                            <option value="Toyota Landcruiser">Toyota Landcruiser</option>
+                                                                                            <option value="Lexus Landcruiser LX">Lexus Landcruiser LX</option>
+                                                                                            <option value="">Other</option>
+                                                                                        </select>
+                                                                                        <input type="text" id="otherValue" name="vehicle_types" placeholder="Enter Vehicle Type" class="form-control mt-2">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>No of Vehicles</label>
+                                                                                        <input type="number" class="form-control" name="no_of_vehicles" value="{{$becomePartner->no_of_vehicles}}" required>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>NIN</label>
+                                                                                        <input type="text" class="form-control" name="nin" value="{{$becomePartner->nin}}" required>
+                                                                                    </div>
+                                                                                    <div class="hstack gap-2 justify-content-center mb-0">
+                                                                                        <button type="submit" class="form-btn btn btn-primary">Update</button>
+                                                                                        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                                 <!-- Delete Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -215,4 +330,33 @@
         </div>
     </div> <!-- Right-sidebar-->
 </div>
+
+<script>
+    const other = document.getElementById("vehicle_type");
+    const others = document.getElementById("vehicle_types");
+    const otherText = document.querySelector('#otherValue');
+    const otherVehicleValue = document.querySelector('#otherVehicleValue');
+    otherText.style.visibility = 'hidden';
+    otherVehicleValue.style.visibility = 'hidden';
+
+    other.addEventListener('change', () => {
+        if (other.value === "") {
+            otherText.style.visibility = 'visible';
+            otherText.value = '';
+        } else {
+            otherText.style.visibility = 'hidden';
+            otherText.value = '';
+        }
+    });
+
+    others.addEventListener('change', () => {
+        if (others.value === "") {
+            otherVehicleValue.style.visibility = 'visible';
+            otherVehicleValue.value = '';
+        } else {
+            otherVehicleValue.style.visibility = 'hidden';
+            otherVehicleValue.value = '';
+        }
+    });
+</script>
 @endsection

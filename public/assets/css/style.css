@@ -1014,6 +1014,7 @@ footer .copyright p {
 }
 footer .copyright p a{
     color: #fff;
+    text-decoration: none;
 }
 
 @media (max-width: 991px) {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BecomePartner;
+use App\Models\CharterVehicle;
+use App\Models\HireVehicle;
+use App\Models\LeaseVehicle;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\User;
@@ -39,9 +42,163 @@ class MobileController extends Controller
         ], 200);
     }
 
+    public function post_request_services($id, Request $request)
+    {
+        $service = Service::findorfail($id);
+
+        if($service->name == 'Hire A Vehicle')
+        {            
+            $validator = Validator::make(request()->all(), [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'price' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+
+            $hireVehicle = HireVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'price' => $request->price,
+                'purpose_of_use' => $request->purpose_of_use,
+                'agreement' => $request->agreement,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Your request to hire a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.',
+                'data' => $hireVehicle
+            ]);
+        }
+
+        if($service->name == 'Charter A Vehicle')
+        {
+            $validator = Validator::make(request()->all(), [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'charter_type' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $charterVehicle = CharterVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'charter_type' => $request->charter_type,
+                'purpose_of_use' => $request->purpose_of_use,
+                'agreement' => $request->agreement,
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Your request to charter a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.',
+                'data' => $charterVehicle
+            ]);
+        }
+
+        if($service->name == 'Lease A Vehicle')
+        {
+            $this->validate($request, [
+                
+            ]);
+
+            $validator = Validator::make(request()->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'lease_duration' => ['required', 'date'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'location_of_use' => ['required', 'string', 'max:255'],
+                'agreement' => ['required', 'string', 'max:255'],
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $leaseVehicle = LeaseVehicle::create([
+                'user_id' => Auth::user()->id,
+                'service_id' => $service->id,
+                'name' => $request->name,
+                'vehicle_type' => $request->vehicle_type,
+                'lease_duration' => $request->lease_duration,
+                'purpose_of_use' => $request->purpose_of_use,
+                'location_of_use' => $request->location_of_use,
+                'agreement' => $request->agreement,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Your request to lease a vehicle has been submitted successfully, kindly check back while the admin reviews your request. Thank you.',
+                'data' => $leaseVehicle
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Service Unavailable.',
+        ]);
+
+    }
+
     public function post_partner_fleet_management(Request $request)
     {
         $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->get();
+
+        $validator = Validator::make(request()->all(), [
+            'partnership_type' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
 
         if($allBecomePartner->isEmpty())
         {
@@ -51,7 +208,7 @@ class MobileController extends Controller
                 // {
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'nin' => ['required', 'string', 'max:255'],
                         'agreement' => ['required', 'string']
                     ]);
@@ -107,7 +264,7 @@ class MobileController extends Controller
                 // {
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'company_name' => ['required', 'string', 'max:255'],
                         'company_address' => ['required', 'string', 'max:255'],
                         'cac_number' => ['required', 'string', 'max:255'],
@@ -179,14 +336,225 @@ class MobileController extends Controller
 
     }
 
-    public function get_partner_fleet_management()
+    public function my_requests()
     {
-        $partnerFleetManagement = BecomePartner::latest()->where('user_id', Auth::user()->id)->get();
+        $hireService = HireVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $charterService = CharterVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->paginate(10);
 
         return response()->json([
             'success' => true,
-            'message' => 'Partner Fleet Management Retrieved Successfully!',
-            'data' => $partnerFleetManagement
+            'message' => 'My Requests Retrieved Successfully.',
+            'hireService' => $hireService,
+            'leaseService' => $leaseService,
+            'charterService' => $charterService,
+            'partnerFleetManagement' => $partnerFleetManagement
+        ]);
+    }
+
+    public function update_hire_vehicle($id, Request $request)
+    {
+        $hirevehicle = HireVehicle::findorfail($id);
+
+        if($hirevehicle->status == 'Pending')
+        {
+            $validator = Validator::make(request()->all(), [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'price' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $hirevehicle->update([
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'price' => $request->price,
+                'purpose_of_use' => $request->purpose_of_use,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Updated Successfully!',
+                'data' => $hirevehicle
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function delete_hire_vehicle($id)
+    {
+        $hire = HireVehicle::findorfail($id);
+
+        if($hire->status == 'Pending')
+        {
+            $hire->delete();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Deleted Successfully!',
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function update_charter_vehicle($id, Request $request)
+    {
+        $chartervehicle = CharterVehicle::findorfail($id);
+
+        if($chartervehicle->status == 'Pending')
+        {
+            $validator = Validator::make(request()->all(), [
+                'pick_up_address' => ['required', 'string', 'max:255'],
+                'drop_off_address' => ['required', 'string', 'max:255'],
+                'start_date' => ['required', 'date'],
+                'return_date' => ['required', 'date'],
+                'start_time' => ['required', 'date_format:H:i'],
+                'return_time' => ['required', 'date_format:H:i'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'charter_type' => ['required', 'string', 'max:255'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $chartervehicle->update([
+                'pick_up_address' => $request->pick_up_address,
+                'drop_off_address' => $request->drop_off_address,
+                'start_date' => $request->start_date,
+                'return_date' => $request->return_date,
+                'start_time' => $request->start_time,
+                'return_time' => $request->return_time,
+                'vehicle_type' => $request->vehicle_type,
+                'charter_type' => $request->charter_type,
+                'purpose_of_use' => $request->purpose_of_use,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Updated Successfully!',
+                'data' => $chartervehicle
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function delete_charter_vehicle($id)
+    {
+        $charter = CharterVehicle::findorfail($id);
+
+        if($charter->status == 'Pending')
+        {
+            $charter->delete();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Deleted Successfully!',
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function update_lease_vehicle($id, Request $request)
+    {
+        $leaseVehicle = LeaseVehicle::findorfail($id);
+
+        if($leaseVehicle->status == 'Pending')
+        {
+            $validator = Validator::make(request()->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'lease_duration' => ['required', 'date'],
+                'purpose_of_use' => ['required', 'string', 'max:255'],
+                'location_of_use' => ['required', 'string', 'max:255'],
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please see errors parameter for all errors.',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
+            $leaseVehicle->update([
+                'name' => $request->name,
+                'vehicle_type' => $request->vehicle_type,
+                'lease_duration' => $request->lease_duration,
+                'purpose_of_use' => $request->purpose_of_use,
+                'location_of_use' => $request->location_of_use,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Updated Successfully!',
+                'data' => $leaseVehicle
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function delete_lease_vehicle($id)
+    {
+        $lease = LeaseVehicle::findorfail($id);
+
+        if($lease->status == 'Pending')
+        {
+            $lease->delete();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Request Deleted Successfully!',
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
         ]);
     }
 
@@ -194,111 +562,119 @@ class MobileController extends Controller
     {
         $partnerFleetManagement = BecomePartner::findorfail($id);
 
-        if($partnerFleetManagement->partnership_type == 'Individual')
+        if($partnerFleetManagement->status == 'Pending')
         {
-            // if($request->vehicle_types == '')
-            // {
-                $validator = Validator::make(request()->all(), [
-                    'vehicle_type' => ['required', 'string', 'max:255'],
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'nin' => ['required', 'string', 'max:255'],
-                ]);
-        
-                if ($validator->fails()) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Please see errors parameter for all errors.',
-                        'errors' => $validator->errors()
+            if($partnerFleetManagement->partnership_type == 'Individual')
+            {
+                // if($request->vehicle_types == '')
+                // {
+                    $validator = Validator::make(request()->all(), [
+                        'vehicle_type' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'nin' => ['required', 'string', 'max:255'],
                     ]);
-                }
+            
+                    if ($validator->fails()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Please see errors parameter for all errors.',
+                            'errors' => $validator->errors()
+                        ]);
+                    }
 
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_type,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'nin' => $request->nin,
-                ]);
+                    $partnerFleetManagement->update([
+                        'vehicle_type' => $request->vehicle_type,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'nin' => $request->nin,
+                    ]);
 
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Request Updated Successfully!',
-                    'data' => $partnerFleetManagement
-                ]);
-            // }  else {
-            //     $this->validate($request, [
-            //         'no_of_vehicles' => ['required', 'string', 'max:255'],
-            //         'nin' => ['required', 'string', 'max:255'],
-            //     ]);
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Request Updated Successfully!',
+                        'data' => $partnerFleetManagement
+                    ]);
+                // }  else {
+                //     $this->validate($request, [
+                //         'no_of_vehicles' => ['required', 'string', 'max:255'],
+                //         'nin' => ['required', 'string', 'max:255'],
+                //     ]);
 
-            //     $partnerFleetManagement->update([
-            //         'vehicle_type' => $request->vehicle_types,
-            //         'no_of_vehicles' => $request->no_of_vehicles,
-            //         'nin' => $request->nin,
-            //     ]);
+                //     $partnerFleetManagement->update([
+                //         'vehicle_type' => $request->vehicle_types,
+                //         'no_of_vehicles' => $request->no_of_vehicles,
+                //         'nin' => $request->nin,
+                //     ]);
 
-            //     return back()->with([
-            //         'type' => 'success',
-            //         'message' => 'Updated Successfully!'
-            //     ]); 
-            // };
+                //     return back()->with([
+                //         'type' => 'success',
+                //         'message' => 'Updated Successfully!'
+                //     ]); 
+                // };
+            }
+
+            if($partnerFleetManagement->partnership_type == 'Corporate')
+            {
+                // if($request->vehicle_types == '')
+                // {
+                    $validator = Validator::make(request()->all(), [
+                        'vehicle_type' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'company_name' => ['required', 'string', 'max:255'],
+                        'company_address' => ['required', 'string', 'max:255'],
+                        'cac_number' => ['required', 'string', 'max:255']
+                    ]);
+            
+                    if ($validator->fails()) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Please see errors parameter for all errors.',
+                            'errors' => $validator->errors()
+                        ]);
+                    }
+
+                    $partnerFleetManagement->update([
+                        'vehicle_type' => $request->vehicle_type,
+                        'no_of_vehicles' => $request->no_of_vehicles,
+                        'company_name' => $request->company_name,
+                        'company_address' => $request->company_address,
+                        'cac_number' => $request->cac_number,
+                    ]);
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Request Updated Successfully!',
+                        'data' => $partnerFleetManagement
+                    ]);
+
+                // } else {
+                //     $this->validate($request, [
+                //         'no_of_vehicles' => ['required', 'string', 'max:255'],
+                //         'company_name' => ['required', 'string', 'max:255'],
+                //         'company_address' => ['required', 'string', 'max:255'],
+                //         'cac_number' => ['required', 'string', 'max:255']
+                //     ]);
+
+                //     $partnerFleetManagement->update([
+                //         'vehicle_type' => $request->vehicle_types,
+                //         'no_of_vehicles' => $request->no_of_vehicles,
+                //         'company_name' => $request->company_name,
+                //         'company_address' => $request->company_address,
+                //         'cac_number' => $request->cac_number,
+                //     ]);
+
+                //     return response()->json([
+                //         'success' => true,
+                //         'message' => 'Request Updated Successfully!',
+                //         'data' => $partnerFleetManagement
+                //     ]);
+                // }
+            }
         }
 
-        if($partnerFleetManagement->partnership_type == 'Corporate')
-        {
-            // if($request->vehicle_types == '')
-            // {
-                $validator = Validator::make(request()->all(), [
-                    'vehicle_type' => ['required', 'string', 'max:255'],
-                    'no_of_vehicles' => ['required', 'string', 'max:255'],
-                    'company_name' => ['required', 'string', 'max:255'],
-                    'company_address' => ['required', 'string', 'max:255'],
-                    'cac_number' => ['required', 'string', 'max:255']
-                ]);
-        
-                if ($validator->fails()) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Please see errors parameter for all errors.',
-                        'errors' => $validator->errors()
-                    ]);
-                }
-
-                $partnerFleetManagement->update([
-                    'vehicle_type' => $request->vehicle_type,
-                    'no_of_vehicles' => $request->no_of_vehicles,
-                    'company_name' => $request->company_name,
-                    'company_address' => $request->company_address,
-                    'cac_number' => $request->cac_number,
-                ]);
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Request Updated Successfully!',
-                    'data' => $partnerFleetManagement
-                ]);
-
-            // } else {
-            //     $this->validate($request, [
-            //         'no_of_vehicles' => ['required', 'string', 'max:255'],
-            //         'company_name' => ['required', 'string', 'max:255'],
-            //         'company_address' => ['required', 'string', 'max:255'],
-            //         'cac_number' => ['required', 'string', 'max:255']
-            //     ]);
-
-            //     $partnerFleetManagement->update([
-            //         'vehicle_type' => $request->vehicle_types,
-            //         'no_of_vehicles' => $request->no_of_vehicles,
-            //         'company_name' => $request->company_name,
-            //         'company_address' => $request->company_address,
-            //         'cac_number' => $request->cac_number,
-            //     ]);
-
-            //     return response()->json([
-            //         'success' => true,
-            //         'message' => 'Request Updated Successfully!',
-            //         'data' => $partnerFleetManagement
-            //     ]);
-            // }
-        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
     }
     
     public function delete_partner_fleet_management($id)
@@ -317,18 +693,18 @@ class MobileController extends Controller
 
         return response()->json([
             'success' => false,
-            'message' => 'Request not completed, accepts only when the request sent is pending.',
+            'message' => 'Request not completed, it accepts only when the request sent is pending.',
         ]);
         
     }
 
     public function referrals()
     {
-        $referrals = Referee::latest()->where('referrer_id', Auth::user()->id)->get();
+        $referrals = Referee::latest()->where('referrer_id', Auth::user()->id)->paginate(10);
 
         return response()->json([
             'success' => true,
-            'message' => 'My downlines Retrieved',
+            'message' => 'My Downlines Retrieved',
             'data' => $referrals
         ]);
     }

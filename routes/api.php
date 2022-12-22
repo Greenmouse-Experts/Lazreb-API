@@ -46,9 +46,15 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     // put all api protected routes here
     Route::middleware('auth:api')->group(function () {
-        
+        Route::post('/post/request/services/{id}', [MobileController::class, 'post_request_services']);
         Route::post('/post/partner/fleet/management', [MobileController::class, 'post_partner_fleet_management']);
-        Route::get('/get/partner/fleet/management', [MobileController::class, 'get_partner_fleet_management']);
+        Route::get('/my-requests', [MobileController::class, 'my_requests']);
+        Route::post('/hire-vehicle/update/{id}', [MobileController::class, 'update_hire_vehicle']);
+        Route::post('/hire-vehicle/delete/{id}', [MobileController::class, 'delete_hire_vehicle']);
+        Route::post('/charter-vehicle/update/{id}', [MobileController::class, 'update_charter_vehicle']);
+        Route::post('/charter-vehicle/delete/{id}', [MobileController::class, 'delete_charter_vehicle']);
+        Route::post('/lease-vehicle/update/{id}', [MobileController::class, 'update_lease_vehicle']);
+        Route::post('/lease-vehicle/delete/{id}', [MobileController::class, 'delete_lease_vehicle']);
         Route::post('/update/partner/fleet/management/{id}', [MobileController::class, 'update_partner_fleet_management']);
         Route::post('/delete/partner/fleet/management/{id}', [MobileController::class, 'delete_partner_fleet_management']);
         Route::get('/referrals', [MobileController::class, 'referrals']);

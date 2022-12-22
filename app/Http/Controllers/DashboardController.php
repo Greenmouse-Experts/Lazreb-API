@@ -177,129 +177,6 @@ class DashboardController extends Controller
             ]); 
         }
 
-        if($service->name == 'Partner Fleet Management')
-        {
-            $userPartnerFleetManagement = PartnerFleetManagement::where('user_id', Auth::user()->id)->get();
-
-            if($userPartnerFleetManagement->isEmpty())
-            {
-                if($request->partnership_type == 'Individual')
-                {
-                    if($request->vehicle_types == '')
-                    {
-                        $this->validate($request, [
-                            'vehicle_type' => ['required', 'string', 'max:255'],
-                            'no_of_vehicles' => ['required', 'string', 'max:255'],
-                            'nin' => ['required', 'string', 'max:255'],
-                            'agreement' => ['required', 'string']
-                        ]);
-
-                        PartnerFleetManagement::create([
-                            'user_id' => Auth::user()->id,
-                            'service_id' => $service->id,
-                            'partnership_type' => $request->partnership_type,
-                            'vehicle_type' => $request->vehicle_type,
-                            'no_of_vehicles' => $request->no_of_vehicles,
-                            'nin' => $request->nin,
-                            'agreement' => $request->agreement
-                        ]);
-
-                        return back()->with([
-                            'type' => 'success',
-                            'message' => 'Your request for Partner Fleet Management as an Individual has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
-                        ]); 
-                    }  else {
-                        $this->validate($request, [
-                            'no_of_vehicles' => ['required', 'string', 'max:255'],
-                            'nin' => ['required', 'string', 'max:255'],
-                            'agreement' => ['required', 'string']
-                        ]);
-
-                        PartnerFleetManagement::create([
-                            'user_id' => Auth::user()->id,
-                            'service_id' => $service->id,
-                            'partnership_type' => $request->partnership_type,
-                            'vehicle_type' => $request->vehicle_types,
-                            'no_of_vehicles' => $request->no_of_vehicles,
-                            'nin' => $request->nin,
-                            'agreement' => $request->agreement
-                        ]);
-
-                        return back()->with([
-                            'type' => 'success',
-                            'message' => 'Your request for Partner Fleet Management as an Individual has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
-                        ]);
-                    };
-                }
-
-                if($request->partnership_type == 'Corporate')
-                {
-                    if($request->vehicle_types == '')
-                    {
-                        $this->validate($request, [
-                            'vehicle_type' => ['required', 'string', 'max:255'],
-                            'no_of_vehicles' => ['required', 'string', 'max:255'],
-                            'company_name' => ['required', 'string', 'max:255'],
-                            'company_address' => ['required', 'string', 'max:255'],
-                            'cac_number' => ['required', 'string', 'max:255'],
-                            'agreement' => ['required', 'string']
-                        ]);
-
-                        PartnerFleetManagement::create([
-                            'user_id' => Auth::user()->id,
-                            'service_id' => $service->id,
-                            'partnership_type' => $request->partnership_type,
-                            'vehicle_type' => $request->vehicle_type,
-                            'no_of_vehicles' => $request->no_of_vehicles,
-                            'company_name' => $request->company_name,
-                            'company_address' => $request->company_address,
-                            'cac_number' => $request->cac_number,
-                            'agreement' => $request->agreement
-                        ]);
-
-                        return back()->with([
-                            'type' => 'success',
-                            'message' => 'Your request for Partner Fleet Management as an Corporate has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
-                        ]); 
-                    } else {
-                        $this->validate($request, [
-                            'no_of_vehicles' => ['required', 'string', 'max:255'],
-                            'company_name' => ['required', 'string', 'max:255'],
-                            'company_address' => ['required', 'string', 'max:255'],
-                            'cac_number' => ['required', 'string', 'max:255'],
-                            'agreement' => ['required', 'string']
-                        ]);
-
-                        PartnerFleetManagement::create([
-                            'user_id' => Auth::user()->id,
-                            'service_id' => $service->id,
-                            'partnership_type' => $request->partnership_type,
-                            'vehicle_type' => $request->vehicle_types,
-                            'no_of_vehicles' => $request->no_of_vehicles,
-                            'company_name' => $request->company_name,
-                            'company_address' => $request->company_address,
-                            'cac_number' => $request->cac_number,
-                            'agreement' => $request->agreement
-                        ]);
-
-                        return back()->with([
-                            'type' => 'success',
-                            'message' => 'Your request for Partner Fleet Management as an Corporate has been submitted successfully, kindly check back while the admin reviews your request. Thank you.'
-                        ]); 
-                    }
-                }
-                return back()->with([
-                    'type' => 'danger',
-                    'message' => "Partnership Type entered doesn't exist. Please select from our list of Partnership Type."
-                ]);
-            } else {
-                return back()->with([
-                    'type' => 'danger',
-                    'message' => "Request Sent Before, please wait while the admin reviews your request!"
-                ]);
-            }
-        }
-
         return back()->with([
             'type' => 'danger',
             'message' => 'Service Unavailable.'
@@ -482,7 +359,7 @@ class DashboardController extends Controller
                 {
                     $this->validate($request, [
                         'vehicle_type' => ['required', 'string', 'max:255'],
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'nin' => ['required', 'string', 'max:255'],
                         'agreement' => ['required', 'string']
                     ]);
@@ -501,7 +378,7 @@ class DashboardController extends Controller
                     ]); 
                 }  else {
                     $this->validate($request, [
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'nin' => ['required', 'string', 'max:255'],
                         'agreement' => ['required', 'string']
                     ]);
@@ -527,7 +404,7 @@ class DashboardController extends Controller
                 {
                     $this->validate($request, [
                         'vehicle_type' => ['required', 'string', 'max:255'],
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'company_name' => ['required', 'string', 'max:255'],
                         'company_address' => ['required', 'string', 'max:255'],
                         'cac_number' => ['required', 'string', 'max:255'],
@@ -551,7 +428,7 @@ class DashboardController extends Controller
                     ]); 
                 } else {
                     $this->validate($request, [
-                        'no_of_vehicles' => ['required', 'string', 'max:255'],
+                        'no_of_vehicles' => ['required', 'numeric'],
                         'company_name' => ['required', 'string', 'max:255'],
                         'company_address' => ['required', 'string', 'max:255'],
                         'cac_number' => ['required', 'string', 'max:255'],

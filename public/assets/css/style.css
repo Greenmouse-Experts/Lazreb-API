@@ -683,7 +683,7 @@ nav .desktop-signup {
 
 /*********Testimonail pages*********/
 .Testimonail {
-    padding: 100px 0px;
+    padding: 100px 0px 150px 0px;
     background-color: #05294F;
     color: #fff;
 }
@@ -1181,7 +1181,7 @@ footer .input-box input[type="button"] {
 
 /* Support */
 .support {
-    padding: 100px 0px 50px 0;
+    padding: 100px 0px 100px 0;
 }
 
 .support .text-center h1 {
@@ -1441,7 +1441,6 @@ footer .input-box input[type="button"] {
     display: block;
     margin: auto;
     width: 95%;
-    height: 300px;
     border-radius: 10px 10px 0px 0px;
 }
 .Carter .last{

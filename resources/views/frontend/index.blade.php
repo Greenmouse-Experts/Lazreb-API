@@ -51,7 +51,7 @@
                             <div class="col-lg-6">
                                 <div class="text">
                                     <h1>
-                                        Our Vehicle are Durable & Comfortable for you.
+                                        Our Vehicles are Durable & Comfortable for you.
                                     </h1>
                                     <!-- <a href="">
                                         <button>
@@ -284,7 +284,7 @@
                                 <p>
                                     <span id="Partners">846</span>+
                                 </p>
-                                <h5>Managed Fleet</h5>
+                                <h5>Managed Fleets</h5>
                             </div>
                         </div>
                     </div>
@@ -438,7 +438,7 @@
 <!-- Testimonail pages Ends-->
 
 <!-- Support pages-->
-<section class="support mb-4">
+<section class="support">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

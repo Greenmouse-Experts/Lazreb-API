@@ -89,18 +89,18 @@
                                                                     <i class="fa fa-trash"></i> Delete
                                                                 </a>
                                                                 <!-- Edit Modal -->
-                                                                <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
-                                                                        <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
-                                                                            @csrf
-                                                                            <div class="modal-content">
+                                                                <div class="modal fade show" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-model="true" style="display: block">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
+                                                                                @csrf
                                                                                 <div class="modal-header"> 
                                                                                     <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
                                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                                                                                         <span aria-hidden="true">×</span> 
                                                                                     </button> 
                                                                                 </div>
-                                                                                <div class="modal-body px-4 py-5 text-left">
+                                                                                <div class="modal-body">
                                                                                     <div class="form-group">
                                                                                         <label for="vehicle_type">Vehicle Type</label>
                                                                                         <select name="vehicle_type" class="form-control" id="vehicle_types" required>
@@ -143,8 +143,8 @@
                                                                                         <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </form>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- Delete Modal -->

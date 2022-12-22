@@ -89,7 +89,7 @@
                                                                 </a>
                                                                 <!-- Edit Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                    <div class="modal-dialog">
                                                                         <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
                                                                             @csrf
                                                                             <div class="modal-content">
@@ -148,7 +148,7 @@
                                                                 </div>
                                                                 <!-- Delete Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                    <div class="modal-dialog">
                                                                         <form method="post" action="{{ route('user.delete.become.partner', Crypt::encrypt($becomePartner->id))}}">
                                                                             @csrf
                                                                             <div class="modal-content">
@@ -232,7 +232,7 @@
                                                                     <i class="fa fa-trash"></i> Delete
                                                                 </a>
                                                                 <div class="modal fade" id="BecomePartnerEdit-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                    <div class="modal-dialog">
                                                                         <form method="post" action="{{ route('user.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
                                                                             @csrf
                                                                             <div class="modal-content">
@@ -283,7 +283,7 @@
                                                                 </div>
                                                                 <!-- Delete Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                    <div class="modal-dialog">
                                                                         <form method="post" action="{{ route('user.delete.become.partner', Crypt::encrypt($becomePartner->id))}}">
                                                                             @csrf
                                                                             <div class="modal-content">

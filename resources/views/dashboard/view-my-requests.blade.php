@@ -100,7 +100,7 @@
                                                             </a>
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="HireVehicleEdit-{{$hireVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.update.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
@@ -184,7 +184,7 @@
                                                             </div>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="HireVehicleDelete-{{$hireVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.delete.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}">
                                                                         @csrf
                                                                         <div class="modal-content">
@@ -328,7 +328,7 @@
                                                             </a>
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="CharterVehicleEdit-{{$charterVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.update.charter.vehicle', Crypt::encrypt($charterVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
@@ -407,7 +407,7 @@
                                                             </div>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="CharterVehicleDelete-{{$charterVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.delete.charter.vehicle', Crypt::encrypt($charterVehicle->id))}}">
                                                                         @csrf
                                                                         <div class="modal-content">
@@ -544,7 +544,7 @@
                                                             </a>
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="LeaseVehicleEdit-{{$leaseVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.update.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
@@ -612,7 +612,7 @@
                                                             </div>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="LeaseVehicleDelete-{{$leaseVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal-dialog">
                                                                     <form method="post" action="{{ route('user.delete.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}">
                                                                         @csrf
                                                                         <div class="modal-content">

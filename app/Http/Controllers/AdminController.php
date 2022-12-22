@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BecomePartner;
+use App\Models\CharterVehicle;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -164,6 +165,35 @@ class AdminController extends Controller
 
         return view('admin.partnership-requests', [
             'partnershipRequests' => $partnershipRequests
+        ]);
+    }
+
+    public function update_charter_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $chartervehicle = CharterVehicle::findorfail($finder);
+        
+        $chartervehicle->update([
+            'comment' => $request->comment,
+            'status' => $request->status,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_charter_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        CharterVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
         ]);
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
+use App\Models\HireVehicle;
+use App\Models\LeaseVehicle;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -168,6 +170,35 @@ class AdminController extends Controller
         ]);
     }
 
+    public function update_hire_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $hirevehicle = HireVehicle::findorfail($finder);
+        
+        $hirevehicle->update([
+            'comment' => $request->comment,
+            'status' => $request->status,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_hire_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        HireVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
     public function update_charter_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
@@ -190,6 +221,64 @@ class AdminController extends Controller
         $finder = Crypt::decrypt($id);
 
         CharterVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
+    public function update_lease_vehicle($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $leasevehicle = LeaseVehicle::findorfail($finder);
+        
+        $leasevehicle->update([
+            'comment' => $request->comment,
+            'status' => $request->status,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_lease_vehicle($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        LeaseVehicle::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Deleted Successfully!",
+        ]);
+    }
+
+    public function update_partner_fleet_management($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $partnerfleetmanagement = BecomePartner::findorfail($finder);
+        
+        $partnerfleetmanagement->update([
+            'comment' => $request->comment,
+            'status' => $request->status,
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Request Updated Successfully!",
+        ]);
+    }
+
+    public function delete_partner_fleet_management($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        BecomePartner::findorfail($finder)->delete();
 
         return back()->with([
             'type' => 'success',

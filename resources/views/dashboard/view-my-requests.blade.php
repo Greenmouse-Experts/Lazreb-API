@@ -113,11 +113,11 @@
                                                                             <div class="modal-body px-4 py-5 text-left">
                                                                                 <div class="form-group"> 
                                                                                     <label>Pick Up Address</label>
-                                                                                    <textarea type="text" class="form-control" name="pick_up_address" placeholder="Enter Pick Up Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->start_time}}</textarea>
+                                                                                    <textarea type="text" class="form-control" name="pick_up_address" placeholder="Enter Pick Up Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->pick_up_address}}</textarea>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Drop Off Address</label>
-                                                                                    <textarea type="text" class="form-control" name="drop_off_address" placeholder="Enter Drop Off Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->start_time}}</textarea>
+                                                                                    <textarea type="text" class="form-control" name="drop_off_address" placeholder="Enter Drop Off Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->drop_off_address}}</textarea>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Start Date</label>
@@ -345,7 +345,7 @@
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Drop Off Address</label>
-                                                                                    <textarea type="text" class="form-control" name="drop_off_address" placeholder="Enter Drop Off Address" value="{{$charterVehicle->pick_up_address}}" required>{{$charterVehicle->pick_up_address}}</textarea>
+                                                                                    <textarea type="text" class="form-control" name="drop_off_address" placeholder="Enter Drop Off Address" value="{{$charterVehicle->drop_off_address}}" required>{{$charterVehicle->drop_off_address}}</textarea>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Start Date</label>

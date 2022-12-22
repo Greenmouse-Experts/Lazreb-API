@@ -36,12 +36,11 @@
                                             <thead>
                                                 <tr role="row">
                                                     <th class="wd-15p sorting_asc">S/N</th>
+                                                    <th class="wd-15p sorting_asc">User</th>
                                                     <th class="wd-15p sorting_asc">Pick Up Address</th>
                                                     <th class="wd-15p sorting">Drop Off Address</th>
-                                                    <th class="wd-15p sorting">Start Date</th>
-                                                    <th class="wd-20p sorting">Return Date</th>
-                                                    <th class="wd-15p sorting">Start Time</th>
-                                                    <th class="wd-20p sorting">Return Time</th>
+                                                    <th class="wd-15p sorting">Start Date/Time</th>
+                                                    <th class="wd-20p sorting">Return Date/Time</th>
                                                     <th class="wd-15p sorting">Vehicle Type</th>
                                                     <th class="wd-15p sorting">Price</th>
                                                     <th class="wd-20p sorting">Purpose of Use</th>
@@ -62,12 +61,14 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
+                                                        <td>
+                                                            {{\App\Models\User::where('id', $hireVehicle->user_id)->first()->name}}<br>
+                                                            <code>{{\App\Models\User::where('id', $hireVehicle->user_id)->first()->email}}</code>
+                                                        </td>
                                                         <td>{{$hireVehicle->pick_up_address}}</td>
                                                         <td>{{$hireVehicle->drop_off_address}}</td>
-                                                        <td>{{$hireVehicle->start_date}}</td>
-                                                        <td>{{$hireVehicle->return_date}}</td>
-                                                        <td>{{$hireVehicle->start_time}}</td>
-                                                        <td>{{$hireVehicle->return_time}}</td>
+                                                        <td>{{$hireVehicle->start_date}} - {{$hireVehicle->start_time}}</td>
+                                                        <td>{{$hireVehicle->return_date}} - {{$hireVehicle->return_time}}</td>
                                                         <td>{{$hireVehicle->vehicle_type}}</td>
                                                         <td>{{$hireVehicle->price}}</td>
                                                         <td>{{$hireVehicle->purpose_of_use}}</td>
@@ -88,23 +89,24 @@
                                                                 <i class="fa fa-check-square-o"></i> {{$hireVehicle->status}}
                                                             </a>
                                                             <a href="#HireVehicleEdit-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             @else
                                                             <a href="#HireVehicleEdit-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             <a href="#HireVehicleDelete-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                 <i class="fa fa-trash"></i> Delete
                                                             </a>
+                                                            @endif
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="HireVehicleEdit-{{$hireVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
-                                                                    <form method="post" action="{{ route('user.update.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}" style="width: -webkit-fill-available;">
+                                                                <div class="modal-dialog">
+                                                                    <form method="post" action="{{ route('admin.update.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
-                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
+                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Process Request</h5> 
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                                                                                     <span aria-hidden="true">×</span> 
                                                                                 </button> 
@@ -112,46 +114,31 @@
                                                                             <div class="modal-body px-4 py-5 text-left">
                                                                                 <div class="form-group"> 
                                                                                     <label>Pick Up Address</label>
-                                                                                    <textarea type="text" class="form-control" placeholder="Enter Pick Up Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->start_time}}</textarea>
+                                                                                    <textarea type="text" class="form-control" value="{{$hireVehicle->pick_up_address}}" disabled>{{$hireVehicle->pick_up_address}}</textarea>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Drop Off Address</label>
-                                                                                    <textarea type="text" class="form-control" placeholder="Enter Drop Off Address" value="{{$hireVehicle->pick_up_address}}" required>{{$hireVehicle->start_time}}</textarea>
+                                                                                    <textarea type="text" class="form-control" value="{{$hireVehicle->drop_off_address}}" disabled>{{$hireVehicle->drop_off_address}}</textarea>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Start Date</label>
-                                                                                    <input type="date" class="form-control" name="start_date" value="{{$hireVehicle->start_date}}" required>
+                                                                                    <input type="date" class="form-control" value="{{$hireVehicle->start_date}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Return Date</label>
-                                                                                    <input type="date" class="form-control" name="return_date" value="{{$hireVehicle->return_date}}" required>
+                                                                                    <input type="date" class="form-control" value="{{$hireVehicle->return_date}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Start Time</label>
-                                                                                    <input type="time" class="form-control" name="start_time" value="{{$hireVehicle->start_time}}" required>
+                                                                                    <input type="time" class="form-control" value="{{$hireVehicle->start_time}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Return Time</label>
-                                                                                    <input type="time" class="form-control" name="return_time" value="{{$hireVehicle->return_time}}" required>
+                                                                                    <input type="time" class="form-control" value="{{$hireVehicle->return_time}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="vehicle_type">Vehicle Type</label>
-                                                                                    <select name="vehicle_type" class="form-control" id="vehicle_type" required>
-                                                                                        <option value="{{$hireVehicle->vehicle_type}}">{{$hireVehicle->vehicle_type}}</option>
-                                                                                        <option value="">-- Choose a Vehicle --</option>
-                                                                                        <option value="Coaster">Coaster</option>
-                                                                                        <option value="New Coaster">New Coaster</option>
-                                                                                        <option value="Toyota Hiace">Toyota Hiace</option>
-                                                                                        <option value="Sienna/Routan">Sienna/Routan</option>
-                                                                                        <option value="Toyota Hilux">Toyota Hilux</option>
-                                                                                        <option value="Toyota Venza">Toyota Venza</option>
-                                                                                        <option value="Honda Accord">Honda Accord</option>
-                                                                                        <option value="Camry Musle">Camry Musle</option>
-                                                                                        <option value="Toyota Corrola">Toyota Corrola</option>
-                                                                                        <option value="SUV Prado">SUV Prado</option>
-                                                                                        <option value="Toyota Landcruiser">Toyota Landcruiser</option>
-                                                                                        <option value="Lexus Landcruiser LX">Lexus Landcruiser LX</option>
-                                                                                    </select>
+                                                                                    <input type="text" class="form-control" value="{{$hireVehicle->vehicle_type}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Price</label>
@@ -159,21 +146,24 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="purpose_of_use">Purpose of Use</label>
-                                                                                    <select name="purpose_of_use" class="form-control" required>
-                                                                                        <option value="{{$hireVehicle->purpose_of_use}}">{{$hireVehicle->purpose_of_use}}</option>
-                                                                                        <option value="">-- Choose Purpose of use --</option>
-                                                                                        <option value="Executive Transport Service">Executive Transport Service</option>
-                                                                                        <option value="Travel & Tours">Travel & Tours</option>
-                                                                                        <option value="Staff Bus Services">Staff Bus Services</option>
-                                                                                        <option value="Business Meetings">Business Meetings</option>
-                                                                                        <option value="Party Buses">Party Buses</option>
-                                                                                        <option value="Campaign">Campaign</option>
-                                                                                        <option value="Concerts">Concerts</option>
-                                                                                        <option value="Rental/Hire">Rental/Hire</option>
+                                                                                    <input type="text" class="form-control" value="{{$hireVehicle->purpose_of_use}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="comment">Comment</label>
+                                                                                    <textarea type="text" class="form-control" name="comment" value="{{$hireVehicle->comment}}">{{$hireVehicle->comment}}</textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="status">Status</label>
+                                                                                    <select name="status" class="form-control" required>
+                                                                                        <option value="{{$hireVehicle->status}}">{{$hireVehicle->status}}</option>
+                                                                                        <option value="">-- Select --</option>
+                                                                                        <option value="Pending">Pending</option>
+                                                                                        <option value="Declined">Declined</option>
+                                                                                        <option value="Approved">Approved</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
-                                                                                    <button type="submit" class="form-btn btn btn-primary">Update</button>
+                                                                                    <button type="submit" class="form-btn btn btn-primary">Submit</button>
                                                                                     <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
@@ -184,7 +174,7 @@
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="HireVehicleDelete-{{$hireVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered modal-sm">
-                                                                    <form method="post" action="{{ route('user.delete.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}">
+                                                                    <form method="post" action="{{ route('admin.delete.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
@@ -211,7 +201,6 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                            @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -313,15 +302,16 @@
                                                         <td>
                                                             @if($charterVehicle->status == 'Approved')
                                                             <a href="#CharterVehicleEdit-{{$charterVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             @else
                                                             <a href="#CharterVehicleEdit-{{$charterVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             <a href="#CharterVehicleDelete-{{$charterVehicle->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                 <i class="fa fa-trash"></i> Delete
                                                             </a>
+                                                            @endif
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="CharterVehicleEdit-{{$charterVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
@@ -329,7 +319,7 @@
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
-                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
+                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Process Request</h5> 
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                                                                                     <span aria-hidden="true">×</span> 
                                                                                 </button> 
@@ -424,7 +414,6 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                            @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -451,10 +440,10 @@
             <h1 class="page-title">{{$service->name}} Requests</h1>
             <div class="ml-auto">
                 <div class="input-group">
-                    <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
-                    <a href="{{route('user.my.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
-                    <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
-                    <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
+                    <a href="#" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
+                    <a href="#" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
+                    <a href="#" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
+                    <a href="#" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
                 </div>
             </div>
         </div> <!-- End page-header -->
@@ -477,6 +466,7 @@
                                             <thead>
                                                 <tr role="row">
                                                     <th class="wd-15p sorting_asc">S/N</th>
+                                                    <th class="wd-15p sorting_asc">User</th>
                                                     <th class="wd-15p sorting_asc">Company/Individual Name</th>
                                                     <th class="wd-15p sorting">Vehicle Type</th>
                                                     <th class="wd-15p sorting">Lease Duration</th>
@@ -499,6 +489,10 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
+                                                        <td>
+                                                            {{\App\Models\User::where('id', $leaseVehicle->user_id)->first()->name}}<br>
+                                                            <code>{{\App\Models\User::where('id', $leaseVehicle->user_id)->first()->email}}</code>
+                                                        </td>
                                                         <td>{{$leaseVehicle->name}}</td>
                                                         <td>{{$leaseVehicle->vehicle_type}}</td>
                                                         <td>{{$leaseVehicle->lease_duration}}</td>
@@ -520,25 +514,25 @@
                                                             <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
                                                                 <i class="fa fa-check-square-o"></i> {{$leaseVehicle->status}}
                                                             </a>
-                                                            @elseif($leaseVehicle->status == 'Declined')
-                                                            <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
-                                                                <i class="fa fa-times-cycle-o"></i> {{$leaseVehicle->status}}
+                                                            <a href="#LeaseVehicleEdit-{{$leaseVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             @else
                                                             <a href="#LeaseVehicleEdit-{{$leaseVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
-                                                                <i class="fa fa-edit"></i> Edit
+                                                                <i class="fa fa-edit"></i> Process
                                                             </a>
                                                             <a href="#LeaseVehicleDelete-{{$leaseVehicle->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mb-1">
                                                                 <i class="fa fa-trash"></i> Delete
                                                             </a>
+                                                            @endif
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="LeaseVehicleEdit-{{$leaseVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
-                                                                    <form method="post" action="{{ route('user.update.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}" style="width: -webkit-fill-available;">
+                                                                    <form method="post" action="{{ route('admin.update.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
-                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Update</h5> 
+                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Process Request</h5> 
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                                                                                     <span aria-hidden="true">×</span> 
                                                                                 </button> 
@@ -550,48 +544,36 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="vehicle_type">Vehicle Type</label>
-                                                                                    <select name="vehicle_type" class="form-control" required>
-                                                                                        <option value="{{$leaseVehicle->vehicle_type}}">{{$leaseVehicle->vehicle_type}}</option>
-                                                                                        <option value="">-- Choose a Vehicle --</option>
-                                                                                        <option value="Coaster">Coaster</option>
-                                                                                        <option value="New Coaster">New Coaster</option>
-                                                                                        <option value="Toyota Hiace">Toyota Hiace</option>
-                                                                                        <option value="Sienna/Routan">Sienna/Routan</option>
-                                                                                        <option value="Toyota Hilux">Toyota Hilux</option>
-                                                                                        <option value="Toyota Venza">Toyota Venza</option>
-                                                                                        <option value="Honda Accord">Honda Accord</option>
-                                                                                        <option value="Camry Musle">Camry Musle</option>
-                                                                                        <option value="Toyota Corrola">Toyota Corrola</option>
-                                                                                        <option value="SUV Prado">SUV Prado</option>
-                                                                                        <option value="Toyota Landcruiser">Toyota Landcruiser</option>
-                                                                                        <option value="Lexus Landcruiser LX">Lexus Landcruiser LX</option>
-                                                                                    </select>
+                                                                                    <input type="text" class="form-control" value="{{$leaseVehicle->vehicle_type}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Lease Duration</label>
-                                                                                    <input type="date" class="form-control" name="lease_duration" value="{{$leaseVehicle->lease_duration}}" required>
+                                                                                    <input type="text" class="form-control" value="{{$leaseVehicle->lease_duration}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="purpose_of_use">Purpose of Use</label>
-                                                                                    <select name="purpose_of_use" class="form-control" required>
-                                                                                        <option value="{{$leaseVehicle->purpose_of_use}}">{{$leaseVehicle->purpose_of_use}}</option>
-                                                                                        <option value="">-- Choose Purpose of use --</option>
-                                                                                        <option value="Executive Transport Service">Executive Transport Service</option>
-                                                                                        <option value="Travel & Tours">Travel & Tours</option>
-                                                                                        <option value="Staff Bus Services">Staff Bus Services</option>
-                                                                                        <option value="Business Meetings">Business Meetings</option>
-                                                                                        <option value="Party Buses">Party Buses</option>
-                                                                                        <option value="Campaign">Campaign</option>
-                                                                                        <option value="Concerts">Concerts</option>
-                                                                                        <option value="Rental/Hire">Rental/Hire</option>
-                                                                                    </select>
+                                                                                    <input type="text" class="form-control" value="{{$leaseVehicle->purpose_of_use}}" disabled>
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Location of Use</label>
-                                                                                    <textarea type="text" class="form-control" name="location_of_use" placeholder="Enter location of use" value="{{$leaseVehicle->location_of_use}}" required>{{$leaseVehicle->location_of_use}}</textarea>
+                                                                                    <textarea type="text" class="form-control" value="{{$leaseVehicle->location_of_use}}" disabled>{{$leaseVehicle->location_of_use}}</textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="comment">Comment</label>
+                                                                                    <textarea type="text" class="form-control" name="comment" value="{{$leaseVehicle->comment}}">{{$leaseVehicle->comment}}</textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="status">Status</label>
+                                                                                    <select name="status" class="form-control" required>
+                                                                                        <option value="{{$leaseVehicle->status}}">{{$leaseVehicle->status}}</option>
+                                                                                        <option value="">-- Select --</option>
+                                                                                        <option value="Pending">Pending</option>
+                                                                                        <option value="Declined">Declined</option>
+                                                                                        <option value="Approved">Approved</option>
+                                                                                    </select>
                                                                                 </div>
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
-                                                                                    <button type="submit" class="form-btn btn btn-primary">Update</button>
+                                                                                    <button type="submit" class="form-btn btn btn-primary">Submit</button>
                                                                                     <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
@@ -602,7 +584,7 @@
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="LeaseVehicleDelete-{{$leaseVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
-                                                                    <form method="post" action="{{ route('user.delete.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}">
+                                                                    <form method="post" action="{{ route('admin.delete.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
@@ -629,7 +611,6 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                            @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>

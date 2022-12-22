@@ -139,8 +139,11 @@ class AdminController extends Controller
     {
         $services = Service::get();
 
+        $partnerFleetManagement = BecomePartner::get()->count();
+
         return view('admin.services-requests', [
-            'services' => $services
+            'services' => $services,
+            'partnerFleetManagement' => $partnerFleetManagement
         ]);
     }
 

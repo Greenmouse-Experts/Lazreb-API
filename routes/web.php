@@ -91,6 +91,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/users/services/requests', [AdminController::class, 'users_services_requests'])->name('admin.users.services.requests');
     Route::get('/admin/users/view/requested/service/{id}', [AdminController::class, 'users_view_requested_services'])->name('user.view.requested.services');
     Route::get('/admin/users/partnership/requests', [AdminController::class, 'users_partnership_requests'])->name('admin.users.partnership.requests');
+    Route::post('/admin/update/hire/vehicle/{id}', [AdminController::class, 'update_hire_vehicle'])->name('admin.update.hire.vehicle');
+    Route::post('/admin/delete/hire/vehicle/{id}', [AdminController::class, 'delete_hire_vehicle'])->name('admin.delete.hire.vehicle');
+    Route::post('/admin/update/charter/vehicle/{id}', [AdminController::class, 'update_charter_vehicle'])->name('admin.update.charter.vehicle');
+    Route::post('/admin/delete/charter/vehicle/{id}', [AdminController::class, 'delete_charter_vehicle'])->name('admin.delete.charter.vehicle');
+    Route::post('/admin/update/lease/vehicle/{id}', [AdminController::class, 'update_lease_vehicle'])->name('admin.update.lease.vehicle');
+    Route::post('/admin/delete/lease/vehicle/{id}', [AdminController::class, 'delete_lease_vehicle'])->name('admin.delete.lease.vehicle');
+    Route::post('/admin/update/partner/fleet/management/{id}', [AdminController::class, 'update_partner_fleet_management'])->name('admin.update.partner.fleet.management');
+    Route::post('/admin/delete/partner/fleet/management/{id}', [AdminController::class, 'delete_partner_fleet_management'])->name('admin.delete.partner.fleet.management');
     Route::get('/admin/users/notifications', [AdminController::class, 'users_notifications'])->name('admin.users.notifications');
     Route::get('/admin/users/transactions', [AdminController::class, 'users_transactions'])->name('admin.users.transactions');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');

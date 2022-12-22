@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/997b229808.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>{{config('app.name')}}</title>
 </head>
@@ -32,7 +33,21 @@
 
     <!-- Footer -->
     @includeIf('layouts.frontend-footer')
-
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/63a4279bb0d6371309d5a06f/1gksjlf4g';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // this function used to creat th countUp  animation for business websites
         // use the three parameters to customize it 
@@ -55,7 +70,7 @@
         }
 
         numCounter("Projects", 636, 10);
-        numCounter("Clients", 336, 10);
+        numCounter("Clients", 100, 10);
         numCounter("Partners", 436, 10);
         numCounter("Move", 536, 10);
     </script>

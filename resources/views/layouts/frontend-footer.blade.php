@@ -34,7 +34,7 @@
                         <a href="{{ route('faqs')}}">FAQs</a>
                     </p>
                     
-                    <p><a href="{{ route('faqs')}}">Contact us</a></p>
+                    <p><a href="{{ route('contact')}}">Contact us</a></p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <p>
-                    &copy; 2022 Lazreb Leasing & Logistics ltd - All Rights Reserved.
+                    &copy; 2022 Lazreb Leasing & Logistics ltd - All Rights Reserved. <a href="https://greenmousetech.com/">Site Credit</a>
                 </p>
             </div>
         </div>

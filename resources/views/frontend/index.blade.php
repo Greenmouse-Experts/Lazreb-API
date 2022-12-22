@@ -32,7 +32,7 @@
                             <div class="col-lg-6">
                                 <div class="text">
                                     <h1>
-                                        Your solution to Transport & Leasing Services.
+                                        We provide Reliable & Trusted Services.
                                     </h1>
                                     <!-- <a href="">
                                         <button>
@@ -51,7 +51,7 @@
                             <div class="col-lg-6">
                                 <div class="text">
                                     <h1>
-                                        Your solution to Transport & Leasing Services.
+                                        Our Vehicle are Durable & Comfortable for you.
                                     </h1>
                                     <!-- <a href="">
                                         <button>
@@ -261,30 +261,30 @@
                                 <p>
                                     <span id="Projects">846</span>+
                                 </p>
-                                <h5>Hire a Vehicle</h5>
+                                <h5>Cars Leased</h5>
                             </div>
                             <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671634269/lazreb/Rectangle_19533_e7bfk9.png" draggable="false" alt="">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671707157/lazreb/costumer_3_kb3tak.png" draggable="false" alt="">
                                 <p>
                                     <span id="Move">846</span>+
                                 </p>
-                                <h5>Charter a Vehicle</h5>
+                                <h5>Satisfied Clients</h5>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671634339/lazreb/Rectangle_19535_i2mgy1.png" draggable="false" alt="">
+                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671707415/lazreb/partners_szdogu.png" draggable="false" alt="">
                                 <p>
                                     <span id="Clients">846</span>+
                                 </p>
-                                <h5>Lease a Vehicle</h5>
+                                <h5>Partners</h5>
                             </div>
                             <div class="text-center">
                                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671634269/lazreb/Rectangle_19531_st1r1i.png" draggable="false" alt="">
                                 <p>
                                     <span id="Partners">846</span>+
                                 </p>
-                                <h5>Fleet Management</h5>
+                                <h5>Managed Fleet</h5>
                             </div>
                         </div>
                     </div>
@@ -438,7 +438,7 @@
 <!-- Testimonail pages Ends-->
 
 <!-- Support pages-->
-<section class="support">
+<section class="support mb-4">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -530,7 +530,7 @@
                     <details>
                         <summary>How can I rent a car</summary>
                         <div class="faq-content">
-                            <p>Kindly sign up on our website or or visit the contact us page to rent a car</p>
+                            <p>Kindly sign up on our website or visit the contact us page to rent a car</p>
                         </div>
                     </details>
                     <details>
@@ -548,13 +548,13 @@
                     <details>
                         <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
-                            <p>A driver is allocated to you on chatering a vehicle</p>
+                            <p>NO!, a driver is allocated to you on chatering a vehicle</p>
                         </div>
                     </details>
                     <details>
                         <summary>How long can I hire / lease a vehicle </summary>
                         <div class="faq-content">
-                            <p>The time duration for a vehicle Lease or Hire is flexible to the clients choice, Althrough we have a short term lease and long term lease category</p>
+                            <p>The time duration for a vehicle Lease or Hire is flexible to the clients choice, Although we have a short term lease and long term lease option</p>
                         </div>
                     </details>
                 </div>
@@ -563,6 +563,24 @@
     </div>
 </main>
 
+<!--Cookies Box-->
+<div id="cookies" class="container-fluid cookies-alert" data-aos="zoom-out" data-aos-delay="500">
+    <div class="row">
+        <div class="col-md-10">
+            We use cookies to offer you a better browsing experience and analyze site traffic. If you continue to use this site, you consent to our use of cookies. 
+            <!-- <a href="#">Learn More</a> -->
+        </div>
+        <div class="col-md-2 justify-content-end">
+            <button type="button" onclick="myFunction()">Got It</button>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunction() {
+        document.getElementById("cookies").style.display = "none";
+    }
+</script>
+<!--Cookies Box Ends-->
 <!--Footer Section-->
 <!--Footer Section Ends-->
 @endsection

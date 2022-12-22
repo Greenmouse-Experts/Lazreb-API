@@ -35,3 +35,5 @@ const nav = document.querySelector('.header')
   //     const doc = parser.parseFromString(data, 'text/html')
   //     eval(doc.querySelector('script').textContent)
   // })
+
+  AOS.init();

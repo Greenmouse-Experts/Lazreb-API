@@ -122,7 +122,7 @@
                             <p class="text">
                                 <input class="move" type="checkbox" name="agreement" required>By Clicking Yes, I Agree to the Terms and Conditions and Privacy Policy</p>
                             <!--Button-->
-                            <div class="mb-3">
+                            <div class="mb-2">
                                 <button class="form-btn" type="submit">Sign Up</button>
                             </div>
                         </form>

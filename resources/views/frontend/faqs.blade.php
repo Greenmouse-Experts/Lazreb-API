@@ -45,13 +45,13 @@
                     <details>
                         <summary>Can I take my personal driver when I charter a vehicle?</summary>
                         <div class="faq-content">
-                            <p>NB: A driver is allocated to you on chatering a vehicle</p>
+                            <p>NO!, a driver is allocated to you on chatering a vehicle</p>
                         </div>
                     </details>
                     <details>
                         <summary>How long can I hire / lease a vehicle </summary>
                         <div class="faq-content">
-                            <p>The time duration for a vehicle Lease or Hire is flexible to the clients choice, Althrough we have a short term lease and long term lease category</p>
+                            <p>The time duration for a vehicle Lease or Hire is flexible to the clients choice, Although we have a short term lease and long term lease option</p>
                         </div>
                     </details>
                 </div>

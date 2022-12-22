@@ -23,8 +23,7 @@
                 <h2>FAQ</h2>
                 <div class="line-rule"></div>
             </div>
-            <div class="col-lg-10">
-                <div class="faq-box">
+            <div class="faq-box">
                     <details>
                         <summary>How can I rent a car</summary>
                         <div class="faq-content">
@@ -34,7 +33,7 @@
                     <details>
                         <summary>What type of a car can I hire on lazreb?</summary>
                         <div class="faq-content">
-                            <p>You can hire a wide variety of car,such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
+                            <p>You can hire a wide variety of car, such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
                         </div>
                     </details>
                     <details>
@@ -56,7 +55,6 @@
                         </div>
                     </details>
                 </div>
-            </div>
         </div>
     </div>
 </main>

@@ -6,13 +6,13 @@
     <div class="side-app">
         <!-- page-header -->
         <div class="page-header">
-            <h1 class="page-title"><span class="subpage-title">Welcome To</span> User Dashboard</h1>
+            <h1 class="page-title"><span class="subpage-title">Welcome, </span>{{Auth::user()->name}}</h1>
             <div class="ml-auto">
-                <div class="input-group"> 
-                    <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a> 
+                <div class="input-group">
+                    <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
                     <a href="{{route('user.my.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
-                    <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a> 
-                    <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a> 
+                    <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
+                    <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
                 </div>
             </div>
         </div> <!-- End page-header -->
@@ -22,34 +22,84 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h6 class="mb-3">Total Service Requested</h6>
-                        <h2 class="mb-2 number-font"><i class="zmdi zmdi-compass text-primary mr-2"></i>0</h2>
+                        <h2 class="mb-2 number-font"><i class="zmdi zmdi-compass text-primary mr-2"></i>{{$userRequestServices}}</h2>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-6 col-xl-3">
+            <div class="col-sm-6 col-lg-6 col-xl-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h6 class="mb-3">Total People Referred</h6>
-                        <h2 class="mb-2 number-font"><i class="fa fa-user text-secondary mr-2"></i>0</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-6 col-xl-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="mb-3">Total Transactions</h6>
-                        <h2 class="mb-2 number-font"><i class="mdi mdi-cash-multiple text-success mr-2"></i>0</h2>
+                        <h2 class="mb-2 number-font"><i class="fa fa-user text-secondary mr-2"></i>{{$referrals}}</h2>
                     </div>
                 </div>
             </div>
         </div> <!-- End Row -->
+
+        <div class="row">
+            @foreach($services as $service)
+            @if($service->name == 'Hire A Vehicle')
+                <div class="col-lg-6 col-md-6">
+                    <div class="offer offer-primary">
+                        <div class="shape">
+                            <div class="shape-text">
+                                {{\App\Models\HireVehicle::where('user_id', Auth::user()->id)->where('service_id', $service->id)->get()->count()}}
+                            </div>
+                        </div>
+                        <div class="offer-content">
+                            <h3 class="lead"> {{$service->name}} </h3>
+                        </div>
+                    </div>
+                </div>
+            @elseif($service->name == 'Charter A Vehicle')
+                <div class="col-lg-6 col-md-6">
+                    <div class="offer offer-info">
+                        <div class="shape">
+                            <div class="shape-text">
+                                {{\App\Models\CharterVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            </div>
+                        </div>
+                        <div class="offer-content">
+                            <h3 class="lead"> {{$service->name}} </h3>
+                        </div>
+                    </div>
+                </div>
+            @elseif($service->name == 'Lease A Vehicle')
+                <div class="col-lg-6 col-md-6">
+                    <div class="offer offer-warning">
+                        <div class="shape">
+                            <div class="shape-text">
+                                {{\App\Models\LeaseVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            </div>
+                        </div>
+                        <div class="offer-content">
+                            <h3 class="lead"> {{$service->name}} </h3>
+                        </div>
+                    </div>
+                </div>
+            @elseif($service->name == 'Partner Fleet Management')
+                <div class="col-lg-6 col-md-6">
+                    <div class="offer offer-success">
+                        <div class="shape">
+                            <div class="shape-text">
+                                {{\App\Models\PartnerFleetManagement::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            </div>
+                        </div>
+                        <div class="offer-content">
+                            <h3 class="lead"> {{$service->name}} </h3>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @endforeach
+        </div>
         <!-- Row -->
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-8">
                 <div class="card">
                     <div class="card-header">
                         <div>
-                            <h3 class="card-title">Services Details</h3>
+                            <h3 class="card-title">Transactions</h3>
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,10 +107,10 @@
                             <table class="table table-bordered  mb-0 text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Customer</th>
-                                        <th>Order ID</th>
-                                        <th>Order Date</th>
-                                        <th>Order Status</th>
+                                        <th>Purpose</th>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,7 +158,7 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <div class="list-group projects-list"> 
+                        <div class="list-group projects-list">
                             <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h6 class="mb-1 font-weight-sembold text-dark">Order Picking</h6>
@@ -147,6 +197,6 @@
         </div> <!-- End Row -->
     </div>
     <!--End side app-->
-</div> 
+</div>
 <!-- End app-content-->
 @endsection

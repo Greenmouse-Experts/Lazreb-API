@@ -536,7 +536,7 @@
                     <details>
                         <summary>What type of a car can I hire on lazreb?</summary>
                         <div class="faq-content">
-                            <p>You can hire a wide variety of car,such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
+                            <p>You can hire a wide variety of car, such as Prado Jeep, Hilux , Mini Bus , e.t.c</p>
                         </div>
                     </details>
                     <details>

@@ -2745,7 +2745,7 @@ a:active {
 
 .shape {
     border-style: solid;
-    border-width: 0 70px 40px 0;
+    border-width: 0 90px 50px 0;
     float: right;
     height: 0px;
     width: 0px;
@@ -2821,16 +2821,16 @@ a:active {
 
 .shape-text {
     color: #fff;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: bold;
     position: relative;
-    right: -47px;
+    right: -57px;
     top: 0px;
     white-space: nowrap;
-    -ms-transform: rotate(30deg);
+    /* -ms-transform: rotate(30deg);
     -o-transform: rotate(360deg);
     -webkit-transform: rotate(30deg);
-    transform: rotate(30deg);
+    transform: rotate(30deg); */
 }
 
 .offer-content {

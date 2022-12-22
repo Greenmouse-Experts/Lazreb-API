@@ -33,12 +33,22 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        // $hireService = 
-        // $leaseService = 
-        // $charterService = CharterVehicle::
-        // $partnerFleetManagement = 
-        // $userRequestServices
-        return view('dashboard.dashboard');
+        
+        $hireService = HireVehicle::where('user_id', Auth::user()->id)->get()->count();
+        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->get()->count();
+        $charterService = CharterVehicle::where('user_id', Auth::user()->id)->get()->count();
+        $partnerFleetManagement = PartnerFleetManagement::where('user_id', Auth::user()->id)->get()->count();
+        $userRequestServices = $hireService + $leaseService + $charterService + $partnerFleetManagement;
+
+        $services = Service::get();
+
+        $referrals = Referee::where('referrer_id', Auth::user()->id)->get()->count();
+
+        return view('dashboard.dashboard', [
+            'services' => $services,
+            'userRequestServices' => $userRequestServices,
+            'referrals' => $referrals
+        ]);
     }
     
     public function request_services()

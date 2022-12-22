@@ -21,49 +21,27 @@
             @foreach($services as $service)
             <div class="col-lg-6 col-md-6">
                 <a href="{{ route('user.view.my.requests', Crypt::encrypt($service->id))}}">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-xl-2 col-lg-3 feature">
-                                    <div class="fa-stack fa-lg fa-1x border btn-primary mb-3">
-                                        <img src="{{$service->thumbnail}}" width="500" />
-                                    </div>
-                                </div>
-                                <div class="col-xl-10 col-lg-9">
-                                    <div class="mt-1">
-                                        <h4 class="font-weight-semibold">{{$service->name}}</h4>
-                                        <p class="text-default">{{$service->description}}</p>
-                                    </div>
-                                </div>
-                                @if($service->name == 'Hire A Vehicle')
-                                <span class="badge badge-primary" style="position: absolute; right: 2rem;">
-                                    {{\App\Models\HireVehicle::where('user_id', Auth::user()->id)->where('service_id', $service->id)->get()->count()}}
-                                </span>
-                                @elseif($service->name == 'Charter A Vehicle')
-                                <span class="badge badge-primary" style="position: absolute; right: 2rem;">
-                                    {{\App\Models\CharterVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
-                                </span>
-                                @elseif($service->name == 'Lease A Vehicle')
-                                <span class="badge badge-primary" style="position: absolute; right: 2rem;">
-                                    {{\App\Models\LeaseVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
-                                </span>
-                                @elseif($service->name == 'Partner Fleet Management')
-                                <span class="badge badge-primary" style="position: absolute; right: 2rem;">
-                                    {{\App\Models\PartnerFleetManagement::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
-                                </span>
-                                @endif
+                    <div class="offer offer-primary">
+                        <div class="shape">
+                            <div class="shape-text"> 
+                            @if($service->name == 'Hire A Vehicle')
+                                {{\App\Models\HireVehicle::where('user_id', Auth::user()->id)->where('service_id', $service->id)->get()->count()}}
+                            @elseif($service->name == 'Charter A Vehicle')
+                                {{\App\Models\CharterVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            @elseif($service->name == 'Lease A Vehicle')
+                                {{\App\Models\LeaseVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            @elseif($service->name == 'Partner Fleet Management')
+                                {{\App\Models\PartnerFleetManagement::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->count()}}
+                            @endif
                             </div>
-                            
                         </div>
-                        
+                        <div class="offer-content">
+                            <h3 class="lead"> {{$service->name}} </h3>
+                            <p class="mb-0">{{$service->description}}</p>
+                        </div>
                     </div>
                 </a>
             </div>
-
-            <!-- <button type="button" class="btn btn-primary mt-1 mb-1 mr-3"> 
-                <span>Notifications</span> 
-                 
-            </button> -->
             @endforeach
         </div> <!-- End Row -->
     </div>

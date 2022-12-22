@@ -197,7 +197,7 @@ main .form-sec .alt-opt a:hover {
 /**********Sign Up ************/
 section {
     padding: 10px 10px 0 10px;
-    height: auto;
+    height: 100%;
     background-image: linear-gradient(to right bottom, rgba(4, 43, 84, .6), rgba(4, 43, 84, .9)),
         url("https://res.cloudinary.com/greenmouse-tech/image/upload/v1669651462/lazreb/register_fhr2vv.jpg");
     background-position: center right;

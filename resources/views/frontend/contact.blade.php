@@ -32,7 +32,7 @@
                     <div class="box">
                         <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671550823/lazreb/telephone_svojm8.png">
                         <h5>Phone Number</h5>
-                        <p><a href="#">+2340-708-747-5680</a></p>
+                        <p><a href="#">08123236657</a> or <a href="#">08037275590</a></p>
                     </div>
                 </div>
                 <div class="col-md-4">

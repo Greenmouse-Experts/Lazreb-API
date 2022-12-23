@@ -24,6 +24,9 @@ Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about'])-
 Route::get('/services', [App\Http\Controllers\HomePageController::class, 'services'])->name('services');
 Route::get('/faqs', [App\Http\Controllers\HomePageController::class, 'faqs'])->name('faqs');
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact'])->name('contact');
+Route::get('/terms', [App\Http\Controllers\HomePageController::class, 'terms'])->name('terms');
+Route::get('/policy', [App\Http\Controllers\HomePageController::class, 'policy'])->name('policy');
+
 
 
 

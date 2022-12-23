@@ -292,6 +292,12 @@ nav .desktop-signup {
     background-repeat: no-repeat;
     background-size: cover;
 }
+@media (max-width:1274px) {
+    .welcome .bad h1 {
+        font-size: 25px !important;
+        font-weight: 800;
+    }
+}
 .welcome .text {
     padding: 0px 0 0 0;
     color: #fff;
@@ -910,7 +916,7 @@ nav .desktop-signup {
 /*********Footer*********/
 footer {
     background-color: #062A51;
-    padding: 90px 10px 30px 10px !important;
+    padding: 90px 10px 10px 10px !important;
     color: #cecece;
     margin-top: 50px !important;
 }
@@ -1016,7 +1022,6 @@ footer .copyright p a{
     color: #fff;
     text-decoration: none;
 }
-
 @media (max-width: 991px) {
     footer {
         padding: 80px 20px 30px 20px;
@@ -1744,3 +1749,40 @@ footer .input-box input[type="button"] {
         margin-top: 10px;
     }
 }
+/***********Resources Page**********/
+.resourcePage .col-xl-11{
+    background-color: #fff;
+    padding: 20px 20px !important;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px #cecece;
+    border: 1px solid #d3d3d3;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: #000000;
+}
+.resourcePage h1{
+    font-weight: 600;
+    font-size: 18px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+.resourcePage p{
+    font-size: 15px;
+}
+.resourcePage ol li{
+    padding: 13px 0px 0px 0px;
+    font-weight: 600;
+    font-size: 15px;
+}
+.resourcePage ul li{
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 15px;
+    padding-bottom: 7px;
+    list-style:disc;
+}
+.resourcePage .other-ols li{
+    font-weight: 400;
+    font-size: 16px;
+}
+

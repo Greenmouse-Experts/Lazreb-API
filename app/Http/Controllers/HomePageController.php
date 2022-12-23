@@ -39,4 +39,13 @@ class HomePageController extends Controller
         return view('frontend.contact');
     }
 
+    public function policy()
+    {
+        return view('frontend.policy');
+    }
+    
+    public function terms()
+    {
+        return view('frontend.terms');
+    }
 }

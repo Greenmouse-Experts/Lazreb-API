@@ -25,6 +25,9 @@ Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about'])-
 Route::get('/services', [App\Http\Controllers\HomePageController::class, 'services'])->name('services');
 Route::get('/faqs', [App\Http\Controllers\HomePageController::class, 'faqs'])->name('faqs');
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact'])->name('contact');
+Route::get('/terms', [App\Http\Controllers\HomePageController::class, 'terms'])->name('terms');
+Route::get('/policy', [App\Http\Controllers\HomePageController::class, 'policy'])->name('policy');
+
 
 // Commands
 Route::get('/clear-route-cache', function() {
@@ -126,6 +129,10 @@ Route::prefix('dashboard')->group(function () {
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/edit/user/{id}', [AdminController::class, 'edit_user'])->name('admin.edit.user');
+    Route::post('/admin/profile/update/user/{id}', [AdminController::class, 'admin_update_profile_user'])->name('admin.update.profile.user');
+    Route::post('/admin/profile/update/password/user/{id}', [AdminController::class, 'admin_update_password_user'])->name('admin.update.password.user');
+    Route::post('/admin/profile/upload/profile-picture/user/{id}', [AdminController::class, 'admin_upload_profile_picture_user'])->name('admin.upload.profile.picture.user');
     Route::get('/admin/add/service', [AdminController::class, 'service'])->name('admin.service');
     Route::post('/admin/add/service', [AdminController::class, 'add_service'])->name('admin.add.service');
     Route::get('/admin/get/services', [AdminController::class, 'services'])->name('admin.get.services');

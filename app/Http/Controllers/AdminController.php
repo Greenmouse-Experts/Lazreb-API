@@ -34,10 +34,96 @@ class AdminController extends Controller
     }
 
     public function users(){
-        $users = User::latest()->get();
+        $users = User::latest()->where('account_type', 'User')->get();
 
         return view('admin.users', [
             'users' => $users
+        ]);
+    }
+
+    public function edit_user($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $user = User::findorfail($finder);
+
+        return view('admin.edit-user', [
+            'user' => $user
+        ]);
+    }
+
+    public function admin_update_password_user($id, Request $request)
+    {
+        //Validate Request
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $user = User::findorfail($finder);
+        
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => $user->name.' Password Updated Successfully.'
+        ]); 
+    }
+
+    public function admin_update_profile_user($id, Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = User::findorfail(Auth::user()->id);
+
+        if($user->email == $request->email)
+        {
+            $user->update([
+                'name' => $request->name
+            ]); 
+        } else {
+            //Validate Request
+            $this->validate($request, [
+                'email' => ['string', 'email', 'max:255', 'unique:users'],
+            ]);
+
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]); 
+        }
+
+        return back()->with([
+            'type' => 'success',
+            'message' => $user->name. 'Profile updated successfully!'
+        ]);
+    }
+
+    public function admin_upload_profile_picture_user($id, Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $user = User::findorfail($finder);
+
+        $filename = request()->avatar->getClientOriginalName();
+        if($user->photo) {
+            Storage::delete(str_replace("storage", "public", $user->photo));
+        }
+        request()->avatar->storeAs('users_avatar', $filename, 'public');
+        $user->photo = '/storage/users_avatar/'.$filename;
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => $user->name.' Profile Picture Uploaded Successfully!'
         ]);
     }
 

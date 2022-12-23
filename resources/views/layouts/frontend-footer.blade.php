@@ -17,8 +17,9 @@
                 </div>
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <div class="link-ft">
+                    <div class="control">
                     <h4>Quick Link</h4>
                     <div class="line-rule mb-3"></div>
                     <p>
@@ -35,6 +36,7 @@
                     </p>
                     
                     <p><a href="{{ route('contact')}}">Contact us</a></p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -61,6 +63,9 @@
     <div class="container copyright">
         <div class="row">
             <div class="col-lg-12 text-center">
+                <p>
+                    <a href="{{ route('terms')}}">Terms & Conditions</a> | <span><a href="{{ route('policy')}}">Privacy Policy</a></span>
+                </p>
                 <p>
                     &copy; 2022 Lazreb Leasing & Logistics ltd - All Rights Reserved. <a href="https://greenmousetech.com/">Site Credit</a>
                 </p>

@@ -19,7 +19,7 @@
              <div class="offcanvas-body">
                  <ul class="navbar-nav justify-content-center flex-grow-1">
                      <li class="nav-item">
-                         <a class="nav-link {{ (request()->is('index')) ? 'active' : '' }}" href="{{ route('index')}}">Home</a>
+                         <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('index')}}">Home</a>
                          </a>
                      </li>
                      <li class="nav-item">

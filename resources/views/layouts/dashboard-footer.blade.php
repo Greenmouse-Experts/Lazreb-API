@@ -6,7 +6,7 @@
                 <script>
                     document.write(new Date().getFullYear())
                 </script> 
-                <a href="#">{{config('app.name')}}</a>. Designed by <a href="#">Greenmouse</a> All rights reserved. </div>
+                <a href="#">{{config('app.name')}}</a>. All rights reserved. <a href="https://greenmousetech.com/">Site Credit</a> </div>
          </div>
      </div>
  </footer> <!-- End Footer-->

@@ -194,7 +194,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -407,7 +407,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -604,7 +604,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

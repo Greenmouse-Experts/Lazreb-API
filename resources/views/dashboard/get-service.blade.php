@@ -313,7 +313,7 @@
                                         <div class="col-6">
                                             <div class="form-group"> 
                                                 <label>Lease Duration</label>
-                                                <input type="date" class="form-control" name="lease_duration" required>
+                                                <input type="text" class="form-control" name="lease_duration" required>
                                             </div>
                                         </div>
                                     </div>

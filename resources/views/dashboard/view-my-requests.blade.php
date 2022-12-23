@@ -205,7 +205,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -428,7 +428,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -580,7 +580,7 @@
                                                                                 </div>
                                                                                 <div class="form-group"> 
                                                                                     <label>Lease Duration</label>
-                                                                                    <input type="date" class="form-control" name="lease_duration" value="{{$leaseVehicle->lease_duration}}" required>
+                                                                                    <input type="string" class="form-control" name="lease_duration" value="{{$leaseVehicle->lease_duration}}" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="purpose_of_use">Purpose of Use</label>
@@ -633,7 +633,7 @@
 
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
                                                                                     <button type="submit" class="form-btn btn btn-danger">Delete Now</button>
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

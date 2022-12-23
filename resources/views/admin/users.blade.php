@@ -45,12 +45,13 @@
                                             @foreach($users as $user)
                                             <tbody>
                                                 <tr role="row" class="odd">
-                                                    <!-- <td class="sorting_1">{{$loop->iteration}}</td>
+                                                    <td class="sorting_1">{{$loop->iteration}}</td>
+                                                    <td></td>
                                                     <td>{{$service->name}}</td>
                                                     <td><img class="userpicimg" src="{{$service->thumbnail}}" alt="{{$service->name}}" width="100"></td>
                                                     <td>{{$service->description}}</td>
                                                     <td>{{$service->created_at->toDayDateTimeString()}}</td>
-                                                    <td></td> -->
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                             @endforeach

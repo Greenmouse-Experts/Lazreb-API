@@ -23,7 +23,7 @@
                             <div class=" text-center  mb-4 text-primary"><i class="fa fa-phone"></i></div>
                             <div class="item-box-wrap">
                                 <h5 class="mb-2 font-weight-semibold">Phone Customer Care</h5>
-                                <p class="text-default mb-0">+2323131312312123123</p>
+                                <p class="text-default mb-0">08123236657, 08037275590</p>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             <div class=" text-center text-danger mb-4"><i class="fa fa-envelope"></i></div>
                             <div class="item-box-wrap">
                                 <h5 class="mb-2 font-weight-semibold">Email Customer Care</h5>
-                                <p class="text-default mb-0">lazreb@lazreb.com</p>
+                                <p class="text-default mb-0">support@lazrebleasinglogistics.com</p>
                             </div>
                         </div>
                     </div>

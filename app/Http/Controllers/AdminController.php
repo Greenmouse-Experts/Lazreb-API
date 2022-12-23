@@ -7,6 +7,7 @@ use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
 use App\Models\Service;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,11 @@ class AdminController extends Controller
     }
 
     public function users(){
-        return view('admin.users');
+        $users = User::latest()->get();
+
+        return view('admin.users', [
+            'users' => $users
+        ]);
     }
 
     public function service(){
@@ -291,9 +296,41 @@ class AdminController extends Controller
         return view('admin.notifications');
     }
 
+    public function users_download_transaction($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $transaction = Transaction::findorfail($finder);
+        
+        return Storage::download(str_replace("storage", "public", $transaction->slip));
+
+    }
+
+    public function users_delete_transaction($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $transaction = Transaction::findorfail($finder);
+
+        if($transaction->slip) {
+            Storage::delete(str_replace("storage", "public", $transaction->slip));
+        }
+
+        $transaction->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Transaction Deleted Successfully!",
+        ]);
+    }
+
     public function users_transactions()
     {
-        return view('admin.transactions');
+        $transactions = Transaction::latest()->get();
+
+        return view('admin.transactions', [
+            'transactions' => $transactions
+        ]);
     }
 
     public function settings(){

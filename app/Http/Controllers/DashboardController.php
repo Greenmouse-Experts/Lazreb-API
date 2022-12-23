@@ -8,6 +8,7 @@ use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
 use App\Models\Referee;
 use App\Models\Service;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -154,7 +155,7 @@ class DashboardController extends Controller
             $this->validate($request, [
                 'name' => ['required', 'string', 'max:255'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
-                'lease_duration' => ['required', 'date'],
+                'lease_duration' => ['required', 'strig', 'max:255'],
                 'purpose_of_use' => ['required', 'string', 'max:255'],
                 'location_of_use' => ['required', 'string', 'max:255'],
                 'agreement' => ['required', 'string', 'max:255'],
@@ -311,7 +312,7 @@ class DashboardController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'vehicle_type' => ['required', 'string', 'max:255'],
-            'lease_duration' => ['required', 'date'],
+            'lease_duration' => ['required', 'string', 'max'],
             'purpose_of_use' => ['required', 'string', 'max:255'],
             'location_of_use' => ['required', 'string', 'max:255'],
         ]);
@@ -587,7 +588,34 @@ class DashboardController extends Controller
 
     public function transactions()
     {
-        return view('dashboard.transactions');
+        $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->get();
+
+        return view('dashboard.transactions', [
+            'transactions' => $transactions
+        ]);
+    }
+
+    public function upload_transaction_slip(Request $request)
+    {
+        $this->validate($request, [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Transaction uploaded successfully.'
+        ]); 
     }
 
     public function help_support()

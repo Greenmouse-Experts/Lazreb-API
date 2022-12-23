@@ -57,6 +57,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         Route::post('/lease-vehicle/delete/{id}', [MobileController::class, 'delete_lease_vehicle']);
         Route::post('/update/partner/fleet/management/{id}', [MobileController::class, 'update_partner_fleet_management']);
         Route::post('/delete/partner/fleet/management/{id}', [MobileController::class, 'delete_partner_fleet_management']);
+        Route::get('/transactions', [MobileController::class, 'transactions']);
+        Route::post('/upload/transaction', [MobileController::class, 'upload_transaction']);
         Route::get('/referrals', [MobileController::class, 'referrals']);
         Route::post('/profile/update', [MobileController::class, 'update_profile']);
         Route::post('/profile/update/password', [MobileController::class, 'update_password']);

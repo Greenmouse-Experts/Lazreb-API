@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    //FrontEnd Pages
+//FrontEnd Pages
 Route::get('/test', [App\Http\Controllers\HomePageController::class, 'test']);
 
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('index');
@@ -25,7 +26,49 @@ Route::get('/services', [App\Http\Controllers\HomePageController::class, 'servic
 Route::get('/faqs', [App\Http\Controllers\HomePageController::class, 'faqs'])->name('faqs');
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact'])->name('contact');
 
+// Commands
+Route::get('/clear-route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return 'success';
+});
 
+//Remove config cache
+Route::get('/clear-config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'success';
+}); 
+
+// Remove application cache
+Route::get('/clear-app-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'success';
+});
+
+// Remove view cache
+Route::get('/clear-view-cache', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'success';
+});
+
+Route::get('/storage-link', function () {
+    $exitCode = Artisan::call('storage:link');
+    return 'success';
+});
+
+Route::get('/migrate-fresh', function(){
+    $exitCode = Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+    return 'success';
+});
+
+Route::get('/migrate-seed', function(){
+    $exitCode = Artisan::call('db:seed');
+    return 'success';
+});
+
+Route::get('/passport-install', function(){
+    $exitCode = Artisan::call('passport:install', ['--force' => true]);
+    return 'success';
+});
 
 //Authications Pages
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'log'])->name('log');
@@ -45,7 +88,6 @@ Route::prefix('auth')->group(function () {
     Route::get('/reset/password/email/{email}', [App\Http\Controllers\AuthController::class, 'password_reset_email'])->name('user.reset.password');
     Route::post('update/password/reset/', [App\Http\Controllers\AuthController::class, 'password_reset'])->name('user.update.new.password');
 });
-
 
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
@@ -71,6 +113,7 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/delete/become/partner/{id}', [DashboardController::class, 'delete_become_partner'])->name('user.delete.become.partner');
     Route::get('/notifications', [DashboardController::class, 'notifications'])->name('user.notifications');
     Route::get('/transactions', [DashboardController::class, 'transactions'])->name('user.transactions');
+    Route::post('/upload/transaction/slip', [DashboardController::class, 'upload_transaction_slip'])->name('user.upload.transaction.slip');
     Route::get('/help/support', [DashboardController::class, 'help_support'])->name('user.help.support');
     Route::get('/referrals', [DashboardController::class, 'referrals'])->name('user.referrals');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('user.settings');
@@ -101,6 +144,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/delete/partner/fleet/management/{id}', [AdminController::class, 'delete_partner_fleet_management'])->name('admin.delete.partner.fleet.management');
     Route::get('/admin/users/notifications', [AdminController::class, 'users_notifications'])->name('admin.users.notifications');
     Route::get('/admin/users/transactions', [AdminController::class, 'users_transactions'])->name('admin.users.transactions');
+    Route::get('/admin/users/download/transaction/{id}', [AdminController::class, 'users_download_transaction'])->name('admin.users.download.transaction');
+    Route::post('/admin/users/delete/transaction/{id}', [AdminController::class, 'users_delete_transaction'])->name('admin.users.delete.transaction');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/admin/profile/update', [AdminController::class, 'admin_update_profile'])->name('admin.update.profile');
     Route::post('/admin/profile/update/password', [AdminController::class, 'admin_update_password'])->name('admin.update.password');

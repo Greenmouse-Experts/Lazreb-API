@@ -8,6 +8,7 @@ use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
 use App\Models\Referee;
 use App\Models\Service;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,14 +139,11 @@ class MobileController extends Controller
 
         if($service->name == 'Lease A Vehicle')
         {
-            $this->validate($request, [
-                
-            ]);
 
             $validator = Validator::make(request()->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
-                'lease_duration' => ['required', 'date'],
+                'lease_duration' => ['required', 'string', 'max:255'],
                 'purpose_of_use' => ['required', 'string', 'max:255'],
                 'location_of_use' => ['required', 'string', 'max:255'],
                 'agreement' => ['required', 'string', 'max:255'],
@@ -504,7 +502,7 @@ class MobileController extends Controller
             $validator = Validator::make(request()->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
-                'lease_duration' => ['required', 'date'],
+                'lease_duration' => ['required', 'string', 'max:255'],
                 'purpose_of_use' => ['required', 'string', 'max:255'],
                 'location_of_use' => ['required', 'string', 'max:255'],
             ]);
@@ -696,6 +694,53 @@ class MobileController extends Controller
             'message' => 'Request not completed, it accepts only when the request sent is pending.',
         ]);
         
+    }
+
+    public function transactions()
+    {
+        $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->paginate(10);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'My Transactions Retrieved',
+            'data' => $transactions
+        ]);
+    }
+
+    public function upload_transaction_slip(Request $request)
+    {
+        $input = $request->only(['slip', 'description']);
+
+        $validate_data = [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ];
+
+        $validator = Validator::make($input, $validate_data);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
+        
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        $transaction = Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Transaction uploaded successfully.',
+            'data' => $transaction
+        ]);
     }
 
     public function referrals()

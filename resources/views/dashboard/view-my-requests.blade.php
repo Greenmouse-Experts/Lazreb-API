@@ -502,7 +502,7 @@
                                             @if(\App\Models\LeaseVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get()->isEmpty())
                                                 <tbody>
                                                     <tr>
-                                                        <td class="align-enter text-dark font-13" colspan="14">No Request.</td>
+                                                        <td class="align-enter text-dark font-13" colspan="10">No Request.</td>
                                                     </tr>
                                                 </tbody>
                                             @else

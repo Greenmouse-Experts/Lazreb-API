@@ -39,8 +39,16 @@
                      </li>
                  </ul>
                  <div class="login-div">
-                     <a class="btn-login desktop-login" href="{{ route('log')}}"><i class="bi bi-lock"></i> Login</a>
+                     @auth
+                        @if(Auth::user()->account_type == "Administrator")
+                        <a class="btn-login desktop-login" href="{{ route('admin.dashboard')}}"><i class="bi bi-house"></i> Dashboard</a>
+                        @else
+                        <a class="btn-login desktop-login" href="{{ route('user.dashboard')}}"><i class="bi bi-house"></i> Dashboard</a>
+                        @endif
+                    @else
+                    <a class="btn-login desktop-login" href="{{ route('log')}}"><i class="bi bi-lock"></i> Login</a>
                      <a class="btn-signup" href="{{ route('sign')}}">Sign Up <i class="bi bi-arrow-right"></i></a>
+                    @endauth
                  </div>
              </div>
          </div>

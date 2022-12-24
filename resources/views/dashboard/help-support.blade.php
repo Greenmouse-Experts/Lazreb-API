@@ -49,7 +49,7 @@
                             <div class=" text-center text-success mb-4"><i class="fa fa-user-secret"></i></div>
                             <div class="item-box-wrap">
                                 <h5 class="mb-2 font-weight-semibold">Privacy Policy</h5>
-                                <a href="#"><p class="text-default mb-0">Click to read through our privacy and policy</p></a>
+                                <a href="{{route('policy')}}"><p class="text-default mb-0">Click to read through our privacy and policy</p></a>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <div class="text-center text-secondary mb-4"><i class="fa fa-shield"></i></div>
                             <div class="item-box-wrap">
                                 <h5 class="mb-2 font-weight-semibold">Terms and Conditions</h5>
-                                <a href="#"><p class="text-default mb-0">Click to read through our terms and conditions</p></a>
+                                <a href="{{route('terms')}}"><p class="text-default mb-0">Click to read through our terms and conditions</p></a>
                             </div>
                         </div>
                     </div>

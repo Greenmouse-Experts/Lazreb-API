@@ -67,17 +67,25 @@
                                                     <th class="wd-15p sorting">Referred Date</th>
                                                 </tr>
                                             </thead>
-                                            @foreach($referrals as $referral)
-                                            <tbody>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">{{$loop->iteration}}</td>
-                                                    <td>{{\App\Models\User::findorfail($referral->referee_id)->name}}</td>
-                                                    <td>{{\App\Models\User::findorfail($referral->referee_id)->email}}</td>
-                                                    <td>{{\App\Models\User::findorfail($referral->referee_id)->phone_number}}</td>
-                                                    <td>{{$referral->created_at->toDayDateTimeString()}}</td>
-                                                </tr>
-                                            </tbody>
-                                            @endforeach
+                                            @if($referrals->isEmpty())
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="align-enter text-dark font-13" colspan="5">No Downlines.</td>
+                                                    </tr>
+                                                </tbody>
+                                            @else
+                                                @foreach($referrals as $referral)
+                                                <tbody>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{$loop->iteration}}</td>
+                                                        <td>{{\App\Models\User::findorfail($referral->referee_id)->name}}</td>
+                                                        <td>{{\App\Models\User::findorfail($referral->referee_id)->email}}</td>
+                                                        <td>{{\App\Models\User::findorfail($referral->referee_id)->phone_number}}</td>
+                                                        <td>{{$referral->created_at->toDayDateTimeString()}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                @endforeach
+                                            @endif
                                         </table>
                                     </div>
                                 </div>

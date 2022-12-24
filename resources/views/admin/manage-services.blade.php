@@ -8,9 +8,12 @@
             <h1 class="page-title">Manage Services</h1>
             <div class="ml-auto">
                 <div class="input-group">
-                    <a href="" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
-                    <a href="" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
-                    <a href="" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
+                    <a href="{{route('admin.dashboard')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Dashboard"> <span> <i class="fe fe-airplay"></i> </span> </a>
+                    <a href="{{route('admin.users')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Users"> <span> <i class="fa fa-user"></i> </span> </a>
+                    <a href="{{route('admin.get.services')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
+                    <a href="{{route('admin.users.services.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Services Requests"> <span> <i class="fa fa-share-square"></i> </span> </a>
+                    <a href="{{route('admin.users.notifications')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Notifications"> <span> <i class="fa fa-bell"></i> </span> </a>
+                    <a href="{{route('admin.users.transactions')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Transactions"> <span> <i class="fa fa-money"></i> </span> </a>
                 </div>
             </div>
         </div> <!-- End page-header -->
@@ -51,16 +54,13 @@
                                                         <a href="#btn-update-service-{{$service->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mt-1 mb-1">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
-                                                        <a href="#ServiceDelete-{{$service->id}}" data-toggle="modal" class="btn btn-app btn-danger mr-2 mt-1 mb-1">
-                                                            <i class="fa fa-edit"></i> Delete
-                                                        </a>
 
                                                         <!-- Update MODAL -->
                                                         <div class="modal fade" id="btn-update-service-{{$service->id}}" tabindex="-1">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header py-3 px-4 border-bottom-0">
-                                                                        <h5 class="modal-title" id="modal-title">Update Category</h5>
+                                                                        <h5 class="modal-title" id="modal-title">Update {{$service->name}}</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                                                                     </div>
                                                                     <div class="modal-body p-4">
@@ -68,10 +68,6 @@
                                                                             @csrf
                                                                             <div class="row">
                                                                                 <div class="col-12">
-                                                                                    <div class="form-group">
-                                                                                        <label>Name</label>
-                                                                                        <input type="text" class="form-control" name="name" placeholder="Enter Name" value="{{$service->name}}">
-                                                                                    </div>
                                                                                     <div class="form-group">
                                                                                         <label>Thumbnail</label>
                                                                                         <input type="file" class="form-control" name="thumbnail" placeholder="Enter Thumbnail">
@@ -84,7 +80,7 @@
                                                                             </div>
                                                                             <div class="row mt-2">
                                                                                 <div class="col-12 text-end">
-                                                                                    <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="button" class="btn btn-light me-1" class="close" data-dismiss="modal" aria-label="Close">Close</button>
                                                                                     <button type="submit" class="form-btn btn btn-primary">Update</button>
                                                                                 </div>
                                                                             </div>

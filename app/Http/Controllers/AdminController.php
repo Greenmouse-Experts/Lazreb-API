@@ -7,6 +7,7 @@ use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
 use App\Models\Notification;
+use App\Models\Referee;
 use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\User;
@@ -32,7 +33,29 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $hireService = HireVehicle::get()->count();
+        $leaseService =  LeaseVehicle::get()->count();
+        $charterService = CharterVehicle::get()->count();
+        $partnerFleetManagement = BecomePartner::get()->count();
+        $userRequestServices = $hireService + $leaseService + $charterService + $partnerFleetManagement;
+
+        $users = User::where('account_type', 'User')->get();
+
+        $recentUsers = User::latest()->where('account_type', 'User')->take(5)->get();
+        
+
+        $transactions = Transaction::get()->count();
+
+        return view('admin.dashboard', [
+            'hireService' => $hireService,
+            'leaseService' => $leaseService,
+            'charterService' => $charterService,
+            'partnerFleetManagement' => $partnerFleetManagement,
+            'userRequestServices' => $userRequestServices,
+            'transactions' => $transactions,
+            'users' => $users,
+            'recentUsers' => $recentUsers
+        ]);
     }
 
     public function users(){
@@ -223,6 +246,20 @@ class AdminController extends Controller
         ]);
     }
 
+    public function admin_user_referral($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $user = User::findorfail($finder);
+
+        $referrals = Referee::latest()->where('referrer_id', $user->id)->get();
+
+        return view('admin.referrals', [
+            'user' => $user,
+            'referrals' => $referrals
+        ]);
+    }
+
     public function service(){
         return view('admin.service');
     }
@@ -263,7 +300,7 @@ class AdminController extends Controller
     public function update_service($id, Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
         ]);
 
@@ -284,7 +321,7 @@ class AdminController extends Controller
             request()->thumbnail->storeAs('services_thumbnails', $filename, 'public');
 
             $service->update([
-                'name' => $request->name,
+                // 'name' => $request->name,
                 'thumbnail' => '/storage/services_thumbnails/'.$filename,
                 'description' => $request->description
             ]);
@@ -357,7 +394,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update_hire_vehicle($id, Request $request)
+    public function process_hire_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
 
@@ -368,9 +405,23 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
+        $user = User::where('id', $hirevehicle->user_id)->first();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $user->name,
+            'email' => $user->email,
+            'service' => 'Hire A Vehicle'
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.service-notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
         return back()->with([
             'type' => 'success',
-            'message' => "Request Updated Successfully!",
+            'message' => "Request Processed Successfully!",
         ]);
     }
 
@@ -386,7 +437,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update_charter_vehicle($id, Request $request)
+    public function process_charter_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
 
@@ -397,9 +448,23 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
+        $user = User::where('id', $chartervehicle->user_id)->first();
+        
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $user->name,
+            'email' => $user->email,
+            'service' => 'Charter A Vehicle'
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.service-notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
         return back()->with([
             'type' => 'success',
-            'message' => "Request Updated Successfully!",
+            'message' => "Request Processed Successfully!",
         ]);
     }
 
@@ -415,7 +480,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update_lease_vehicle($id, Request $request)
+    public function process_lease_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
 
@@ -426,9 +491,18 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
+        $user = User::where('id', $leasevehicle->user_id)->first();
+        
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $user->name,
+            'email' => $user->email,
+            'service' => 'Lease A Vehicle'
+        );
+
         return back()->with([
             'type' => 'success',
-            'message' => "Request Updated Successfully!",
+            'message' => "Request Processed Successfully!",
         ]);
     }
 
@@ -444,7 +518,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update_partner_fleet_management($id, Request $request)
+    public function process_partner_fleet_management($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
 
@@ -455,9 +529,18 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
+        $user = User::where('id', $partnerfleetmanagement->user_id)->first();
+        
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $user->name,
+            'email' => $user->email,
+            'service' => 'Partner Fleet Management '
+        );
+
         return back()->with([
             'type' => 'success',
-            'message' => "Request Updated Successfully!",
+            'message' => "Request Processed Successfully!",
         ]);
     }
 

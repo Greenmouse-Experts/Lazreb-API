@@ -56,20 +56,28 @@
                                                     <th class="wd-15p sorting">submitted At</th>
                                                 </tr>
                                             </thead>
-                                            @foreach($transactions as $transaction)
-                                            <tbody>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">{{$loop->iteration}}</td>
-                                                    <td>
-                                                        <div class="userpic brround" style="display: flex; align-items: center; justify-content: center;"> 
-                                                            <img class="userpicimg" src="{{$transaction->slip}}" width="100">
-                                                        </div>
-                                                    </td>
-                                                    <td>{{$transaction->description}}</td>
-                                                    <td>{{$transaction->created_at->toDayDateTimeString()}}</td>
-                                                </tr>
-                                            </tbody>
-                                            @endforeach
+                                            @if($transactions->isEmpty())
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="align-enter text-dark font-13" colspan="4">No Transaction.</td>
+                                                    </tr>
+                                                </tbody>
+                                            @else
+                                                @foreach($transactions as $transaction)
+                                                <tbody>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1">{{$loop->iteration}}</td>
+                                                        <td>
+                                                            <div class="userpic brround" style="display: flex; align-items: center; justify-content: center;"> 
+                                                                <img class="userpicimg" src="{{$transaction->slip}}" width="100">
+                                                            </div>
+                                                        </td>
+                                                        <td>{{$transaction->description}}</td>
+                                                        <td>{{$transaction->created_at->toDayDateTimeString()}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                @endforeach
+                                            @endif
                                         </table>
                                     </div>
                                 </div>

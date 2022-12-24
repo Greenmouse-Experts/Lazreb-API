@@ -145,7 +145,8 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="left" style="padding: 20px 30px 20px 10px; color: #000; border-top: none; border-bottom: none; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-							<p>You have <span style="color: red;">1</span> new<sup style="color: red;">*</sup> Notification.</p>
+							<p>Your request to  <span style="color: #052a56;">{{$service}}</span> has been responded to. Please Check your Dashboard and locate My Request to see full details.</p>
+                            <p>Thank you.</p>
                         </td>
                     </tr>		
                     <tr>

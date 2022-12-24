@@ -10,10 +10,12 @@
             <h1 class="page-title">{{$service->name}} Requests</h1>
             <div class="ml-auto">
                 <div class="input-group">
-                    <a href="" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
-                    <a href="" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
-                    <a href="" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
-                    <a href="" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
+                    <a href="{{route('admin.dashboard')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Dashboard"> <span> <i class="fe fe-airplay"></i> </span> </a>
+                    <a href="{{route('admin.users')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Users"> <span> <i class="fa fa-user"></i> </span> </a>
+                    <a href="{{route('admin.get.services')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
+                    <a href="{{route('admin.users.services.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Services Requests"> <span> <i class="fa fa-share-square"></i> </span> </a>
+                    <a href="{{route('admin.users.notifications')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Notifications"> <span> <i class="fa fa-bell"></i> </span> </a>
+                    <a href="{{route('admin.users.transactions')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Transactions"> <span> <i class="fa fa-money"></i> </span> </a>
                 </div>
             </div>
         </div> <!-- End page-header -->
@@ -53,7 +55,7 @@
                                             @if(\App\Models\HireVehicle::where('service_id', $service->id)->get()->isEmpty())
                                                 <tbody>
                                                     <tr>
-                                                        <td class="align-enter text-dark font-13" colspan="14">No Request.</td>
+                                                        <td class="align-enter text-dark font-13" colspan="15">No Request.</td>
                                                     </tr>
                                                 </tbody>
                                             @else
@@ -102,7 +104,7 @@
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="HireVehicleEdit-{{$hireVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
-                                                                    <form method="post" action="{{ route('admin.update.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}" style="width: -webkit-fill-available;">
+                                                                    <form method="post" action="{{ route('admin.process.hire.vehicle', Crypt::encrypt($hireVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
@@ -269,7 +271,7 @@
                                             @if(\App\Models\CharterVehicle::where('service_id', $service->id)->get()->isEmpty())
                                                 <tbody>
                                                     <tr>
-                                                        <td class="align-enter text-dark font-13" colspan="14">No Request.</td>
+                                                        <td class="align-enter text-dark font-13" colspan="15">No Request.</td>
                                                     </tr>
                                                 </tbody>
                                             @else
@@ -315,7 +317,7 @@
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="CharterVehicleEdit-{{$charterVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
-                                                                    <form method="post" action="{{ route('admin.update.charter.vehicle', Crypt::encrypt($charterVehicle->id))}}" style="width: -webkit-fill-available;">
+                                                                    <form method="post" action="{{ route('admin.process.charter.vehicle', Crypt::encrypt($charterVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 
@@ -481,7 +483,7 @@
                                             @if(\App\Models\LeaseVehicle::where('service_id', $service->id)->get()->isEmpty())
                                                 <tbody>
                                                     <tr>
-                                                        <td class="align-enter text-dark font-13" colspan="14">No Request.</td>
+                                                        <td class="align-enter text-dark font-13" colspan="11">No Request.</td>
                                                     </tr>
                                                 </tbody>
                                             @else
@@ -528,7 +530,7 @@
                                                             <!-- Edit Modal -->
                                                             <div class="modal fade" id="LeaseVehicleEdit-{{$leaseVehicle->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
-                                                                    <form method="post" action="{{ route('admin.update.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}" style="width: -webkit-fill-available;">
+                                                                    <form method="post" action="{{ route('admin.process.lease.vehicle', Crypt::encrypt($leaseVehicle->id))}}" style="width: -webkit-fill-available;">
                                                                         @csrf
                                                                         <div class="modal-content">
                                                                             <div class="modal-header"> 

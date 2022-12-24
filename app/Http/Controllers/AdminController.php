@@ -6,6 +6,7 @@ use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
+use App\Models\Notification;
 use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\User;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,6 +54,92 @@ class AdminController extends Controller
         ]);
     }
 
+    public function admin_deactivate_user($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $user = User::find($finder);
+
+        $user->update([
+            'status' => 'Inactive'
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => $user->name . ' Account Deactivated!'
+        ]);
+    }
+
+    public function admin_activate_user($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $user = User::find($finder);
+
+        $user->update([
+            'status' => 'Active'
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => $user->name . ' Account Activated!'
+        ]);
+    }
+
+    public function admin_delete_user($id)
+    {
+        $idFinder = Crypt::decrypt($id);
+
+        $user = User::findorfail($idFinder);
+        
+        if($user->photo) {
+            Storage::delete(str_replace("storage", "public", $user->photo));
+        }
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Account Deleted Successfully!'
+        ]); 
+
+    }
+
+    public function admin_send_message_user($user_id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'subject' => ['required','string', 'max:255'],
+            'message' => ['required', 'string'],
+        ]);
+
+        $id = Crypt::decrypt($user_id);
+
+        $user = User::findorfail($id);
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $user->id;
+        $message->subject = request()->subject;
+        $message->message = request()->message;
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $user->name,
+            'email' => $user->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
+        return back()->with([
+            'type' => 'success',
+            'icon' => 'mdi-check-all',
+            'message' => 'Message sent successfully to '.$user->name,
+        ]); 
+    }
+
     public function admin_update_password_user($id, Request $request)
     {
         //Validate Request
@@ -76,14 +164,20 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'sex' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'numeric'],
         ]);
 
-        $user = User::findorfail(Auth::user()->id);
+        $finder = Crypt::decrypt($id);
+
+        $user = User::findorfail($finder);
 
         if($user->email == $request->email)
         {
             $user->update([
-                'name' => $request->name
+                'name' => $request->name,
+                'sex' => $request->sex,
+                'phone_number' => $request->phone_number,
             ]); 
         } else {
             //Validate Request
@@ -94,12 +188,14 @@ class AdminController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'sex' => $request->sex,
+                'phone_number' => $request->phone_number,
             ]); 
         }
 
         return back()->with([
             'type' => 'success',
-            'message' => $user->name. 'Profile updated successfully!'
+            'message' => $user->name. ' profile updated successfully!'
         ]);
     }
 
@@ -379,7 +475,11 @@ class AdminController extends Controller
 
     public function users_notifications()
     {
-        return view('admin.notifications');
+        $allUserNotifications = Notification::latest()->get();
+
+        return view('admin.notifications', [
+            'allUserNotifications' => $allUserNotifications
+        ]);
     }
 
     public function users_download_transaction($id)

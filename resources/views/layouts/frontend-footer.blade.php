@@ -67,7 +67,7 @@
                     <a href="{{ route('terms')}}">Terms & Conditions</a> | <span><a href="{{ route('policy')}}">Privacy Policy</a></span>
                 </p>
                 <p>
-                    &copy; 2022 Lazreb Leasing & Logistics ltd - All Rights Reserved. <a href="https://greenmousetech.com/">Site Credit</a>
+                    &copy; 2022 {{config('app.name')}} - All Rights Reserved. <a href="https://greenmousetech.com/">Site Credit</a>
                 </p>
             </div>
         </div>

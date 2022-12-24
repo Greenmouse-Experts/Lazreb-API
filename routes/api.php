@@ -66,6 +66,11 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
         Route::get('/services/all', [MobileController::class, 'get_all_services']);
 
+        Route::get('/get/all/notifications', [MobileController::class, 'get_all_notifications']);
+        Route::get('/get/all/unread/notifications', [MobileController::class, 'get_all_unread_notifications']);
+        Route::get('/count/unread/notifications', [MobileController::class, 'count_unread_notifications']);
+        Route::post('/read/notification/{id}', [MobileController::class, 'read_notification']);
+
         Route::post('logout', [MobileController::class, 'logout']);
     });
     

@@ -42,7 +42,7 @@
                                     @csrf
                                     <div class="text-center">
                                         <div class="form-group"> 
-                                            <input type="file" class="form-control" name="avatar" required>
+                                            <input type="file" class="form-control" name="avatar"accept="image/png, image/jpg, image/jpeg"  required>
                                         </div>
                                         <button type="submit" class="btn btn-primary mt-1 form-btn"><i class="fe fe-camera  mr-1"></i>Change Photo</button> 
                                     </div>

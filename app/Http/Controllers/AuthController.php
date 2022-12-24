@@ -487,8 +487,14 @@ class AuthController extends Controller
             }
 
             if(!$user->email_verified_at){
-                // Send email to user
-                $user->notify(new SendVerificationCode($user));
+                $code = mt_rand(1000, 9999);
+
+                $user->update([
+                    'code' => $code
+                ]);
+
+                // Send verification code to user
+                Mail::to($user->email)->send(new VerificationCode($user->code));
 
                 return redirect()->route('verify.account', Crypt::encrypt($user->email))->with([
                     'type' => 'success',

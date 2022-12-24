@@ -6,6 +6,7 @@ use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
+use App\Models\Notification;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\Transaction;
@@ -43,20 +44,34 @@ class DashboardController extends Controller
 
         $referrals = Referee::where('referrer_id', Auth::user()->id)->get()->count();
 
+        $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->take(3)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->id)->take(5)->get();
+
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
         return view('dashboard.dashboard', [
             'services' => $services,
             'userRequestServices' => $userRequestServices,
             'referrals' => $referrals,
-            'partnerFleetManagement' => $partnerFleetManagement
+            'partnerFleetManagement' => $partnerFleetManagement,
+            'transactions' => $transactions,
+            'notifications' => $notifications,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
     
     public function request_services()
     {
         $services = Service::latest()->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.request-services', [
-            'services' => $services
+            'services' => $services,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -65,9 +80,13 @@ class DashboardController extends Controller
         $finder = Crypt::decrypt($id);
 
         $service = Service::findorfail($finder);
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.get-service', [
-            'service' => $service
+            'service' => $service,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -189,10 +208,14 @@ class DashboardController extends Controller
     {
         $services = Service::latest()->get();
         $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get()->count();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.my-requests', [
             'services' => $services,
-            'partnerFleetManagement' => $partnerFleetManagement
+            'partnerFleetManagement' => $partnerFleetManagement,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -201,9 +224,13 @@ class DashboardController extends Controller
         $finder = Crypt::decrypt($id);
 
         $service = Service::findorfail($finder);
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.view-my-requests', [
-            'service' => $service
+            'service' => $service,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -345,7 +372,13 @@ class DashboardController extends Controller
 
     public function become_a_partner()
     {
-        return view('dashboard.become-a-partner');
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('dashboard.become-a-partner', [
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
+        ]);
     }
 
     public function post_become_partner(Request $request)
@@ -470,9 +503,13 @@ class DashboardController extends Controller
     public function manage_become_a_partner()
     {
         $becomePartners = BecomePartner::latest()->where('user_id', Auth::user()->id)->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.manage-become-a-partner', [
-            'becomePartners' => $becomePartners
+            'becomePartners' => $becomePartners,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -583,15 +620,39 @@ class DashboardController extends Controller
 
     public function notifications()
     {
-        return view('dashboard.notifications');
+        $allNotifications = Notification::latest()->where('to', Auth::user()->id)->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('dashboard.notifications', [
+            'allNotifications' => $allNotifications,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
+        ]);
+    }
+
+    public function read_notification($id)
+    {   
+        $finder = Crypt::decrypt($id);
+
+        $notification = Notification::findorfail($finder);
+
+        $notification->status = 'Read';
+        $notification->save();
+
+        return back();
     }
 
     public function transactions()
     {
         $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.transactions', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
@@ -620,21 +681,37 @@ class DashboardController extends Controller
 
     public function help_support()
     {
-        return view('dashboard.help-support');
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('dashboard.help-support', [
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
+        ]);
     }
 
     public function referrals()
     {
         $referrals = Referee::latest()->where('referrer_id', Auth::user()->id)->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.referrals',[
-            'referrals' => $referrals
+            'referrals' => $referrals,
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
         ]);
     }
 
     public function settings()
     {
-        return view('dashboard.settings');
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('dashboard.settings', [
+            'unreadNotifications' => $unreadNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications
+        ]);
     }
 
     public function update_password( Request $request)

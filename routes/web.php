@@ -115,6 +115,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/manage/become-a-partner', [DashboardController::class, 'manage_become_a_partner'])->name('user.manage.become.a.partner');
     Route::post('/delete/become/partner/{id}', [DashboardController::class, 'delete_become_partner'])->name('user.delete.become.partner');
     Route::get('/notifications', [DashboardController::class, 'notifications'])->name('user.notifications');
+    Route::get('/read/notification/{id}', [DashboardController::class, 'read_notification'])->name('user.read.notifications');
     Route::get('/transactions', [DashboardController::class, 'transactions'])->name('user.transactions');
     Route::post('/upload/transaction/slip', [DashboardController::class, 'upload_transaction_slip'])->name('user.upload.transaction.slip');
     Route::get('/help/support', [DashboardController::class, 'help_support'])->name('user.help.support');
@@ -133,6 +134,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/profile/update/user/{id}', [AdminController::class, 'admin_update_profile_user'])->name('admin.update.profile.user');
     Route::post('/admin/profile/update/password/user/{id}', [AdminController::class, 'admin_update_password_user'])->name('admin.update.password.user');
     Route::post('/admin/profile/upload/profile-picture/user/{id}', [AdminController::class, 'admin_upload_profile_picture_user'])->name('admin.upload.profile.picture.user');
+    Route::get('/admin/deactivate/user/{id}', [AdminController::class, 'admin_deactivate_user'])->name('admin.deactivate.user');
+    Route::get('/admin/activate/user/{id}', [AdminController::class, 'admin_activate_user'])->name('admin.activate.user');
+    Route::post('/admin/{user_id}/send/message/user', [AdminController::class, 'admin_send_message_user'])->name('admin.send.message.user');
+    Route::get('/admin/delete/user/{id}', [AdminController::class, 'admin_delete_user'])->name('admin.delete.user');
     Route::get('/admin/add/service', [AdminController::class, 'service'])->name('admin.service');
     Route::post('/admin/add/service', [AdminController::class, 'add_service'])->name('admin.add.service');
     Route::get('/admin/get/services', [AdminController::class, 'services'])->name('admin.get.services');

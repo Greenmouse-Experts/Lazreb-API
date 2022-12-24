@@ -37,6 +37,7 @@
                                                     <th class="wd-15p sorting_asc">Name</th>
                                                     <th class="wd-20p sorting">Sex</th>
                                                     <th class="wd-20p sorting">Phone Number</th>
+                                                    <th class="wd-20p sorting">Status</th>
                                                     <th class="wd-15p sorting">Created At</th>
                                                     <th class="wd-15p sorting">Action</th>
                                                 </tr>
@@ -49,24 +50,97 @@
                                                         @if($user->photo)
                                                         <img class="avatar avatar-md rounded-circle" src="{{$user->photo}}" alt="{{$user->name}}">
                                                         @else
-                                                        <div class="userpic brround" style="display: flex; align-items: center; justify-content: center; background: #052a56; width: 43px;"> 
+                                                        <div class="userpic brround" style="display: flex; align-items: center; justify-content: center; background: #052a56; width: 43px;">
                                                             <span class="avatar avatar-md rounded-circle" style="font-size: 1.5rem;">
                                                                 {{ ucfirst(substr($user->name, 0, 1)) }}
                                                             </span>
                                                         </div>
-                                                        @endif 
+                                                        @endif
                                                     </td>
                                                     <td>{{$user->name}} <br>
                                                         <code>{{$user->email}}</code>
                                                     </td>
                                                     <td>{{$user->sex}}</td>
                                                     <td>{{$user->phone_number}}</td>
+                                                    <td>
+                                                        @if($user->status == 'Active')
+                                                        <span class="badge badge-success mr-1 mb-1 mt-1">{{$user->status}}</span>
+                                                        @else
+                                                        <span class="badge badge-warning mr-1 mb-1 mt-1">{{$user->status}}</span>
+                                                        @endif
+                                                    </td>
                                                     <td>{{$user->created_at->toDayDateTimeString()}}</td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary badge" href="{{route('admin.edit.user', Crypt::encrypt($user->id))}}">Edit</a>
-                                                        <button class="btn btn-sm btn-primary badge" data-target="#user-form-modal" data-toggle="modal" type="button">Send Message</button>
-                                                        <button class="btn btn-sm btn-primary badge" data-target="#user-form-modal" data-toggle="modal" type="button">Activate</button>
-                                                        <button class="btn btn-sm btn-primary badge" data-target="#user-form-modal" data-toggle="modal" type="Deactivate">Deactivate</button>
+                                                        <button class="btn btn-sm btn-primary badge" data-target="#user-send-message-{{$user->id}}" data-toggle="modal" type="button">Send Message</button>
+                                                        <div class="modal fade" id="user-send-message-{{$user->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <form method="POST" action="{{ route('admin.send.message.user', Crypt::encrypt($user->id))}}">
+                                                                    @csrf
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="example-Modal3">New message</h5> 
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                                                                                <span aria-hidden="true">×</span> 
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group"> 
+                                                                                <label for="name" class="form-control-label">User:</label> 
+                                                                                <input type="text" class="form-control" id="name" value="{{$user->name}}" disabled> 
+                                                                            </div>
+                                                                            <div class="form-group"> 
+                                                                                <label for="subject" class="form-control-label">Subject:</label> 
+                                                                                <input type="text" class="form-control" id="subject" name="subject" required> 
+                                                                            </div>
+                                                                            <div class="form-group"> 
+                                                                                <label for="message-text" class="form-control-label">Message:</label> 
+                                                                                <textarea class="form-control" id="message-text" name="message" required></textarea> 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer"> 
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                                                                            <button type="submit" class="form-btn btn btn-primary">Send message</button> 
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @if($user->status == 'Active')
+                                                        <a class="btn btn-sm btn-primary badge" href="{{route('admin.deactivate.user', Crypt::encrypt($user->id))}}">Deactivate</a>
+                                                        @else
+                                                        <a class="btn btn-sm btn-primary badge" href="{{route('admin.activate.user', Crypt::encrypt($user->id))}}">Activate</a>
+                                                        @endif
+                                                        <button class="btn btn-sm btn-primary badge" data-target="#user-delete-{{$user->id}}" data-toggle="modal" type="button">Delete Account</button>
+                                                        <div class="modal fade" id="user-delete-{{$user->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <form method="POST" action="{{ route('admin.delete.user', Crypt::encrypt($user->id))}}">
+                                                                    @csrf
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="example-Modal3">Delete {{$user->name}}</h5> 
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                                                                                <span aria-hidden="true">×</span> 
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="avatar-sm mb-4 mx-auto">
+                                                                                <div class="font-size-20 rounded-3">
+                                                                                    <i class="fa fa-trash"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <p class="font-size-16 mb-4" style="word-wrap: break-word;">Are you sure you want to permanently erase this user.</p>
+
+                                                                        </div>
+                                                                        <div class="modal-footer"> 
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                                                                            <button type="submit" class="form-btn btn" style="background: red; color: #fff;">Delete Now</button> 
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>

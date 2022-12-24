@@ -9,16 +9,21 @@
             <div class="app-sidebar__toggle" data-toggle="sidebar"> <a class="open-toggle" href="#"><i class="fe fe-align-left"></i></a> <a class="close-toggle" href="#"><i class="fe fe-x"></i></a> </div>
 
             <div class="d-flex order-lg-2 ml-auto header-right">
-                <div class="dropdown d-md-flex header-message"> <a class="nav-link icon" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="nav-unread badge badge-danger badge-pill">3</span> </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"> <a class="dropdown-item text-center" href="#">Notifications</a>
-                        <div class="dropdown-divider"></div> <a class="dropdown-item d-flex pb-4" href="#"> <span class="avatar mr-3 br-3 align-self-center avatar-md cover-image bg-primary-transparent text-primary"><i class="fe fe-mail"></i></span>
-                            <div> <span class="font-weight-bold"> Commented on your post </span>
-                                <div class="small text-muted d-flex"> 3 hours ago </div>
+                <div class="dropdown d-md-flex header-message"> <a class="nav-link icon" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="nav-unread badge badge-danger badge-pill">{{$countUnreadNotifications}}</span> </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"> 
+                        <a class="dropdown-item text-center" href="#">Notifications</a>
+                        <div class="dropdown-divider"></div> 
+                        @foreach($unreadNotifications as $unreadNotification)
+                        <a class="dropdown-item d-flex pb-4" href="#"> 
+                            <div> 
+                                <span class="font-weight-bold">{{\App\Models\User::where('id', $unreadNotification->from)->first()->name}} - {{$unreadNotification->subject}}</span>
+                                <div class="small text-muted d-flex"> {{$unreadNotification->created_at->diffForHumans()}} </div>
                             </div>
                         </a>
+                        @endforeach
                         <div class="dropdown-divider"></div>
                         <div class="text-center dropdown-btn pb-3">
-                            <div class="btn-list"><a href="#" class=" btn btn-secondary btn-sm"><i class="fe fe-eye mr-1"></i>View All</a> </div>
+                            <div class="btn-list"><a href="{{route('user.notifications')}}" class=" btn btn-secondary btn-sm"><i class="fe fe-eye mr-1"></i>View All</a> </div>
                         </div>
                     </div>
                 </div>

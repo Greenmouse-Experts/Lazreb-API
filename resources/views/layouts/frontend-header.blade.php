@@ -5,7 +5,7 @@
              <i class="fas fa-bars"></i>
          </button>
          <a class="navbar-brand" href="#">
-             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" alt="Lasreb logo">
+             <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671441634/lazreb/lab_1_r017da.jpg" alt="{{config('app.name')}}">
          </a>
          <div class="login-div mobile-login">
              <a class="btn-login" href="{{ route('log')}}"><i class="bi bi-lock"></i> Login</a>

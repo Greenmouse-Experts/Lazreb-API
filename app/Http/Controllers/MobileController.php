@@ -6,6 +6,7 @@ use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
 use App\Models\LeaseVehicle;
+use App\Models\Notification;
 use App\Models\Referee;
 use App\Models\Service;
 use App\Models\Transaction;
@@ -344,10 +345,10 @@ class MobileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'My Requests Retrieved Successfully.',
-            'hireService' => $hireService,
-            'leaseService' => $leaseService,
-            'charterService' => $charterService,
-            'partnerFleetManagement' => $partnerFleetManagement
+            'data' => ['hireService' => $hireService, 
+                        'leaseService' => $leaseService,
+                        'charterService' => $charterService,
+                        'partnerFleetManagement' => $partnerFleetManagement]
         ]);
     }
 
@@ -707,7 +708,7 @@ class MobileController extends Controller
         ]);
     }
 
-    public function upload_transaction_slip(Request $request)
+    public function upload_transaction(Request $request)
     {
         $input = $request->only(['slip', 'description']);
 
@@ -886,6 +887,71 @@ class MobileController extends Controller
             'success' => true,
             'message' => 'All Services Retrieved',
             'data' => $services
+        ]);
+    }
+
+    public function get_all_notifications()
+    {
+        $userNotifications = Notification::join('users', 'notifications.from', '=', 'users.id')
+                            ->latest()->where('to', Auth::user()->id)
+                            ->get(['users.name','users.account_type', 'notifications.*']);
+
+        if($userNotifications->isEmpty())
+        {
+            return response()->json([
+                'success' => false,
+                'data' => null
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'All Notifications Retrieved!',
+            'data' => $userNotifications
+        ]);
+    }
+
+    public function get_all_unread_notifications()
+    {
+        $userUnreadNotifications = Notification::join('users', 'notifications.from', '=', 'users.id')
+                ->latest()->where('to', Auth::user()->id)->where('notifications.status', 'Unread')->take(5)
+                ->get(['users.name','users.account_type', 'notifications.*']);
+
+        if($userUnreadNotifications->isEmpty())
+        {
+            return response()->json([
+                'success' => false,
+                'data' => null
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'All Unread Notifications Retrieved!',
+            'data' => $userUnreadNotifications
+        ]);
+    }
+
+    public function count_unread_notifications()
+    {
+        $userCountUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All Unread Notifications Retrieved!',
+            'data' => $userCountUnreadNotifications
+        ]);
+
+    }
+
+    public function read_notification($id)
+    {
+        $notification = Notification::findorfail($id);
+
+        $notification->status = 'Read';
+        $notification->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Notification Read Successfully'
         ]);
     }
 }

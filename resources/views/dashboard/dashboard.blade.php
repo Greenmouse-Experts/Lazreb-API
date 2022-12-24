@@ -10,7 +10,7 @@
             <div class="ml-auto">
                 <div class="input-group">
                     <a href="{{route('user.request.services')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-flickr"></i> </span> </a>
-                    <a href="{{route('user.my.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Request Services"> <span> <i class="fa fa-share-square"></i> </span> </a>
+                    <a href="{{route('user.my.requests')}}" class="btn btn-secondary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="My Requests"> <span> <i class="fa fa-share-square"></i> </span> </a>
                     <a href="{{route('user.become.a.partner')}}" class="btn btn-primary btn-icon mr-2" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Become A Partner"> <span> <i class="fa fa-square"></i> </span> </a>
                     <a href="{{route('user.help.support')}}" class="btn btn-secondary btn-icon" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Help/Support"> <span> <i class="fe fe-help-circle"></i> </span> </a>
                 </div>
@@ -106,43 +106,21 @@
                             <table class="table table-bordered  mb-0 text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Purpose</th>
-                                        <th>ID</th>
+                                        <th>Slip</th>
+                                        <th>Description</th>
                                         <th>Date</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr>
-                                        <td>Emily Poole</td>
-                                        <td>PRO12345</td>
-                                        <td>Online Payment</td>
-                                        <td><span class="badge badge-success">Delivered</span></td>
-                                    </tr>
+                                    @foreach($transactions as $transaction)
                                     <tr>
-                                        <td>Sarah Alsop</td>
-                                        <td>PRO23457</td>
-                                        <td>Cash on delivered</td>
-                                        <td><span class="badge badge-secondary">Delivering</span></td>
+                                        <td>
+                                            <img class="userpicimg" src="{{$transaction->slip}}" width="50">
+                                        </td>
+                                        <td>{{$transaction->description}}</td>
+                                        <td>{{$transaction->created_at->toDayDateTimeString()}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Ruth Hart</td>
-                                        <td>PRO94567</td>
-                                        <td>Online Payment</td>
-                                        <td><span class="badge badge-danger">Shipped</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Peter Ince</td>
-                                        <td>PRO56789</td>
-                                        <td>Cash on delivered</td>
-                                        <td><span class="badge badge-primary">Add Cart</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sophie Ross</td>
-                                        <td>PRO30978</td>
-                                        <td>Online Payment</td>
-                                        <td><span class="badge badge-danger">Shipped</span></td>
-                                    </tr> -->
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -158,37 +136,16 @@
                     </div>
                     <div class="card-body p-0">
                         <div class="list-group projects-list">
-                            <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                            @foreach($notifications as $notification)
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 font-weight-sembold text-dark">Order Picking</h6>
-                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark">3,876</h6>
+                                    <h6 class="mb-1 font-weight-sembold text-dark">{{\App\Models\User::where('id', $notification->from)->first()->name}}</h6>
+                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark"></h6>
                                 </div>
-                                <div class="d-flex w-100 justify-content-between"> <span class="text-muted"><i class="fe fe-arrow-down text-success "></i> 03% last month</span> <span class="text-muted">5 days ago</span> </div>
-                            </a> <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 font-weight-sembold text-dark">Storage</h6>
-                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark">2,178</h6>
-                                </div>
-                                <div class="d-flex w-100 justify-content-between"> <span class="text-muted"><i class="fe fe-arrow-down text-danger "></i> 16% last month</span> <span class="text-muted">2 days ago</span> </div>
-                            </a> <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 font-weight-sembold text-dark">Shipping</h6>
-                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark">1,367</h6>
-                                </div>
-                                <div class="d-flex w-100 justify-content-between"> <span class="text-muted"><i class="fe fe-arrow-up text-success"></i> 06% last month</span> <span class="text-muted">1 days ago</span> </div>
-                            </a> <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 font-weight-sembold text-dark">Receiving</h6>
-                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark">678</h6>
-                                </div>
-                                <div class="d-flex w-100 justify-content-between"> <span class="text-muted"><i class="fe fe-arrow-down text-danger "></i> 25% last month</span> <span class="text-muted">10 days ago</span> </div>
-                            </a> <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-bottom-0  border-left-0 border-right-0 border-top">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 font-weight-sembold text-dark">Other</h6>
-                                    <h6 class="text-dark mb-0 font-weight-sembold text-dark">5,678</h6>
-                                </div>
-                                <div class="d-flex w-100 justify-content-between"> <span class="text-muted"><i class="fe fe-arrow-up text-success "></i> 16% last month</span> <span class="text-muted">5 days ago</span> </div>
-                            </a>  -->
+                                <div class="d-flex w-100 justify-content-between"> 
+                                    <span class="text-muted">{{$notification->subject}}</span> <span class="text-muted">{{$notification->created_at->diffForHumans()}}</span> </div>
+                            </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

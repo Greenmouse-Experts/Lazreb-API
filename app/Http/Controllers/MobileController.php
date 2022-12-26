@@ -345,10 +345,12 @@ class MobileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'My Requests Retrieved Successfully.',
-            'data' => ['hireService' => $hireService, 
-                        'leaseService' => $leaseService,
-                        'charterService' => $charterService,
-                        'partnerFleetManagement' => $partnerFleetManagement]
+            'data' => array(
+                    'hireService' => $hireService, 
+                    'leaseService' => $leaseService,
+                    'charterService' => $charterService,
+                    'partnerFleetManagement' => $partnerFleetManagement
+                )
         ]);
     }
 
@@ -879,6 +881,17 @@ class MobileController extends Controller
         ]);
     }
 
+    public function get_profile()
+    {
+        $user = User::findorfail(Auth::user()->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile Retrieved!',
+            'data' => $user
+        ]);
+    }
+
     public function get_all_services()
     {
         $services = Service::latest()->get();
@@ -896,13 +909,6 @@ class MobileController extends Controller
                             ->latest()->where('to', Auth::user()->id)
                             ->get(['users.name','users.account_type', 'notifications.*']);
 
-        if($userNotifications->isEmpty())
-        {
-            return response()->json([
-                'success' => false,
-                'data' => null
-            ]);
-        }
         return response()->json([
             'success' => true,
             'message' => 'All Notifications Retrieved!',
@@ -916,13 +922,6 @@ class MobileController extends Controller
                 ->latest()->where('to', Auth::user()->id)->where('notifications.status', 'Unread')->take(5)
                 ->get(['users.name','users.account_type', 'notifications.*']);
 
-        if($userUnreadNotifications->isEmpty())
-        {
-            return response()->json([
-                'success' => false,
-                'data' => null
-            ]);
-        }
         return response()->json([
             'success' => true,
             'message' => 'All Unread Notifications Retrieved!',

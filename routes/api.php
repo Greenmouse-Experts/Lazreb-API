@@ -63,6 +63,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         Route::post('/profile/update', [MobileController::class, 'update_profile']);
         Route::post('/profile/update/password', [MobileController::class, 'update_password']);
         Route::post('/profile/upload/profile-picture', [MobileController::class, 'upload_profile_picture']);
+        Route::get('/get/profile', [MobileController::class, 'get_profile']);
 
         Route::get('/services/all', [MobileController::class, 'get_all_services']);
 

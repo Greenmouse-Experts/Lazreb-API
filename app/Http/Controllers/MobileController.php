@@ -335,22 +335,91 @@ class MobileController extends Controller
 
     }
 
-    public function my_requests()
+    public function my_requests_hire_vehicle()
     {
         $hireService = HireVehicle::where('user_id', Auth::user()->id)->paginate(10);
-        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->paginate(10);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'My Hire Vehicle Requests Retrieved Successfully.',
+            'data' => $hireService
+        ]);
+    }
+
+    public function my_requests_hire_vehicle_count()
+    {
+        $countHireService = HireVehicle::where('user_id', Auth::user()->id)->get()->count();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Count My Hire Vehicle Requests.',
+            'data' => $countHireService
+        ]);
+    }
+
+    public function my_requests_charter_vehicle()
+    {
         $charterService = CharterVehicle::where('user_id', Auth::user()->id)->paginate(10);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'My Charter Vehicle Requests Retrieved Successfully.',
+            'data' => $charterService
+        ]);
+    }
+
+    public function my_requests_charter_vehicle_count()
+    {
+        $countCharterService = CharterVehicle::where('user_id', Auth::user()->id)->get()->count();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Count My Charter Vehicle Requests.',
+            'data' => $countCharterService
+        ]);
+    }
+
+    public function my_requests_lease_vehicle()
+    {
+        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->paginate(10);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'My Lease Vehicle Requests Retrieved Successfully.',
+            'data' => $leaseService
+        ]);
+    }
+
+    public function my_requests_lease_vehicle_count()
+    {
+        $countLeaseService = LeaseVehicle::where('user_id', Auth::user()->id)->get()->count();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Count My Lease Vehicle Requests.',
+            'data' => $countLeaseService
+        ]);
+    }
+
+    public function my_requests_partner_fleet_management()
+    {
         $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->paginate(10);
 
         return response()->json([
             'success' => true,
-            'message' => 'My Requests Retrieved Successfully.',
-            'data' => array(
-                    'hireService' => $hireService, 
-                    'leaseService' => $leaseService,
-                    'charterService' => $charterService,
-                    'partnerFleetManagement' => $partnerFleetManagement
-                )
+            'message' => 'My Partner Fleet Management Requests Retrieved Successfully.',
+            'data' => $partnerFleetManagement
+        ]);
+    }
+
+    public function my_requests_partner_fleet_management_count()
+    {
+        $countPartnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get()->count();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Count My Partner Fleet Management Requests.',
+            'data' => $countPartnerFleetManagement
         ]);
     }
 
@@ -748,7 +817,9 @@ class MobileController extends Controller
 
     public function referrals()
     {
-        $referrals = Referee::latest()->where('referrer_id', Auth::user()->id)->paginate(10);
+        $referrals = Referee::join('users', 'users.id', '=', 'referees.referee_id')
+                    ->where('referees.referrer_id', Auth::user()->id)
+                    ->get(['users.name', 'users.email', 'referees.bonus']);
 
         return response()->json([
             'success' => true,

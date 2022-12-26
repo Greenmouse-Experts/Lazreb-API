@@ -48,7 +48,14 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::middleware('auth:api')->group(function () {
         Route::post('/post/request/services/{id}', [MobileController::class, 'post_request_services']);
         Route::post('/post/partner/fleet/management', [MobileController::class, 'post_partner_fleet_management']);
-        Route::get('/my-requests', [MobileController::class, 'my_requests']);
+        Route::get('/my-requests/hire-vehicle', [MobileController::class, 'my_requests_hire_vehicle']);
+        Route::get('/my-requests/hire-vehicle/count', [MobileController::class, 'my_requests_hire_vehicle_count']);
+        Route::get('/my-requests/charter-vehicle', [MobileController::class, 'my_requests_charter_vehicle']);
+        Route::get('/my-requests/charter-vehicle/count', [MobileController::class, 'my_requests_charter_vehicle_count']);
+        Route::get('/my-requests/lease-vehicle', [MobileController::class, 'my_requests_lease_vehicle']);
+        Route::get('/my-requests/lease-vehicle/count', [MobileController::class, 'my_requests_lease_vehicle_count']);
+        Route::get('/my-requests/partner-fleet-management', [MobileController::class, 'my_requests_partner_fleet_management']);
+        Route::get('/my-requests/partner-fleet-management/count', [MobileController::class, 'my_requests_partner_fleet_management_count']);
         Route::post('/hire-vehicle/update/{id}', [MobileController::class, 'update_hire_vehicle']);
         Route::post('/hire-vehicle/delete/{id}', [MobileController::class, 'delete_hire_vehicle']);
         Route::post('/charter-vehicle/update/{id}', [MobileController::class, 'update_charter_vehicle']);

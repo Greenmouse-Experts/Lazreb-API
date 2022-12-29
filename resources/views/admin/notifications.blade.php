@@ -38,7 +38,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="media-heading"> 
-                                                    <a href="{{route('user.read.notifications', Crypt::encrypt($Notification->id))}}" class="mr-2">{{\App\Models\User::where('id', $Notification->from)->first()->name}} - {{$Notification->subject}}</a> 
+                                                    <a href="{{route('user.read.notifications', Crypt::encrypt($Notification->id))}}" class="mr-2">{{\App\Models\User::where('id', $Notification->to)->first()->name}} - {{$Notification->subject}}</a> 
                                                     <small class="float-right text-muted">
                                                         <time class="hidden-sm-down" datetime="2017">{{$Notification->created_at->diffForHumans()}}</time>
                                                     </small>

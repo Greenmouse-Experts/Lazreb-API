@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('to')->nullable();
             $table->string('subject')->nullable();
             $table->text('message')->nullable();
-            $table->text('status')->default('Unread');
+            $table->string('status')->default('Unread');
             $table->timestamps();
         });
     }

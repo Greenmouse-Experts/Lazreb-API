@@ -68,6 +68,7 @@ class DashboardController extends Controller
         $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
         $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
+
         return view('dashboard.request-services', [
             'services' => $services,
             'unreadNotifications' => $unreadNotifications,
@@ -171,13 +172,13 @@ class DashboardController extends Controller
 
         if($service->name == 'Lease A Vehicle')
         {
-            $this->validate($request, [
-                'name' => ['required', 'string', 'max:255'],
-                'vehicle_type' => ['required', 'string', 'max:255'],
-                'lease_duration' => ['required', 'strig', 'max:255'],
-                'purpose_of_use' => ['required', 'string', 'max:255'],
-                'location_of_use' => ['required', 'string', 'max:255'],
-                'agreement' => ['required', 'string', 'max:255'],
+            $request->validate([
+                'name' => 'required|string|max:244|min:1',
+                'vehicle_type' => 'required|string|max:244|min:1',
+                'lease_duration' => 'required|string|max:244|min:1',
+                'purpose_of_use' => 'required|string|max:244|min:1',
+                'location_of_use' => 'required|string|max:244|min:1',
+                'agreement' => 'required|string|max:244|min:1',
             ]);
             
             LeaseVehicle::create([

@@ -52,10 +52,10 @@
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
-                                                        <td>{{$referral->name}} <br>
-                                                            <code>{{$referral->email}}</code>
+                                                        <td>{{\App\Models\User::where('id', $referral->referee_id)->first()->name}} <br>
+                                                            <code>{{\App\Models\User::where('id', $referral->referee_id)->first()->email}}</code>
                                                         </td>
-                                                        <td>{{$referral->phone_number}}</td>
+                                                        <td>{{\App\Models\User::where('id', $referral->referee_id)->first()->phone_number}}</td>
                                                         <td>{{$referral->created_at->toDayDateTimeString()}}</td>
                                                     </tr>
                                                 </tbody>

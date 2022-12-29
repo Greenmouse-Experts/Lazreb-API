@@ -300,7 +300,6 @@ class AdminController extends Controller
     public function update_service($id, Request $request)
     {
         $this->validate($request, [
-            // 'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
         ]);
 
@@ -321,7 +320,6 @@ class AdminController extends Controller
             request()->thumbnail->storeAs('services_thumbnails', $filename, 'public');
 
             $service->update([
-                // 'name' => $request->name,
                 'thumbnail' => '/storage/services_thumbnails/'.$filename,
                 'description' => $request->description
             ]);
@@ -333,7 +331,6 @@ class AdminController extends Controller
         }
 
         $service->update([
-            'name' => $request->name,
             'description' => $request->description
         ]);
 

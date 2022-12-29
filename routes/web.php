@@ -63,8 +63,13 @@ Route::get('/migrate-fresh', function(){
     return 'success';
 });
 
+Route::get('/migrate-refresh', function(){
+    $exitCode = Artisan::call('migrate:refresh', ['--seed' => true, '--force' => true]);
+    return 'success';
+});
+
 Route::get('/migrate-seed', function(){
-    $exitCode = Artisan::call('db:seed');
+    $exitCode = Artisan::call('migrate', ['--seed' => true, '--force' => true]);
     return 'success';
 });
 

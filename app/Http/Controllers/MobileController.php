@@ -337,7 +337,7 @@ class MobileController extends Controller
 
     public function my_requests_hire_vehicle()
     {
-        $hireService = HireVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $hireService = HireVehicle::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -359,7 +359,7 @@ class MobileController extends Controller
 
     public function my_requests_charter_vehicle()
     {
-        $charterService = CharterVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $charterService = CharterVehicle::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -381,7 +381,7 @@ class MobileController extends Controller
 
     public function my_requests_lease_vehicle()
     {
-        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->paginate(10);
+        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -403,7 +403,7 @@ class MobileController extends Controller
 
     public function my_requests_partner_fleet_management()
     {
-        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->paginate(10);
+        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -770,7 +770,7 @@ class MobileController extends Controller
 
     public function transactions()
     {
-        $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->paginate(10);
+        $transactions = Transaction::latest()->where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,

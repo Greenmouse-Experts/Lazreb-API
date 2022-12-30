@@ -208,7 +208,7 @@ class MobileController extends Controller
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
                         'no_of_vehicles' => ['required', 'numeric'],
-                        'nin' => ['required', 'string', 'max:255'],
+                        // 'nin' => ['required', 'string', 'max:255'],
                         'agreement' => ['required', 'string']
                     ]);
             
@@ -264,9 +264,9 @@ class MobileController extends Controller
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
                         'no_of_vehicles' => ['required', 'numeric'],
-                        'company_name' => ['required', 'string', 'max:255'],
+                        // 'company_name' => ['required', 'string', 'max:255'],
                         'company_address' => ['required', 'string', 'max:255'],
-                        'cac_number' => ['required', 'string', 'max:255'],
+                        // 'cac_number' => ['required', 'string', 'max:255'],
                         'agreement' => ['required', 'string']
                     ]);
             
@@ -819,7 +819,7 @@ class MobileController extends Controller
     {
         $referrals = Referee::join('users', 'users.id', '=', 'referees.referee_id')
                     ->where('referees.referrer_id', Auth::user()->id)
-                    ->get(['users.name', 'users.email', 'referees.bonus']);
+                    ->get(['users.name', 'users.email', 'referees.bonus', 'referees.created_at']);
 
         return response()->json([
             'success' => true,

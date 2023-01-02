@@ -73,6 +73,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         Route::get('/get/profile', [MobileController::class, 'get_profile']);
 
         Route::get('/services/all', [MobileController::class, 'get_all_services']);
+        Route::get('/vehicle-type/all', [MobileController::class, 'get_all_vehicle_type']);
 
         Route::get('/get/all/notifications', [MobileController::class, 'get_all_notifications']);
         Route::get('/get/all/unread/notifications', [MobileController::class, 'get_all_unread_notifications']);

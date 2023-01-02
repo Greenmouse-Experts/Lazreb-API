@@ -11,6 +11,7 @@ use App\Models\Referee;
 use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,8 +54,8 @@ class MobileController extends Controller
             $validator = Validator::make(request()->all(), [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -98,8 +99,8 @@ class MobileController extends Controller
             $validator = Validator::make(request()->all(), [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -432,8 +433,8 @@ class MobileController extends Controller
             $validator = Validator::make(request()->all(), [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -503,8 +504,8 @@ class MobileController extends Controller
             $validator = Validator::make(request()->all(), [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -971,6 +972,17 @@ class MobileController extends Controller
             'success' => true,
             'message' => 'All Services Retrieved',
             'data' => $services
+        ]);
+    }
+
+    public function get_all_vehicle_type()
+    {
+        $vehicleType = VehicleType::latest()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All Vehicle Type Retrieved',
+            'data' => $vehicleType
         ]);
     }
 

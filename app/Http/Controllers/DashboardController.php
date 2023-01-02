@@ -102,8 +102,8 @@ class DashboardController extends Controller
             $this->validate($request, [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -139,8 +139,8 @@ class DashboardController extends Controller
             $this->validate($request, [
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
-                'start_date' => ['required', 'date'],
-                'return_date' => ['required', 'date'],
+                'start_date' => ['required', 'date', 'after:tomorrow'],
+                'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
                 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -244,8 +244,8 @@ class DashboardController extends Controller
         $this->validate($request, [
             'pick_up_address' => ['required', 'string', 'max:255'],
             'drop_off_address' => ['required', 'string', 'max:255'],
-            'start_date' => ['required', 'date'],
-            'return_date' => ['required', 'date'],
+            'start_date' => ['required', 'date', 'after:tomorrow'],
+            'return_date' => ['required', 'date', 'after:start_date'],
             'start_time' => ['required', 'date_format:H:i'],
             'return_time' => ['required', 'date_format:H:i'],
             'vehicle_type' => ['required', 'string', 'max:255'],
@@ -292,8 +292,8 @@ class DashboardController extends Controller
         $this->validate($request, [
             'pick_up_address' => ['required', 'string', 'max:255'],
             'drop_off_address' => ['required', 'string', 'max:255'],
-            'start_date' => ['required', 'date'],
-            'return_date' => ['required', 'date'],
+            'start_date' => ['required', 'date', 'after:tomorrow'],
+            'return_date' => ['required', 'date', 'after:start_date'],
             'start_time' => ['required', 'date_format:H:i'],
             'return_time' => ['required', 'date_format:H:i'],
             'vehicle_type' => ['required', 'string', 'max:255'],

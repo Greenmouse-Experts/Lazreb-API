@@ -404,6 +404,13 @@ class AdminController extends Controller
 
         $user = User::where('id', $hirevehicle->user_id)->first();
 
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $user->id;
+        $message->subject = 'Hire Vehicle Request';
+        $message->message = 'Hello '.$user->name.', Your Request to hire a vehicle has been '. $hirevehicle->status;
+        $message->save();
+
         /** Store information to include in mail in $data as an array */
         $data = array(
             'name' => $user->name,
@@ -447,6 +454,13 @@ class AdminController extends Controller
 
         $user = User::where('id', $chartervehicle->user_id)->first();
         
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $user->id;
+        $message->subject = 'Charter Vehicle Request';
+        $message->message = 'Hello '.$user->name.', Your Request to charter a vehicle has been '. $chartervehicle->status;
+        $message->save();
+
         /** Store information to include in mail in $data as an array */
         $data = array(
             'name' => $user->name,
@@ -488,6 +502,13 @@ class AdminController extends Controller
             'status' => $request->status,
         ]);
 
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $user->id;
+        $message->subject = 'Lease Vehicle Request';
+        $message->message = 'Hello '.$user->name.', Your Request to lease a vehicle has been '. $leasevehicle->status;
+        $message->save();
+
         $user = User::where('id', $leasevehicle->user_id)->first();
         
         /** Store information to include in mail in $data as an array */
@@ -528,6 +549,13 @@ class AdminController extends Controller
 
         $user = User::where('id', $partnerfleetmanagement->user_id)->first();
         
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $user->id;
+        $message->subject = 'Partner Fleet Management Request';
+        $message->message = 'Hello '.$user->name.', Your Request for partner fleet management has been '. $partnerfleetmanagement->status;
+        $message->save();
+
         /** Store information to include in mail in $data as an array */
         $data = array(
             'name' => $user->name,

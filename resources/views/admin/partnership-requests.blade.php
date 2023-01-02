@@ -98,7 +98,7 @@
                                                                  <!-- Edit Modal -->
                                                                 <div class="modal fade" id="BecomePartnerEdit-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                     <div class="modal-dialog">
-                                                                        <form method="post" action="{{ route('admin.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
+                                                                        <form method="post" action="{{ route('admin.process.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
                                                                              @csrf
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header"> 
@@ -238,7 +238,7 @@
                                                                 <!-- Edit Modal -->
                                                                 <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
-                                                                        <form method="post" action="{{ route('admin.update.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
+                                                                        <form method="post" action="{{ route('admin.process.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
                                                                             @csrf
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header"> 

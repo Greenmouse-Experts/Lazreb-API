@@ -141,7 +141,6 @@ class MobileController extends Controller
 
         if($service->name == 'Lease A Vehicle')
         {
-
             $validator = Validator::make(request()->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
@@ -642,7 +641,7 @@ class MobileController extends Controller
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
                         'no_of_vehicles' => ['required', 'string', 'max:255'],
-                        'nin' => ['required', 'string', 'max:255'],
+                        // 'nin' => ['required', 'string', 'max:255'],
                     ]);
             
                     if ($validator->fails()) {
@@ -690,9 +689,9 @@ class MobileController extends Controller
                     $validator = Validator::make(request()->all(), [
                         'vehicle_type' => ['required', 'string', 'max:255'],
                         'no_of_vehicles' => ['required', 'string', 'max:255'],
-                        'company_name' => ['required', 'string', 'max:255'],
+                        // 'company_name' => ['required', 'string', 'max:255'],
                         'company_address' => ['required', 'string', 'max:255'],
-                        'cac_number' => ['required', 'string', 'max:255']
+                        // 'cac_number' => ['required', 'string', 'max:255']
                     ]);
             
                     if ($validator->fails()) {

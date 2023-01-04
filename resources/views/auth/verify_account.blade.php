@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-8 text-align: center;">
-                                    <div class="mb-4 mt-4">
+                                    <div class="mb-4 mt-4" style="display: flex; justify-content: center;">
                                         <input type="number" name="first" class="code" min="0" max="9" required />
                                         <input type="number" name="second" class="code" min="0" max="9" required />
                                         <input type="number" name="third" class="code" min="0" max="9" required />

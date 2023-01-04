@@ -52,36 +52,47 @@
                 <div class="col-lg-6 form-area">
                     <h3>Message Us</h3>
                     <p>Drop us a message and we'll get back to you</p>
-                    <form>
+                    @includeIf('layouts.error_template')
+                    <form method="post" action="/contact-us">
+                        @csrf
                         <div class="row">
                             <!--Full Name-->
                             <div class="col-lg-6">
                                 <label for="name">FULL NAME</label>
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" placeholder="Name" name="name" required>
                             </div>
                             <!--Email Address-->
                             <div class="col-lg-6">
                                 <label for="email">EMAIL ADDRESS</label>
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" placeholder="Email" name="email" required>
                             </div>
                             <!--Phone Number-->
                             <div class="col-lg-6">
                                 <label for="phone">PHONE NUMBER</label>
-                                <input type="tel" placeholder="Phone Number" required>
+                                <input type="tel" placeholder="Phone Number" name="phone" required>
                             </div>
                             <!--Subject-->
                             <div class="col-lg-6">
                                 <label for="subject">Subject</label>
-                                <input type="text" placeholder="Subject" required>
+                                <input type="text" placeholder="Subject" name="subject" required>
                             </div>
                             <!--Message-->
                             <div class="col-lg-12">
                                 <label for="message">Message</label>
-                                <textarea cols="30" rows="5" placeholder="Type Your Message Here..." required></textarea>
+                                <textarea cols="30" rows="5" placeholder="Type Your Message Here..." name="message" required></textarea>
+                            </div>
+                            <div class="col-lg-12 {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                {!! app('captcha')->display() !!}
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <!--Button-->
                             <div class="col-lg-6">
-                                <button type="submit">Send Message</button>
+                                <button class="form-btn" type="submit">Send Message</button>
                             </div>
                         </div>
                     </form>

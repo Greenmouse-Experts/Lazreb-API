@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {!! NoCaptcha::renderJs() !!}
         <title>{{config('app.name')}} - LogIn</title>
         <script>
             window.setTimeout(function() {
@@ -52,6 +53,15 @@
                                 <a href="{{route('forgot')}}" class="forgot">Forgotten Password?</a>
                                 <input type="password" placeholder="Enter password" name="password" required>
                                 <i class="toggle-password fa fa-fw fa-eye-slash" title="Toggle to show/hide password"></i>
+                            </div>
+                            <div class="mb-4 {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                {!! app('captcha')->display() !!}
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <!--Button-->
                             <div class="mb-4">

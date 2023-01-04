@@ -19,6 +19,7 @@
         <li class="slide"> <a class="side-menu__item" href="{{route('admin.users.services.requests')}}"><i class="side-menu__icon fa fa-share-square"></i><span class="side-menu__label">Service Requests</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('admin.users.notifications')}}"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">Notifications</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('admin.users.transactions')}}"><i class="side-menu__icon fa fa-money"></i><span class="side-menu__label">Transactions</span></a></li>
+        <li class="slide"> <a class="side-menu__item" href="{{route('admin.get.annoucement')}}"><i class="side-menu__icon fa-solid fa fa-bullhorn"></i><span class="side-menu__label">Promo/Annoucement</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('admin.settings')}}"><i class="side-menu__icon fa fa-cog"></i><span class="side-menu__label">Settings</span></a></li>
         <li class="slide"> <a class="side-menu__item" href="{{route('logout')}}"><i class="side-menu__icon fa fa-sign-out"></i><span class="side-menu__label">Logout</span></a></li>
     </ul>

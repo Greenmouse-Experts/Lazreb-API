@@ -18,9 +18,6 @@
 
         <div class="row">
             <div class="col-md-12 col-lg-4">
-                <div class="btn-list">
-                    <a href="#add" data-toggle="modal"  class="btn btn-primary">Upload Transactions Slip<i class="fa fa-upload fa-spin ml-2"></i></a>
-                </div>
             </div>
             <div class="col-md-12 col-lg-2">
             </div>
@@ -88,36 +85,5 @@
             </div>
         </div>
     </div> <!-- Right-sidebar-->
-</div>
-
-<!-- Edit Modal -->
-<div class="modal fade" id="add" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form method="post" action="{{ route('user.upload.transaction.slip')}}" style="width: -webkit-fill-available;" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Upload Transaction Slip</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body px-4 py-5 text-left">
-                    <div class="form-group">
-                        <label>Slip</label>
-                        <input type="file" class="form-control" name="slip" accept="image/png, image/jpg, image/jpeg" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea type="text" class="form-control" name="description" placeholder="Enter description" required></textarea>
-                    </div>
-                    <div class="hstack gap-2 justify-content-center mb-0">
-                        <button type="submit" class="form-btn btn btn-primary">Upload</button>
-                        <button type="button" class="btn btn-secondary" class="close" data-dismiss="modal" aria-label="Close">Close</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>
 @endsection

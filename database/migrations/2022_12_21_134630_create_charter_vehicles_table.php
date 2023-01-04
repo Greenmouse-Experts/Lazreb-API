@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('charter_type')->nullable();
             $table->string('purpose_of_use')->nullable();
             $table->string('agreement')->nullable();
+            $table->string('paid_status')->nullable();
             $table->string('comment')->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();

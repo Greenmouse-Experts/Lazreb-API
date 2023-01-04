@@ -27,6 +27,7 @@ class CharterVehicle extends Model
         'charter_type',
         'purpose_of_use',
         'agreement',
+        'paid_status',
         'comment',
         'status'
     ];

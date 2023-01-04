@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{URL::asset('auth/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    {!! NoCaptcha::renderJs() !!}
     <title>{{config('app.name')}} - Signup</title>
     <script>
         window.setTimeout(function() {
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label>Sex</label>
+                                    <label>Gender</label>
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
                                             <select name="sex" required>
@@ -115,11 +115,21 @@
                                         </div>
                                     </div>
                                     @endif
-                                   
                                 </div>
                             </div>
                             <p class="text">
                                 <input class="move" type="checkbox" name="agreement" required>By Clicking Yes, I Agree to the Terms and Conditions and Privacy Policy</p>
+                            <div class="row">
+                                <div class="col-md-12 mb-3 {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                    {!! app('captcha')->display() !!}
+
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             <!--Button-->
                             <div class="mb-2">
                                 <button class="form-btn" type="submit">Sign Up</button>

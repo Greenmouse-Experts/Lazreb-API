@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\TokenRepository;
@@ -283,6 +284,57 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function hire_vehicle_upload_transaction_slip($id, Request $request)
+    {
+        $this->validate($request, [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $service = HireVehicle::findorfail($finder);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Hire A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Transaction slip uploaded successfully.'
+        ]); 
+    }
+
     public function update_charter_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
@@ -331,6 +383,57 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function charter_vehicle_upload_transaction_slip($id, Request $request)
+    {
+        $this->validate($request, [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $service = CharterVehicle::findorfail($finder);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Charter A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+        
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Transaction slip uploaded successfully.'
+        ]); 
+    }
+
     public function update_lease_vehicle($id, Request $request)
     {
         $finder = Crypt::decrypt($id);
@@ -369,6 +472,57 @@ class DashboardController extends Controller
             'type' => 'success',
             'message' => "Request Deleted Successfully!",
         ]);
+    }
+
+    public function lease_vehicle_upload_transaction_slip($id, Request $request)
+    {
+        $this->validate($request, [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $service = LeaseVehicle::findorfail($finder);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Lease A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+        
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Transaction slip uploaded successfully.'
+        ]); 
     }
 
     public function become_a_partner()
@@ -655,29 +809,6 @@ class DashboardController extends Controller
             'unreadNotifications' => $unreadNotifications,
             'countUnreadNotifications' => $countUnreadNotifications
         ]);
-    }
-
-    public function upload_transaction_slip(Request $request)
-    {
-        $this->validate($request, [
-            'slip' => 'required|mimes:jpeg,png,jpg',
-            'description' => ['required', 'string', 'max:255'],
-        ]);
-        
-        $filename = request()->slip->getClientOriginalName();
-
-        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
-
-        Transaction::create([
-            'user_id' => Auth::user()->id,
-            'slip' => '/storage/users_transaction_slip/'.$filename,
-            'description' => $request->description
-        ]);
-
-        return back()->with([
-            'type' => 'success',
-            'message' => 'Transaction uploaded successfully.'
-        ]); 
     }
 
     public function help_support()

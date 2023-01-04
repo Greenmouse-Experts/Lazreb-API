@@ -27,6 +27,7 @@ class HireVehicle extends Model
         'price',
         'purpose_of_use',
         'agreement',
+        'paid_status',
         'comment',
         'status'
     ];

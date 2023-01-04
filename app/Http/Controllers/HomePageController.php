@@ -39,6 +39,31 @@ class HomePageController extends Controller
         return view('frontend.contact');
     }
 
+    public function contactConfirm(Request $request) {
+        //Validate Request
+        $this->validate($request, [
+            'phone' => 'required|numeric',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => request()->name,
+            'email' => request()->email,
+            'phone' => request()->phone,
+            'subject' => request()->subject,
+            'description' => request()->message,
+            'created_at' => now(),
+            'admin' => 'support@lazrebleasinglogistics.com',
+        );
+        /** Send message to the admin */
+        Mail::send('emails.contact', $data, function ($m) use ($data) {
+            $m->to($data['admin'])->subject('Contact Form Notification');
+        });
+
+        return back()->with('success_report', 'Form Submitted Successfully');
+    }
+
     public function policy()
     {
         return view('frontend.policy');

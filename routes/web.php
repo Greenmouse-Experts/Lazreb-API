@@ -25,6 +25,7 @@ Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about'])-
 Route::get('/services', [App\Http\Controllers\HomePageController::class, 'services'])->name('services');
 Route::get('/faqs', [App\Http\Controllers\HomePageController::class, 'faqs'])->name('faqs');
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact'])->name('contact');
+Route::post('/contact-us', [App\Http\Controllers\HomePageController::class, 'contactConfirm']);
 Route::get('/terms', [App\Http\Controllers\HomePageController::class, 'terms'])->name('terms');
 Route::get('/policy', [App\Http\Controllers\HomePageController::class, 'policy'])->name('policy');
 
@@ -107,10 +108,13 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/view-my-request/{id}', [DashboardController::class, 'view_my_requests'])->name('user.view.my.requests');
     Route::post('/hire-vehicle/update/{id}', [DashboardController::class, 'update_hire_vehicle'])->name('user.update.hire.vehicle');
     Route::post('/hire-vehicle/delete/{id}', [DashboardController::class, 'delete_hire_vehicle'])->name('user.delete.hire.vehicle');
+    Route::post('/hire-vehicle/upload/transaction/slip/{id}', [DashboardController::class, 'hire_vehicle_upload_transaction_slip'])->name('user.upload.transaction.slip.hire.vehicle');
     Route::post('/charter-vehicle/update/{id}', [DashboardController::class, 'update_charter_vehicle'])->name('user.update.charter.vehicle');
     Route::post('/charter-vehicle/delete/{id}', [DashboardController::class, 'delete_charter_vehicle'])->name('user.delete.charter.vehicle');
+    Route::post('/charter-vehicle/upload/transaction/slip/{id}', [DashboardController::class, 'charter_vehicle_upload_transaction_slip'])->name('user.upload.transaction.slip.charter.vehicle');
     Route::post('/lease-vehicle/update/{id}', [DashboardController::class, 'update_lease_vehicle'])->name('user.update.lease.vehicle');
     Route::post('/lease-vehicle/delete/{id}', [DashboardController::class, 'delete_lease_vehicle'])->name('user.delete.lease.vehicle');
+    Route::post('/lease-vehicle/upload/transaction/slip/{id}', [DashboardController::class, 'lease_vehicle_upload_transaction_slip'])->name('user.upload.transaction.slip.lease.vehicle');
     Route::post('/partner-fleet-management/update/{id}', [DashboardController::class, 'update_partner_fleet_management'])->name('user.update.partner.fleet.management');
     Route::post('/partner-fleet-management/delete/{id}', [DashboardController::class, 'delete_partner_fleet_management'])->name('user.delete.partner.fleet.management');
     Route::get('/get/service/{id}', [DashboardController::class, 'get_service'])->name('user.get.service');
@@ -122,7 +126,6 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/notifications', [DashboardController::class, 'notifications'])->name('user.notifications');
     Route::get('/read/notification/{id}', [DashboardController::class, 'read_notification'])->name('user.read.notifications');
     Route::get('/transactions', [DashboardController::class, 'transactions'])->name('user.transactions');
-    Route::post('/upload/transaction/slip', [DashboardController::class, 'upload_transaction_slip'])->name('user.upload.transaction.slip');
     Route::get('/help/support', [DashboardController::class, 'help_support'])->name('user.help.support');
     Route::get('/referrals', [DashboardController::class, 'referrals'])->name('user.referrals');
     Route::get('/settings', [DashboardController::class, 'settings'])->name('user.settings');
@@ -168,4 +171,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/profile/update', [AdminController::class, 'admin_update_profile'])->name('admin.update.profile');
     Route::post('/admin/profile/update/password', [AdminController::class, 'admin_update_password'])->name('admin.update.password');
     Route::post('/admin/profile/upload/profile-picture', [AdminController::class, 'admin_upload_profile_picture'])->name('admin.upload.profile.picture');
+
+    Route::get('/admin/get/annoucement', [AdminController::class, 'admin_get_annoucement'])->name('admin.get.annoucement');
+    Route::post('/admin/post/annoucement', [AdminController::class, 'admin_post_annoucement'])->name('admin.post.annoucement');
+    Route::post('/admin/update/annoucement/{id}', [AdminController::class, 'admin_update_annoucement'])->name('admin.update.annoucement');
+    Route::post('/admin/delete/annoucement/{id}', [AdminController::class, 'admin_delete_annoucement'])->name('admin.delete.annoucement');
 });

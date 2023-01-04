@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Annoucement;
 use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
@@ -15,6 +16,7 @@ use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\TokenRepository;
@@ -100,9 +102,9 @@ class MobileController extends Controller
                 'pick_up_address' => ['required', 'string', 'max:255'],
                 'drop_off_address' => ['required', 'string', 'max:255'],
                 'start_date' => ['required', 'date', 'after:tomorrow'],
-                'return_date' => ['required', 'date', 'after:start_date'],
+                // 'return_date' => ['required', 'date', 'after:start_date'],
                 'start_time' => ['required', 'date_format:H:i'],
-                'return_time' => ['required', 'date_format:H:i'],
+                // 'return_time' => ['required', 'date_format:H:i'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
                 'charter_type' => ['required', 'string', 'max:255'],
                 'purpose_of_use' => ['required', 'string', 'max:255'],
@@ -494,6 +496,68 @@ class MobileController extends Controller
         ]);
     }
 
+    public function upload_hire_vehicle($id, Request $request)
+    {
+        $input = $request->only(['slip', 'description']);
+
+        $validate_data = [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ];
+
+        $validator = Validator::make($input, $validate_data);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
+        
+        $service = HireVehicle::findorfail($id);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        $transaction = Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Hire A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Transaction uploaded successfully.',
+            'data' => $transaction
+        ]);
+    }
+
     public function update_charter_vehicle($id, Request $request)
     {
         $chartervehicle = CharterVehicle::findorfail($id);
@@ -565,6 +629,68 @@ class MobileController extends Controller
         ]);
     }
 
+    public function upload_charter_vehicle($id, Request $request)
+    {
+        $input = $request->only(['slip', 'description']);
+
+        $validate_data = [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ];
+
+        $validator = Validator::make($input, $validate_data);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
+        
+        $service = CharterVehicle::findorfail($id);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        $transaction = Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Charter A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Transaction uploaded successfully.',
+            'data' => $transaction
+        ]);
+    }
+
     public function update_lease_vehicle($id, Request $request)
     {
         $leaseVehicle = LeaseVehicle::findorfail($id);
@@ -625,6 +751,68 @@ class MobileController extends Controller
         return response()->json([
             'success' => false,
             'message' => 'Request not completed, it accepts only when the request sent is pending.',
+        ]);
+    }
+
+    public function upload_lease_vehicle($id, Request $request)
+    {
+        $input = $request->only(['slip', 'description']);
+
+        $validate_data = [
+            'slip' => 'required|mimes:jpeg,png,jpg',
+            'description' => ['required', 'string', 'max:255'],
+        ];
+
+        $validator = Validator::make($input, $validate_data);
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please see errors parameter for all errors.',
+                'errors' => $validator->errors()
+            ]);
+        }
+        
+        $service = LeaseVehicle::findorfail($id);
+
+        $filename = request()->slip->getClientOriginalName();
+
+        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
+
+        $transaction = Transaction::create([
+            'user_id' => Auth::user()->id,
+            'slip' => '/storage/users_transaction_slip/'.$filename,
+            'description' => $request->description
+        ]);
+
+        $service->update([
+            'paid_status' => 'Uploaded Payment Slip'
+        ]);
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->id;
+        $message->to = $admin->id;
+        $message->subject = 'Payment on Lease A Vehicle Request';
+        $message->message = Auth::user()->name.', made a payment and uploaded the payment slip.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->name,
+            'email' => $admin->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject(config('app.name'));
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Transaction uploaded successfully.',
+            'data' => $transaction
         ]);
     }
 
@@ -776,42 +964,6 @@ class MobileController extends Controller
             'success' => true,
             'message' => 'My Transactions Retrieved',
             'data' => $transactions
-        ]);
-    }
-
-    public function upload_transaction(Request $request)
-    {
-        $input = $request->only(['slip', 'description']);
-
-        $validate_data = [
-            'slip' => 'required|mimes:jpeg,png,jpg',
-            'description' => ['required', 'string', 'max:255'],
-        ];
-
-        $validator = Validator::make($input, $validate_data);
-        
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please see errors parameter for all errors.',
-                'errors' => $validator->errors()
-            ]);
-        }
-        
-        $filename = request()->slip->getClientOriginalName();
-
-        request()->slip->storeAs('users_transaction_slip', $filename, 'public');
-
-        $transaction = Transaction::create([
-            'user_id' => Auth::user()->id,
-            'slip' => '/storage/users_transaction_slip/'.$filename,
-            'description' => $request->description
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Transaction uploaded successfully.',
-            'data' => $transaction
         ]);
     }
 
@@ -1033,6 +1185,28 @@ class MobileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Notification Read Successfully'
+        ]);
+    }
+
+    public function get_promo_annoucement_first()
+    {
+        $annoucement = Annoucement::latest()->first();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Retrieve The Latest First Promo/Annoucement',
+            'data' => $annoucement
+        ]);
+    }
+
+    public function get_all_promo_annoucement()
+    {
+        $annoucement = Annoucement::latest()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All Promo/Announcement Retrieved',
+            'data' => $annoucement
         ]);
     }
 }

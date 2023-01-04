@@ -137,6 +137,7 @@ class AuthController extends Controller
                 'phone_number' => ['required', 'string', 'max:255'],
                 'agreement' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'g-recaptcha-response' => 'required|captcha',
             ]);
 
             if ($request->referrer_code == null) {
@@ -449,7 +450,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
-            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
       
         $input = $request->only(['email', 'password']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Annoucement;
 use App\Models\BecomePartner;
 use App\Models\CharterVehicle;
 use App\Models\HireVehicle;
@@ -43,6 +44,8 @@ class AdminController extends Controller
 
         $recentUsers = User::latest()->where('account_type', 'User')->take(5)->get();
         
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         $transactions = Transaction::get()->count();
 
@@ -54,15 +57,22 @@ class AdminController extends Controller
             'userRequestServices' => $userRequestServices,
             'transactions' => $transactions,
             'users' => $users,
-            'recentUsers' => $recentUsers
+            'recentUsers' => $recentUsers,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
     public function users(){
         $users = User::latest()->where('account_type', 'User')->get();
 
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
         return view('admin.users', [
-            'users' => $users
+            'users' => $users,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -72,8 +82,13 @@ class AdminController extends Controller
 
         $user = User::findorfail($finder);
 
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
         return view('admin.edit-user', [
-            'user' => $user
+            'user' => $user,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -254,14 +269,26 @@ class AdminController extends Controller
 
         $referrals = Referee::latest()->where('referrer_id', $user->id)->get();
 
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
         return view('admin.referrals', [
             'user' => $user,
-            'referrals' => $referrals
+            'referrals' => $referrals,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
-    public function service(){
-        return view('admin.service');
+    public function service()
+    {
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('admin.service', [
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
+        ]);
     }
 
     public function add_service(Request $request)
@@ -292,8 +319,13 @@ class AdminController extends Controller
     {
         $services = Service::latest()->get();
 
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
         return view('admin.manage-services', [
-            'services' => $services
+            'services' => $services,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -341,7 +373,7 @@ class AdminController extends Controller
        
     }
 
-    public function delete_service($id, Request $request)
+    public function delete_service($id)
     {
         $finder = Crypt::decrypt($id);
 
@@ -364,10 +396,14 @@ class AdminController extends Controller
         $services = Service::get();
 
         $partnerFleetManagement = BecomePartner::get()->count();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.services-requests', [
             'services' => $services,
-            'partnerFleetManagement' => $partnerFleetManagement
+            'partnerFleetManagement' => $partnerFleetManagement,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -376,18 +412,26 @@ class AdminController extends Controller
         $finder = Crypt::decrypt($id);
 
         $service = Service::findorfail($finder);
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.view-requested-services', [
-            'service' => $service
+            'service' => $service,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
     public function users_partnership_requests()
     {
         $partnershipRequests = BecomePartner::latest()->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.partnership-requests', [
-            'partnershipRequests' => $partnershipRequests
+            'partnershipRequests' => $partnershipRequests,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -501,6 +545,7 @@ class AdminController extends Controller
             'comment' => $request->comment,
             'status' => $request->status,
         ]);
+        $user = User::where('id', $leasevehicle->user_id)->first();
 
         $message = new Notification();
         $message->from = Auth::user()->id;
@@ -508,8 +553,6 @@ class AdminController extends Controller
         $message->subject = 'Lease Vehicle Request';
         $message->message = 'Hello '.$user->name.', Your Request to lease a vehicle has been '. $leasevehicle->status;
         $message->save();
-
-        $user = User::where('id', $leasevehicle->user_id)->first();
         
         /** Store information to include in mail in $data as an array */
         $data = array(
@@ -584,9 +627,13 @@ class AdminController extends Controller
     public function users_notifications()
     {
         $allUserNotifications = Notification::latest()->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.notifications', [
-            'allUserNotifications' => $allUserNotifications
+            'allUserNotifications' => $allUserNotifications,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
@@ -621,14 +668,25 @@ class AdminController extends Controller
     public function users_transactions()
     {
         $transactions = Transaction::latest()->get();
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.transactions', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
         ]);
     }
 
-    public function settings(){
-        return view('admin.settings');
+    public function settings()
+    {
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('admin.settings', [
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
+        ]);
     }
 
     public function admin_update_password( Request $request)
@@ -699,6 +757,72 @@ class AdminController extends Controller
         return back()->with([
             'type' => 'success',
             'message' => 'Profile Picture Uploaded Successfully!'
+        ]);
+    }
+
+    public function admin_get_annoucement()
+    {
+        $annoucements = Annoucement::latest()->get();
+
+        $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
+        $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
+
+        return view('admin.annoucement', [
+            'annoucements' => $annoucements,
+            'countUnreadNotifications' => $countUnreadNotifications,
+            'unreadNotifications' => $unreadNotifications
+        ]);
+    }
+
+    public function admin_post_annoucement(Request $request)
+    {
+        $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+        ]);
+
+        Annoucement::create([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Annoucement Published Successfully!'
+        ]);
+    }
+
+    public function admin_update_annoucement($id, Request $request)
+    {
+        $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+        ]);
+
+        $finder = Crypt::decrypt($id);
+
+        $annoucement = Annoucement::findorfail($finder);
+
+        $annoucement->update([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Annoucement Updated Successfully!'
+        ]);
+    }
+
+    public function admin_delete_annoucement($id)
+    {
+        $finder = Crypt::decrypt($id);
+
+        Annoucement::findorfail($finder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => "Annoucement Deleted Successfully!",
         ]);
     }
 }

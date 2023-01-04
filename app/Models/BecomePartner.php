@@ -24,6 +24,7 @@ class BecomePartner extends Model
         'company_address',
         'cac_number',
         'agreement',
+        'paid_status',
         'comment',
         'status'
     ];

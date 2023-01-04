@@ -47,6 +47,7 @@
                                                     <th class="wd-15p sorting">Price</th>
                                                     <th class="wd-20p sorting">Purpose of Use</th>
                                                     <th class="wd-20p sorting">Comment</th>
+                                                    <th class="wd-20p sorting">Paid Status</th>
                                                     <th class="wd-20p sorting">Status</th>
                                                     <th class="wd-15p sorting">Created At</th>
                                                     <th class="wd-15p sorting">Action</th>
@@ -75,6 +76,9 @@
                                                         <td>{{$hireVehicle->price}}</td>
                                                         <td>{{$hireVehicle->purpose_of_use}}</td>
                                                         <td>{{$hireVehicle->comment}}</td>
+                                                        <td>
+                                                            <span class="badge badge-success  mr-1 mb-1 mt-1">{{$hireVehicle->paid_status}}</span>
+                                                        </td>
                                                         <td>
                                                             @if($hireVehicle->status == 'Pending')
                                                             <span class="badge badge-info  mr-1 mb-1 mt-1">{{$hireVehicle->status}}</span>
@@ -263,6 +267,7 @@
                                                     <th class="wd-15p sorting">Charter Type</th>
                                                     <th class="wd-20p sorting">Purpose of Use</th>
                                                     <th class="wd-20p sorting">Comment</th>
+                                                    <th class="wd-20p sorting">Paid Status</th>
                                                     <th class="wd-20p sorting">Status</th>
                                                     <th class="wd-15p sorting">Created At</th>
                                                     <th class="wd-15p sorting">Action</th>
@@ -291,6 +296,9 @@
                                                         <td>{{$charterVehicle->charter_type}}</td>
                                                         <td>{{$charterVehicle->purpose_of_use}}</td>
                                                         <td>{{$charterVehicle->comment}}</td>
+                                                        <td>
+                                                            <span class="badge badge-success  mr-1 mb-1 mt-1">{{$charterVehicle->paid_status}}</span>
+                                                        </td>
                                                         <td>
                                                             @if($charterVehicle->status == 'Pending')
                                                             <span class="badge badge-info  mr-1 mb-1 mt-1">{{$charterVehicle->status}}</span>
@@ -475,6 +483,7 @@
                                                     <th class="wd-20p sorting">Purpose of Use</th>
                                                     <th class="wd-15p sorting">Location of Use</th>
                                                     <th class="wd-20p sorting">Comment</th>
+                                                    <th class="wd-20p sorting">Paid Status</th>
                                                     <th class="wd-20p sorting">Status</th>
                                                     <th class="wd-15p sorting">Created At</th>
                                                     <th class="wd-15p sorting">Action</th>
@@ -501,6 +510,9 @@
                                                         <td>{{$leaseVehicle->purpose_of_use}}</td>
                                                         <td>{{$leaseVehicle->location_of_use}}</td>
                                                         <td>{{$leaseVehicle->comment}}</td>
+                                                        <td>
+                                                            <span class="badge badge-success  mr-1 mb-1 mt-1">{{$leaseVehicle->paid_status}}</span>
+                                                        </td>
                                                         <td>
                                                             @if($leaseVehicle->status == 'Pending')
                                                             <span class="badge badge-info  mr-1 mb-1 mt-1">{{$leaseVehicle->status}}</span>

@@ -16,6 +16,24 @@
                 </a> 
              </div>
             <div class="d-flex order-lg-2 ml-auto header-right">
+                <div class="dropdown d-md-flex header-message"> <a class="nav-link icon" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="nav-unread badge badge-danger badge-pill">{{$countUnreadNotifications}}</span> </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"> 
+                        <a class="dropdown-item text-center" href="#">Notifications</a>
+                        <div class="dropdown-divider"></div> 
+                        @foreach($unreadNotifications as $unreadNotification)
+                        <a class="dropdown-item d-flex pb-4" href="#"> 
+                            <div> 
+                                <span class="font-weight-bold">{{\App\Models\User::where('id', $unreadNotification->from)->first()->name}} - {{$unreadNotification->subject}}</span>
+                                <div class="small text-muted d-flex"> {{$unreadNotification->created_at->diffForHumans()}} </div>
+                            </div>
+                        </a>
+                        @endforeach
+                        <div class="dropdown-divider"></div>
+                        <div class="text-center dropdown-btn pb-3">
+                            <div class="btn-list"><a href="{{route('admin.users.notifications')}}" class=" btn btn-secondary btn-sm"><i class="fe fe-eye mr-1"></i>View All</a> </div>
+                        </div>
+                    </div>
+                </div>
                 <!--Navbar -->
                 <div class="dropdown header-profile"> 
                     <a class="nav-link pr-0 leading-none d-flex pt-1" data-toggle="dropdown" href="#"> 

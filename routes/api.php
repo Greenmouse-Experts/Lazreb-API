@@ -58,14 +58,16 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         Route::get('/my-requests/partner-fleet-management/count', [MobileController::class, 'my_requests_partner_fleet_management_count']);
         Route::post('/hire-vehicle/update/{id}', [MobileController::class, 'update_hire_vehicle']);
         Route::post('/hire-vehicle/delete/{id}', [MobileController::class, 'delete_hire_vehicle']);
+        Route::post('/hire-vehicle/upload/{id}', [MobileController::class, 'upload_hire_vehicle']);
         Route::post('/charter-vehicle/update/{id}', [MobileController::class, 'update_charter_vehicle']);
         Route::post('/charter-vehicle/delete/{id}', [MobileController::class, 'delete_charter_vehicle']);
+        Route::post('/charter-vehicle/upload/{id}', [MobileController::class, 'upload_charter_vehicle']);
         Route::post('/lease-vehicle/update/{id}', [MobileController::class, 'update_lease_vehicle']);
         Route::post('/lease-vehicle/delete/{id}', [MobileController::class, 'delete_lease_vehicle']);
+        Route::post('/lease-vehicle/upload/{id}', [MobileController::class, 'upload_lease_vehicle']);
         Route::post('/update/partner/fleet/management/{id}', [MobileController::class, 'update_partner_fleet_management']);
         Route::post('/delete/partner/fleet/management/{id}', [MobileController::class, 'delete_partner_fleet_management']);
         Route::get('/transactions', [MobileController::class, 'transactions']);
-        Route::post('/upload/transaction', [MobileController::class, 'upload_transaction']);
         Route::get('/referrals', [MobileController::class, 'referrals']);
         Route::post('/profile/update', [MobileController::class, 'update_profile']);
         Route::post('/profile/update/password', [MobileController::class, 'update_password']);
@@ -79,6 +81,9 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         Route::get('/get/all/unread/notifications', [MobileController::class, 'get_all_unread_notifications']);
         Route::get('/count/unread/notifications', [MobileController::class, 'count_unread_notifications']);
         Route::post('/read/notification/{id}', [MobileController::class, 'read_notification']);
+
+        Route::get('/get/promo/annoucement/first', [MobileController::class, 'get_promo_annoucement_first']);
+        Route::get('/get/all/promo/annoucement', [MobileController::class, 'get_all_promo_annoucement']);
 
         Route::post('logout', [MobileController::class, 'logout']);
     });

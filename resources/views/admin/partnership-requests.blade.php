@@ -236,8 +236,8 @@
                                                                 </a>
                                                                 @endif
                                                                 <!-- Edit Modal -->
-                                                                <div class="modal fade" id="BecomePartnerDelete-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                <div class="modal fade" id="BecomePartnerEdit-{{$becomePartner->id}}" tabindex="-1" aria-labelledby="categoryDeleteLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
                                                                         <form method="post" action="{{ route('admin.process.partner.fleet.management', Crypt::encrypt($becomePartner->id))}}" style="width: -webkit-fill-available;">
                                                                             @csrf
                                                                             <div class="modal-content">
@@ -257,16 +257,8 @@
                                                                                         <input type="number" class="form-control" value="{{$becomePartner->no_of_vehicles}}" disabled>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label>Company Name</label>
-                                                                                        <input type="text" class="form-control" value="{{$becomePartner->company_name}}" disabled>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label>Company Address</label>
-                                                                                        <input type="text" class="form-control" value="{{$becomePartner->company_address}}" disabled>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label>CAC Number</label>
-                                                                                        <input type="text" class="form-control" value="{{$becomePartner->cac_number}}" disabled>
+                                                                                        <label>NIN</label>
+                                                                                        <input type="text" class="form-control" value="{{$becomePartner->nin}}" disabled>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="comment">Comment</label>

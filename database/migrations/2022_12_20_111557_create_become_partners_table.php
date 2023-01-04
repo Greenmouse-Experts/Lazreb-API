@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('cac_number')->nullable();
             $table->string('agreement')->nullable();
+            $table->string('paid_status')->nullable();
             $table->string('comment')->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();

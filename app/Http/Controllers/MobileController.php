@@ -339,7 +339,7 @@ class MobileController extends Controller
 
     public function my_requests_hire_vehicle()
     {
-        $hireService = HireVehicle::where('user_id', Auth::user()->id)->get();
+        $hireService = HireVehicle::latest()->where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -350,7 +350,7 @@ class MobileController extends Controller
 
     public function my_requests_hire_vehicle_count()
     {
-        $countHireService = HireVehicle::where('user_id', Auth::user()->id)->get()->count();
+        $countHireService = HireVehicle::latest()->where('user_id', Auth::user()->id)->get()->count();
 
         return response()->json([
             'success' => true,
@@ -361,7 +361,7 @@ class MobileController extends Controller
 
     public function my_requests_charter_vehicle()
     {
-        $charterService = CharterVehicle::where('user_id', Auth::user()->id)->get();
+        $charterService = CharterVehicle::latest()->where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -372,7 +372,7 @@ class MobileController extends Controller
 
     public function my_requests_charter_vehicle_count()
     {
-        $countCharterService = CharterVehicle::where('user_id', Auth::user()->id)->get()->count();
+        $countCharterService = CharterVehicle::latest()->where('user_id', Auth::user()->id)->get()->count();
 
         return response()->json([
             'success' => true,
@@ -383,7 +383,7 @@ class MobileController extends Controller
 
     public function my_requests_lease_vehicle()
     {
-        $leaseService =  LeaseVehicle::where('user_id', Auth::user()->id)->get();
+        $leaseService =  LeaseVehicle::latest()->where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -405,7 +405,7 @@ class MobileController extends Controller
 
     public function my_requests_partner_fleet_management()
     {
-        $partnerFleetManagement = BecomePartner::where('user_id', Auth::user()->id)->get();
+        $partnerFleetManagement = BecomePartner::latest()->where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -970,7 +970,7 @@ class MobileController extends Controller
     public function referrals()
     {
         $referrals = Referee::join('users', 'users.id', '=', 'referees.referee_id')
-                    ->where('referees.referrer_id', Auth::user()->id)
+                    ->latest()->where('referees.referrer_id', Auth::user()->id)
                     ->get(['users.name', 'users.email', 'referees.bonus', 'referees.created_at']);
 
         return response()->json([

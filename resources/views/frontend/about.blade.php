@@ -77,7 +77,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669195788/lazreb/Vector_1_1_pjvs0t.png" draggable="false" alt="">
+                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1672909977/lazreb/Rectangle_92_7_hldlbx_1_lalbci.jpg" draggable="false" alt="">
             </div>
             <div class="col-lg-6">
                 <div class="btn-array">
@@ -110,54 +110,54 @@
             <div class="col-lg-4">
                 <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Leadership Driven
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Leadership Driven
                     </h3>
                     <p>
-                    One of our qualities known to our clients and partners are our great leadership skills.
+                        One of our qualities known to our clients and partners are our great leadership skills.
                     </p>
                 </div>
                 <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Zealousness
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Accountability
                     </h3>
                     <p>
-                    Our passion for what we do drives us to be better, putting our clients in our best interest
-
+                        We are known for our accountability and efficiency in delivering our services.
                     </p>
                 </div>
                 <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Efficiency
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Zealousness
                     </h3>
                     <p>
-                    Coherence and competence in what we do keeps us outstanding in delivering to you and the general audience.
+                        Our passion for what we do drives us to be better, putting our clients in our best interest
 
                     </p>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="curve">
+            <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Accountability
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Respect
                     </h3>
                     <p>
-                    We are known for our accountability and efficiency in delivering our services.
+                        We respect the interests and decisions of our clients making us the number #1 choice in our business.
                     </p>
                 </div>
                 <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Respect
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Efficiency
                     </h3>
                     <p>
-                    We respect the interests and decisions of our clients making us the number #1 choice in our business.
+                        Coherence and competence in what we do keeps us outstanding in delivering to you and the general audience.
+
                     </p>
                 </div>
                 <div class="curve">
                     <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt="">  Bold in integrity
+                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1671539909/lazreb/Group_9949_mfficl.png" draggable="false" alt=""> Bold in integrity
                     </h3>
                     <p>
-                    Our outstanding probity and uprightness towards rendering our services makes us highly preferred by the masses.
+                        Our outstanding probity and uprightness towards rendering our services makes us highly preferred by the masses.
                     </p>
                 </div>
             </div>

@@ -581,6 +581,5 @@
     }
 </script>
 <!--Cookies Box Ends-->
-<!--Footer Section-->
 <!--Footer Section Ends-->
 @endsection

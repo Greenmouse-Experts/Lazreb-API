@@ -187,7 +187,8 @@ class MobileController extends Controller
 
     public function post_partner_fleet_management(Request $request)
     {
-        $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->get();
+        $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->where('status', 'Approved')
+                                ->orwhere('status', 'Pending')->get();
 
         $validator = Validator::make(request()->all(), [
             'partnership_type' => ['required', 'string', 'max:255'],

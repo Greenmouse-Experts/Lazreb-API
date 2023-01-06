@@ -60,7 +60,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\HireVehicle::where('service_id', $service->id)->get() as $hireVehicle)
+                                                @foreach(\App\Models\HireVehicle::latest()->where('service_id', $service->id)->get() as $hireVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
@@ -94,6 +94,10 @@
                                                             <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
                                                                 <i class="fa fa-check-square-o"></i> {{$hireVehicle->status}}
                                                             </a>
+                                                            <a href="#HireVehicleEdit-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                <i class="fa fa-edit"></i> Process
+                                                            </a>
+                                                            @elseif($hireVehicle->status == 'Paid')
                                                             <a href="#HireVehicleEdit-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
                                                                 <i class="fa fa-edit"></i> Process
                                                             </a>
@@ -166,6 +170,7 @@
                                                                                         <option value="Pending">Pending</option>
                                                                                         <option value="Declined">Declined</option>
                                                                                         <option value="Approved">Approved</option>
+                                                                                        <option value="Paid">Paid</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
@@ -280,7 +285,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\CharterVehicle::where('service_id', $service->id)->get() as $charterVehicle)
+                                                @foreach(\App\Models\CharterVehicle::latest()->where('service_id', $service->id)->get() as $charterVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
@@ -311,6 +316,10 @@
                                                         <td>{{$charterVehicle->created_at->toDayDateTimeString()}}</td>
                                                         <td>
                                                             @if($charterVehicle->status == 'Approved')
+                                                            <a href="#CharterVehicleEdit-{{$charterVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                <i class="fa fa-edit"></i> Process
+                                                            </a>
+                                                            @elseif($charterVehicle->status == 'Paid')
                                                             <a href="#CharterVehicleEdit-{{$charterVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
                                                                 <i class="fa fa-edit"></i> Process
                                                             </a>
@@ -383,6 +392,7 @@
                                                                                         <option value="Pending">Pending</option>
                                                                                         <option value="Declined">Declined</option>
                                                                                         <option value="Approved">Approved</option>
+                                                                                        <option value="Paid">Paid</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">
@@ -496,7 +506,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\LeaseVehicle::where('service_id', $service->id)->get() as $leaseVehicle)
+                                                @foreach(\App\Models\LeaseVehicle::latest()->where('service_id', $service->id)->get() as $leaseVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
@@ -528,6 +538,10 @@
                                                             <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
                                                                 <i class="fa fa-check-square-o"></i> {{$leaseVehicle->status}}
                                                             </a>
+                                                            <a href="#LeaseVehicleEdit-{{$leaseVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
+                                                                <i class="fa fa-edit"></i> Process
+                                                            </a>
+                                                            @elseif($leaseVehicle->status == 'Paid')
                                                             <a href="#LeaseVehicleEdit-{{$leaseVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
                                                                 <i class="fa fa-edit"></i> Process
                                                             </a>
@@ -584,6 +598,7 @@
                                                                                         <option value="Pending">Pending</option>
                                                                                         <option value="Declined">Declined</option>
                                                                                         <option value="Approved">Approved</option>
+                                                                                        <option value="Paid">Paid</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="hstack gap-2 justify-content-center mb-0">

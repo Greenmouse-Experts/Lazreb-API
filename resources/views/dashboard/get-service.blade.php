@@ -313,7 +313,8 @@
                                         <div class="col-6">
                                             <div class="form-group"> 
                                                 <label>Lease Duration</label>
-                                                <input type="text" class="form-control" name="lease_duration" required>
+                                                <input type="number" class="form-control" name="lease_duration" required>
+                                                <span class="text-danger">Number of days</span>
                                             </div>
                                         </div>
                                     </div>

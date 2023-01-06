@@ -450,7 +450,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
         ]);
       
         $input = $request->only(['email', 'password']);

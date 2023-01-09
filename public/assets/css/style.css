@@ -274,21 +274,26 @@ nav .desktop-signup {
 .welcome {
     margin-top: 80px;
 }
+@media (max-width:1500px) {
+    .welcome {
+        margin-top: 10px;
+    }
+}
 .welcome .banner-one{
-    padding: 200px 0px;
-    background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671698648/lazreb/Frame_466382_s7luqk.png);
+    padding: 250px 0px;
+    background-image:linear-gradient(50deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671698648/lazreb/Frame_466382_s7luqk.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 .welcome .banner-two{
-    padding: 200px 0px;
-    background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671730176/lazreb/Frame_466387_ldxa3y.png);
+    padding: 250px 0px;
+    background-image: linear-gradient(50deg,  #0000005b, #0000005b),url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671730176/lazreb/Frame_466387_ldxa3y.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 .welcome .banner-three{
-    padding: 200px 0px;
-    background-image: linear-gradient(50deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671729285/lazreb/Rectangle_19538_yxymub_g4lkof.png);
+    padding: 250px 0px;
+    background-image:linear-gradient(50deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671729285/lazreb/Rectangle_19538_yxymub_g4lkof.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -320,14 +325,19 @@ nav .desktop-signup {
 @media (max-width:1328px) {
     .welcome .text h1 {
         line-height: 1.5;
-        font-size: 39px;
+        font-size: 35px;
         font-weight: 800;
+    }
+}
+@media (max-width: 992px){
+    .welcome .text h1 {
+        text-align: center;
     }
 }
 
 @media (max-width:768px) {
     .welcome .text {
-        padding: 40px 0 0 0;
+        padding: 0px 0 0 0;
         color: #fff;
     }
 }
@@ -342,23 +352,41 @@ nav .desktop-signup {
         font-size: 35px;
         font-weight: 800;
     }
+}
+@media (max-width:520px) {
+    .welcome {
+        margin-top: 80px;
+    }
+    .welcome .text h1 {
+        line-height: 1.5;
+        font-size: 35px;
+        font-weight: 800;
+        padding: 0px 20px;
+    }
+    .welcome .text {
+        padding: 1px 0 0 0 !important;
+        color: #fff;
+    }
     .welcome .banner-one{
         padding: 100px 0px;
-        background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671698648/lazreb/Frame_466382_s7luqk.png);
+        background-image:linear-gradient(50deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1673264733/lazreb/iPhone_13_Pro_Max_-_2_q0vmsk.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 300px;
     }
     .welcome .banner-two{
         padding: 100px 0px;
-        background-image: url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671730176/lazreb/Frame_466387_ldxa3y.png);
+        background-image: linear-gradient(50deg,  #0000005b, #0000005b),url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1673264728/lazreb/iPhone_13_Pro_Max_-_1_maflyk.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 300px;
     }
     .welcome .banner-three{
         padding: 100px 0px;
-        background-image:url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1671729285/lazreb/Rectangle_19538_yxymub_g4lkof.png);
+        background-image:linear-gradient(50deg,  #0000005b, #0000005b), url(https://res.cloudinary.com/greenmouse-tech/image/upload/v1673264728/lazreb/iPhone_13_Pro_Max_-_3_pt1sx3.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 300px;
     }
 }
 .welcome .text a{

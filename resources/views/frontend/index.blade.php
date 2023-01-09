@@ -23,13 +23,12 @@
                                 </div>
                             </div>
                             <div class="col-lg-4"></div>
-                            <div class="col-lg-1"></div>
                         </div>
                     </div>
                     <div class="carousel-item banner-two">
                         <div class="row">~~
                             <div class="col-lg-2"></div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-6">
                                 <div class="text">
                                     <h1>
                                         We provide Reliable & Trusted Services.
@@ -42,7 +41,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-4"></div>
-                            <div class="col-lg-1"></div>
                         </div>
                     </div>
                     <div class="carousel-item banner-three">
@@ -61,7 +59,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-4"></div>
-                            <div class="col-lg-1"></div>
                         </div>
                     </div>
                 </div>
@@ -114,120 +111,6 @@
     </div>
 </section>
 <!-- Welcome Page Ends -->
-
-<!-- Counter Page -->
-<!-- <section class="line">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <div class="counter">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46576_zihq4s.png" draggable="false" alt="">
-                                <h3>
-                                    <span id="Clients">846</span>+
-                                </h3>
-                                <h4>
-                                    CARS LEASED
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46574_km5z6e.png" draggable="false" alt="">
-                                <h3>
-                                    <span id="Projects">846</span>+
-                                </h3>
-                                <h4>
-                                    DELIVERIES
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46579_pbkqnj.png" draggable="false" alt="">
-                                <h3>
-                                    <span id="Move">846</span>+
-                                </h3>
-                                <h4>
-                                    SATISFIED CLIENTS
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-1"></div>
-        </div>
-    </div>
-</section> -->
-<!-- Counter Page Ends -->
-
-<!-- Some -->
-<!-- <section class="Some">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="coller">
-                    <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46576_zihq4s.png" draggable="false" alt=""> CARS LEASED
-                    </h3>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="coller">
-                    <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46574_km5z6e.png" draggable="false" alt=""> DELIVERIES
-                    </h3>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="coller">
-                    <h3>
-                        <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1669211213/lazreb/Group_46579_pbkqnj.png" draggable="false" alt="">  SATISFIED CLIENTS
-                    </h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Some Ends-->
-
-<!-- About Page -->
-<!-- <section class="About">
-    <div class="container-fluid g-0">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="move">
-                    <div class="life"></div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="more">
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-11">
-                            <div class="less">
-                                <h1>
-                                    About Us
-                                </h1>
-                                <p>
-                                    Lazreb Leasing & Logistics Ltd was incorporated on the 16th of March 2021 with CAC, Nigeria. We provide total solutions to Clients in Leasing and Logistics businesses, especially with our e-solutions which always put our services on demand.
-                                </p>
-                                <div class="read">
-                                    Read More <i class="bi bi-arrow-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- About Page Ends -->
 
 <!-- Next Page -->
 <section class="Insight">

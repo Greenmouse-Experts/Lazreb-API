@@ -58,7 +58,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\HireVehicle::where('user_id', Auth::user()->id)->where('service_id', $service->id)->get() as $hireVehicle)
+                                                @foreach(\App\Models\HireVehicle::latest()->where('user_id', Auth::user()->id)->where('service_id', $service->id)->get() as $hireVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
@@ -91,6 +91,10 @@
                                                             @elseif($hireVehicle->status == 'Declined')
                                                             <a data-toggle="modal" class="btn btn-app mr-2 mb-1" style="background: red;">
                                                                 <i class="fa fa-times-cycle-o"></i> {{$hireVehicle->status}}
+                                                            </a>
+                                                            @elseif($hireVehicle->status == 'Paid')
+                                                            <a data-toggle="modal" class="btn btn-app btn-success mr-2 mb-1">
+                                                                <i class="fa fa-check-square-o"></i> {{$hireVehicle->status}}
                                                             </a>
                                                             @else
                                                             <a href="#HireVehicleEdit-{{$hireVehicle->id}}" data-toggle="modal" class="btn btn-app btn-primary mr-2 mb-1">
@@ -317,7 +321,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\CharterVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get() as $charterVehicle)
+                                                @foreach(\App\Models\CharterVehicle::latest()->where('service_id', $service->id)->where('user_id', Auth::user()->id)->get() as $charterVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>
@@ -568,7 +572,7 @@
                                                     </tr>
                                                 </tbody>
                                             @else
-                                                @foreach(\App\Models\LeaseVehicle::where('service_id', $service->id)->where('user_id', Auth::user()->id)->get() as $leaseVehicle)
+                                                @foreach(\App\Models\LeaseVehicle::latest()->where('service_id', $service->id)->where('user_id', Auth::user()->id)->get() as $leaseVehicle)
                                                 <tbody>
                                                     <tr role="row" class="odd">
                                                         <td class="sorting_1">{{$loop->iteration}}</td>

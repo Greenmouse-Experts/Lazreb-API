@@ -87,6 +87,12 @@ class VehicleTypeSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' =>now()
             ],
+            [
+                'type' => 'Other',
+                'price' => '',
+                'created_at' => now(),
+                'updated_at' =>now()
+            ],
         ];
 
         \App\Models\VehicleType::insert($createVehicleType);

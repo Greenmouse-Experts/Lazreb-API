@@ -393,7 +393,7 @@ class AdminController extends Controller
     
     public function users_services_requests()
     {
-        $services = Service::get();
+        $services = Service::latest()->get();
 
         $partnerFleetManagement = BecomePartner::get()->count();
         $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
@@ -424,12 +424,14 @@ class AdminController extends Controller
 
     public function users_partnership_requests()
     {
-        $partnershipRequests = BecomePartner::latest()->get();
+        $partnershipRequestsIndividual = BecomePartner::latest()->where('partnership_type', 'Individual')->get();
+        $partnershipRequestsCorporate = BecomePartner::latest()->where('partnership_type', 'Corporate')->get();
         $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
         $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('admin.partnership-requests', [
-            'partnershipRequests' => $partnershipRequests,
+            'partnershipRequestsIndividual' => $partnershipRequestsIndividual,
+            'partnershipRequestsCorporate' => $partnershipRequestsCorporate,
             'countUnreadNotifications' => $countUnreadNotifications,
             'unreadNotifications' => $unreadNotifications
         ]);

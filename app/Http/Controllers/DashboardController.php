@@ -176,7 +176,7 @@ class DashboardController extends Controller
             $request->validate([
                 'name' => 'required|string|max:244|min:1',
                 'vehicle_type' => 'required|string|max:244|min:1',
-                'lease_duration' => 'required|string|max:244|min:1',
+                'lease_duration' => 'required|numberic',
                 'purpose_of_use' => 'required|string|max:244|min:1',
                 'location_of_use' => 'required|string|max:244|min:1',
                 'agreement' => 'required|string|max:244|min:1',
@@ -187,7 +187,7 @@ class DashboardController extends Controller
                 'service_id' => $service->id,
                 'name' => $request->name,
                 'vehicle_type' => $request->vehicle_type,
-                'lease_duration' => $request->lease_duration,
+                'lease_duration' => $request->lease_duration.' days',
                 'purpose_of_use' => $request->purpose_of_use,
                 'location_of_use' => $request->location_of_use,
                 'agreement' => $request->agreement,
@@ -538,7 +538,8 @@ class DashboardController extends Controller
 
     public function post_become_partner(Request $request)
     {
-        $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->get();
+        $allBecomePartner = BecomePartner::where('user_id', Auth::user()->id)->where('status', 'Approved')
+                                ->orwhere('status', 'Pending')->get();
 
         if($allBecomePartner->isEmpty())
         {
@@ -657,12 +658,14 @@ class DashboardController extends Controller
 
     public function manage_become_a_partner()
     {
-        $becomePartners = BecomePartner::latest()->where('user_id', Auth::user()->id)->get();
+        $becomePartnersIndividual = BecomePartner::latest()->where('user_id', Auth::user()->id)->where('partnership_type', 'Individual')->get();
+        $becomePartnersCorporate = BecomePartner::latest()->where('user_id', Auth::user()->id)->where('partnership_type', 'Corporate')->get();
         $unreadNotifications =  Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->take(5)->get();
         $countUnreadNotifications = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->count();
 
         return view('dashboard.manage-become-a-partner', [
-            'becomePartners' => $becomePartners,
+            'becomePartnersIndividual' => $becomePartnersIndividual,
+            'becomePartnersCorporate' => $becomePartnersCorporate,
             'unreadNotifications' => $unreadNotifications,
             'countUnreadNotifications' => $countUnreadNotifications
         ]);
